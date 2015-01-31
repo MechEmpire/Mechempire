@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
   root 'home#index'
+
+  resources :users
+  
+  # resources :users do
+  #   member
+  #     get 'index', 'edit', 'destory', 'new'
+  #   end
+  # end
   # get 'home/index'
 
   # The priority is based upon order of creation: first created -> highest priority.
