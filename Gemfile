@@ -21,7 +21,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
+gem 'bson_ext'
+
 gem 'redis'
+# gem 'connection_pool',  '2.1.1'
+# gem 'redis-objects'
 gem 'bower-rails'
 gem 'angular-rails-templates'
 
@@ -45,4 +50,3 @@ group :development, :test do
   gem 'spring'
   gem 'rspec-rails', '3.1.0'
 end
-
