@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users
   
   # resources :users do
-  #   member
+  #   member do
   #     get 'index', 'edit', 'destory', 'new'
   #   end
   # end

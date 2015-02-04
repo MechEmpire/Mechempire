@@ -1,14 +1,6 @@
-<div class="container-fluid" ng-app="receta" ng-init="name='Tairy'">
-  <div class="panel panel-success">
-    <div class="panel-heading">
-      <h1>Hello, <span np-if="name">{{name}}</span></h1>
-    </div>
-    <div class="panel-body">
-      <form class="form-inline">
-        <div class="form-group">
-          <input class="form-control" type="text" placeholder="Enter your name" autofocus ng-model="name">
-        </div>
-      </form>
+<div ng-app="receta">
+  <div class="view-container">
+    <div ng-view class="view-frame animate-view">
     </div>
   </div>
 </div>
