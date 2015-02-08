@@ -103,6 +103,7 @@ GEM
       mini_portile (~> 0.6.0)
     optionable (0.2.0)
     origin (2.1.1)
+    phantomjs (1.9.8.0)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -171,6 +172,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    teaspoon (0.8.0)
+      railties (>= 3.2.5, < 5)
     thor (0.19.1)
     thread_safe (0.3.4)
     tilt (1.4.1)
@@ -199,12 +202,14 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mongoid (~> 4)!
+  phantomjs
   rails (= 4.2.0)
   redis
   rspec-rails (= 3.1.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
+  teaspoon
   turbolinks
   uglifier (>= 1.3.0)
   web-console (~> 2.0)

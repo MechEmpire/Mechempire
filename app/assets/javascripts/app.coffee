@@ -1,10 +1,15 @@
-receta = angular.module('receta',[
+#= require_self
+#= require_tree ./templates
+#= require_tree ./controllers
+
+mechempire = angular.module('mechempire',[
   'templates',
   'ngRoute',
-  'controllers',
+  'ngResource',
+  'controllers'
 ])
 
-receta.config(['$routeProvider',
+mechempire.config(['$routeProvider',
 	($routeProvider) ->
 		$routeProvider
 			.when('/',
@@ -13,13 +18,10 @@ receta.config(['$routeProvider',
 			).when('/users',
 				templateUrl: "user/user_list.html"
 				controller: "UserController"
+				title:"UserList"
 			)
+		$routeProvider.otherwise({
+			templateUrl: "public/404.html",
+			controller: "PublicController"
+			})
 ])
-
-controllers = angular.module('controllers',[])
-controllers.controller("UserController", ['$scope','$routeParams','$location'
-		($scope, $routeParams,$location)->
-	])
-controllers.controller("IndexController", ['$scope','$routeParams','$location'
-		($scope, $routeParams,$location)->
-	])
