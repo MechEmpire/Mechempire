@@ -17,11 +17,15 @@ mechempire.config(['$routeProvider',
 				controller: 'IndexController'
 			).when('/users',
 				templateUrl: "user/user_list.html"
+				controller: "UserListController"
+				title:"机甲帝国-用户列表"
+			).when('/users/:userid',
+				templateUrl: "user/user_info.html"
 				controller: "UserController"
-				title:"UserList"
+			).when('/404',
+				templateUrl: "public/404.html"
 			)
 		$routeProvider.otherwise({
-			templateUrl: "public/404.html",
-			controller: "PublicController"
+			templateUrl: "public/404.html"
 			})
 ])
