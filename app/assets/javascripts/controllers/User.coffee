@@ -1,15 +1,17 @@
 controllers = angular.module('controllers',[])
 
+# User controllers
 controllers.controller("UserController",['$rootScope','$routeParams', '$http','$route','$location'
 	($rootScope, $routeParams, $http, $route, $location)->
 		$rootScope.user = 
-		{name:'Tairy', email:'tairguo@gmail.com'}
+		{name:'', email:''}
 		$rootScope.title = "机甲帝国-" + $rootScope.user.name
 
 		loadUserInfo = ->
 			$http.get('users/' + $routeParams.userid+'.json')
 			.success((data) -> 
 				$rootScope.user = data
+				$rootScope.title = "机甲帝国-" + data.name
 				console.log("Success")
 			)
 			.error(->
@@ -19,7 +21,7 @@ controllers.controller("UserController",['$rootScope','$routeParams', '$http','$
 		loadUserInfo()
 ])
 controllers.controller("UserListController", ['$rootScope','$http','$route'
-	($rootScope, $http, $route)->
+	($rootScope, $http, $route) ->
 		$rootScope.data =
 		users: [{name:'', email:''}]
 		$rootScope.title = $route.current.title
@@ -32,4 +34,17 @@ controllers.controller("UserListController", ['$rootScope','$http','$route'
 					console.error("Fialed")
 				)
 		loadUsers()
+])
+
+# Public controllers
+controllers.controller("NotFoundController",['$rootScope','$route'
+	($rootScope, $route) -> 
+		$rootScope.title = $route.current.title
+])
+
+# Index Controllers
+
+controllers.controller("IndexController",['$rootScope','$route'
+	($rootScope, $route) ->
+		$rootScope.title = $route.current.title
 ])

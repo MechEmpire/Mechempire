@@ -29,6 +29,7 @@ gem 'redis'
 # gem 'redis-objects'
 gem 'bower-rails'
 gem 'angular-rails-templates'
+gem 'bcrypt'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
