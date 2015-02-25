@@ -4,6 +4,7 @@ require File.expand_path('../boot', __FILE__)
 require "active_model/railtie"
 require "active_job/railtie"
 # require "active_record/railtie"
+
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "action_view/railtie"
@@ -32,5 +33,8 @@ module MechWebsite
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
+    config.generators do |g|
+      g.orm :active_record
+    end
   end
 end
