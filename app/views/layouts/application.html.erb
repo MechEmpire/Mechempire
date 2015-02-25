@@ -3,10 +3,10 @@
 <head>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
-  <title ng-bind="title">机甲帝国-正在加载...</title>
+  <title>欢迎访问-机甲帝国 | <%= yield(:title) %> </title>
 </head>
 <body>
-
+<%= render 'layouts/header' %>
 <%= yield %>
 <%= javascript_include_tag 'application'%>
 </body>

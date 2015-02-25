@@ -33,8 +33,11 @@ module MechWebsite
     config.assets.paths << Rails.root.join("vendor","assets","bower_components","bootstrap-sass-official","assets","fonts")
 
     config.assets.precompile << %r(.*.(?:eot|svg|ttf|woff)$)
-    config.generators do |g|
-      g.orm :active_record
-    end
+    # config.generators do |g|
+    #   g.orm :active_record
+    # end
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
+      "<span class=\"has-error\">#{html_tag}</span>".html_safe
+    }
   end
 end
