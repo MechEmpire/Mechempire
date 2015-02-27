@@ -3,11 +3,17 @@
 <head>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= csrf_meta_tags %>
-  <title>欢迎访问-机甲帝国 | <%= yield(:title) %> </title>
+  <title>欢迎访问-机甲帝国 <%= yield(:title) %> </title>
 </head>
 <body>
 <%= render 'layouts/header' %>
-<%= yield %>
+<% flash.each do |key, value| %>
+  <div class="alert alert-<%= key %>"><%= value %></div>
+<% end %>
+<div class="container">
+  <%= yield %>
+  <%= debug(params) if Rails.env.development? %>
+</div>
 <%= javascript_include_tag 'application'%>
 </body>
 </html>

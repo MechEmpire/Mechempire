@@ -1,7 +1,7 @@
 <% if @user.errors.any? %>
   <div class="panel panel-danger">
     <div class="panel-heading">
-      The form contains <%= pluralize(@user.errors.count, "error") %>.
+      <%= @user.errors.count %> 个表单错误，请重新填写.
     </div>
     <div class="panel-body">
       <ul>
