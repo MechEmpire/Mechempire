@@ -26,6 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
+    sign_in @user
     @user.name = @user.email.split("@")[0]
     respond_to do |format|
       if @user.save

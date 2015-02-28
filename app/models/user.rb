@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  Mongoid.raise_not_found_error = false
   include ActiveModel::SecurePassword
   field :name, type: String
   field :email, type: String
