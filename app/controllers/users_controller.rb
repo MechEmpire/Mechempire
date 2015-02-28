@@ -25,6 +25,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
+    UserMailer.signup_confirm_email(@user).deliver
     
     sign_in @user
     @user.name = @user.email.split("@")[0]

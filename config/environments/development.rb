@@ -33,6 +33,15 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "smtp.qq.com",
+      :port => "25",
+      :authentication => :plain,
+      :user_name => "1210137461@qq.com",
+      :password => "qqggr940110,."
+  }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 end
