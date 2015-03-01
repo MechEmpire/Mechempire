@@ -6,6 +6,8 @@ class User
   field :email, type: String
   field :motto, type: String
   field :remember_token, type: String
+  field :active_code, type: String
+  field :is_actived, type: Boolean
   # field :avatar_address, type: String
   field :password_digest, type: String
   # field :password_confirmation, type: String

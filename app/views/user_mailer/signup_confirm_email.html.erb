@@ -4,14 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, <%= @user.name %></h1>
+    <h1>感谢您注册机甲帝国，请激活您的机甲账号, <%= @user.name %></h1>
     <p>
-      You have successfully signed up to example.com,
-      your username is: <%= @user.name %>.<br>
+      您已成功注册机甲帝国对战平台，非常感谢您对我们的支持，希望您能在这里收获战斗的快乐。
+      您的用户名为： <%= @user.name %>,可在激活账号之后访问"个人中心"更改<br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      为了能成功登录本站，请点击如下链接激活您的账号：<br> 
+      <%= @url %>.
     </p>
-    <p>Thanks for joining and have a great day!</p>
+    <p>感谢您的注册，祝您生活愉快！</p>
   </body>
 </html>

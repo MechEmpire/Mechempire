@@ -25,13 +25,16 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-    UserMailer.signup_confirm_email(@user).deliver
     
-    sign_in @user
     @user.name = @user.email.split("@")[0]
+    @user.active_code = rand(Time.now.to_i).to_s
+    @user.is_actived = false
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: '注册成功！' }
+        UserMailer.signup_confirm_email(@user).deliver
+        sign_in @user
+
+        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户！' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -62,6 +65,20 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url, notice: '删除用户成功!' }
       format.json { head :no_content }
     end
+  end
+
+  def active
+    @user = User.find_by(name:params[:name])
+    if @user != nil && !@user.is_actived && @user.active_code == params[:active_code]
+      @user.update_attribute(:is_actived, true)
+      flash[:success] = "恭喜您，您已经成功激活了您的账户！"
+    elsif @user != nil && @user.is_actived
+      flash[:warning] = "您的账户已经处于激活状态，请勿重复激活！"
+    else
+      flash[:danger] = "激活失败！"
+    end
+
+    redirect_to root_path
   end
 
   private
