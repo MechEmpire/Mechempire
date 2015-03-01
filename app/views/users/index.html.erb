@@ -3,35 +3,8 @@
   <h1>龙虎榜</h1>
 </center>
 
-<div class="row">
-<hr>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Motto</th>
-        <th colspan="3">操作</th>
-      </tr>
-    </thead>
+<ul class="users">
+  <%= render @users %>
+</ul>
 
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= gravatar_for(user, size: 20) %> <%= link_to user.name, user %></td>
-          <td><%= user.email %></td>
-          <td><%= user.motto %></td>
-          <td><%= link_to 'Show', user %></td>
-          <td><%= link_to 'Edit', edit_user_path(user) %></td>
-          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: '确认删除用户？' } %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-<br>  
-
-<!-- <div class="container">
-  <div ng-view class="view-frame animate-view">
-  </div>
-</div> -->
+<%= paginate @users, :outer_window => 2 %>

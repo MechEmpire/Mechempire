@@ -6,3 +6,17 @@
 	padding: 15px;
 	margin: 0 auto;
 }
+
+.users {
+  list-style: none;
+  margin: 0;
+  padding-left: 0px;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid rgb(216, 216, 216);
+    &:last-child {
+      border-bottom: 1px solid rgb(216, 216, 216);
+    }
+  }
+}

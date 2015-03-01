@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new', via: 'get'
   match '/signout',  to: 'sessions#destory', via: 'delete'
   match '/active', to: 'users#active', via: 'get'
+  # match '/setting'
   
   # resources :users do
   #   member do
