@@ -38,6 +38,10 @@ class User
     Digest::SHA1.hexdigest(token.to_s)
   end
 
+  def battle
+    exec "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
+  end
+
   private
 
     def create_remember_token

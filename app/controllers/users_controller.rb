@@ -8,6 +8,7 @@ class UsersController < ApplicationController
   def index
     # @users = User.all
     @users = User.page(params[:page]).per(1)
+    # @user.battle
   end
 
   # GET /users/1
@@ -16,6 +17,7 @@ class UsersController < ApplicationController
     if !@user.is_actived
       flash[:danger] = "您的账号还未激活，请激活之后再使用！"
     end
+    @user.battle
   end
 
   # GET /users/new
