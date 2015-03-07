@@ -13,6 +13,9 @@ class User
   field :password_digest, type: String
   # field :password_confirmation, type: String
   # field :password, type: String
+
+  has_and_belongs_to_many :battles
+  has_many :meches
   has_secure_password
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

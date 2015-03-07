@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     if !@user.is_actived
       flash[:danger] = "您的账号还未激活，请激活之后再使用！"
     end
-    @user.battle
+    # @user.battle
   end
 
   # GET /users/new
