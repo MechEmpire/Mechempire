@@ -1,0 +1,7 @@
+<%= form_for(@mech) do |f| %>
+  <% render 'shared/mech_error_messages' %>
+  <div class="form-group">
+    <%= f.label :carriers, :value => "请选择载体:" %><br>
+    <%= f.collection_select(:id, Carrier.all, :id, :name)%>
+  </div>
+<% end %>
