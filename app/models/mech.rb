@@ -6,8 +6,8 @@ class Mech
   field :weapon_id, type: String
 
   belongs_to :user
+  belongs_to :weapon
+  belongs_to :carrier
 
-  # has_one :weapon
   has_one :code
-  # has_one :carrer
 end

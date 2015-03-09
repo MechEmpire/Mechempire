@@ -4,6 +4,7 @@ class Carrier
 
   field :name, type: String
   field :introduce, type: String
+  field :samplepic, type: String
 
-  belongs_to :mech
+  has_many :meches
 end

@@ -4,6 +4,8 @@ class Weapon
 
   field :name, type: String
   field :introduce, type: String
+  field :samplepic, type: String
 
-  belongs_to :mech
+  has_many :meches
+  # belongs_to :mech
 end
