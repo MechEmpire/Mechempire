@@ -10,11 +10,6 @@ class MechesController < ApplicationController
     @mech.create_at = Time.now
     @mech.user_id = current_user.id
 
-    uploaded_io = params[:mech][:code]
-    File.open(Rails.root.join('public', 'uploads', uploaded_io.original_filename), 'wb') do |file|
-      file.write(uploaded_io.read)
-    end
-
     respond_to do |format|
       if @mech.save
         format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
@@ -50,6 +45,7 @@ class MechesController < ApplicationController
 
     def mech_params
       params.require(:mech).permit(:carrier_id, 
-                                   :weapon_id)
+                                   :weapon_id,
+                                   :code)
     end
 end

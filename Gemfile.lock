@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/ahoward/mongoid-grid_fs.git
+  revision: 2507e65a60206cb726c0a38bdab8dd343150c0e0
+  specs:
+    mongoid-grid_fs (2.1.0)
+      mime-types (>= 1.0, < 3.0)
+      mongoid (>= 3.0, < 5.0)
+
+GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 35aea60b285afce7a1d1f22602b14b21e91c08fa
   specs:
@@ -64,6 +72,15 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+    carrierwave-mongoid (0.7.1)
+      carrierwave (>= 0.8.0, < 0.11.0)
+      mongoid (>= 3.0, < 5.0)
+      mongoid-grid_fs (>= 1.3, < 3.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -206,11 +223,13 @@ DEPENDENCIES
   bower-rails
   bson_ext
   byebug
+  carrierwave-mongoid
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
   mongoid (~> 4)!
+  mongoid-grid_fs!
   phantomjs
   rails (= 4.2.0)
   redis

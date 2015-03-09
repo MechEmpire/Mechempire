@@ -1,5 +1,6 @@
 <%= form_for(@mech) do |f| %>
-  <% render 'shared/mech_error_messages' %>
+  <%= render 'shared/mecherror_messages' %>
+
   <div class="form-group">
     <%= f.label :carriers, :value => "请选择您的机甲:" %><br>
     <%= f.collection_select(:carrier_id, Carrier.all, :id, :name, {}, {:class => 'form-control'})%>
