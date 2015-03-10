@@ -9,7 +9,7 @@ class Mech
   field :weapon_id, type: String
   validates :carrier_id, presence: true
   validates :weapon_id, presence: true
-  validates :code, presence: true
+  # validates :code, presence: true
 
   belongs_to :user
   belongs_to :weapon

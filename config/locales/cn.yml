@@ -97,9 +97,8 @@ cn:
       year: 年
   errors:
     format: "%{attribute}%{message}"
-    attribute:
-      password_confirmation: 密码
     messages:
+      extension_white_list_error: 只接受zip文件
       accepted: 必须是可被接受的
       blank: 不能为空字符
       present: 必须是空白

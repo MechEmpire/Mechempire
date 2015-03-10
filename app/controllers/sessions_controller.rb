@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+    if signed_in?
+      flash[:warning] = "您已登录，无需重复登录！"
+      redirect_to current_user
+    end
   end
 
   def create

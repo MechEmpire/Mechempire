@@ -1,5 +1,7 @@
 class MechesController < ApplicationController
   before_action :set_mech, only: [:show, :edit, :update, :destroy]
+  before_action :signed_in_user, only: [:create, :edit, :update]
+
   def index
     #just display one record per page
     @meches = Mech.page(params[:page]).per(1)
@@ -47,5 +49,12 @@ class MechesController < ApplicationController
       params.require(:mech).permit(:carrier_id, 
                                    :weapon_id,
                                    :code)
+    end
+
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to signin_url, notice: "请登录后再进行此操作！"
+      end
     end
 end
