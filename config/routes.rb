@@ -1,14 +1,37 @@
 Rails.application.routes.draw do
+  # get 'weapons/index'
+
+  # get 'weapons/show'
+
+  # get 'weapons/create'
+
+  # get 'weapons/edit'
+
+  # get 'weapons/destroy'
+
+  # get 'carriers/index'
+
+  # get 'carriers/show'
+
+  # get 'carriers/create'
+
+  # get 'carriers/edit'
+
+  # get 'carriers/destroy'
+
   root 'home#index'
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :meches
+  resources :carriers
+  resources :weapons
 
   match '/signup',  to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
   match '/signout',  to: 'sessions#destory', via: 'delete'
   match '/active', to: 'users#active', via: 'get'
+
   # match '/setting'
   
   # resources :users do

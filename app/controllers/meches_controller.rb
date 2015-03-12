@@ -4,7 +4,8 @@ class MechesController < ApplicationController
 
   def index
     #just display one record per page
-    @meches = Mech.page(params[:page]).per(1)
+    # @meches = Mech.page(params[:page]).per(1)
+    @meches = Carrier.all
   end
 
   def create

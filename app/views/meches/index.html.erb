@@ -1,0 +1,10 @@
+<% provide(:title, '| 机甲展示') %>
+<center class="row">
+  <h1>机甲展示</h1>
+</center>
+
+<% @meches.each do |m| %>
+  <%= m.name %><br>
+  <%= m.introduce %><br>
+  <%= m.samplepic %>
+<% end %>
