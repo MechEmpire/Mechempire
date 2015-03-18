@@ -1,14 +1,6 @@
 <%= form_for(@mech, :html => {:class => "new_user"}) do |f| %>
   <%= render 'shared/mecherror_messages' %>
-
-  <div class="form-group">
-    <%= f.label :carriers, :value => "请选择您的机甲:" %><br>
-    <%= f.collection_select(:carrier_id, Carrier.all, :id, :name, {}, {:class => 'form-control'})%>
-  </div>
-  <div class="form-group">
-    <%= f.label :weapons, :value => "请选择武器:" %><br>
-    <%= f.collection_select(:weapon_id, Weapon.all, :id, :name, {}, {:class => 'form-control'}) %>
-  </div>
+  
   <div class="form-group">
     <%= f.label :code, :value => "请选择代码上传:" %><br>
     <%= f.file_field :code %>
