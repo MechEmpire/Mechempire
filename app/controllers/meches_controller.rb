@@ -8,6 +8,10 @@ class MechesController < ApplicationController
     # @meches = Carrier.all
   end
 
+  def mech_list
+    
+  end
+
   def create
     @mech = Mech.new( mech_params )
     @mech.create_at = Time.now

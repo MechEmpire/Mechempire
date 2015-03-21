@@ -35,6 +35,7 @@ Rails.application.routes.draw do
   match '/aboutus', to:'home#aboutus',via: 'get'
   match '/join', to: 'home#join', via: 'get'
   match '/achieve', to: 'home#achieve', via: 'get'
+  match '/mechlist', to: 'meches#mech_list', via: 'get'
   # match '/admin', to: 'users#admin', via: 'get'
 
   # match '/setting'
