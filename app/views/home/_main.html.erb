@@ -1,11 +1,51 @@
-<div class="mech-main">
+<!-- <div class="mech-main">
 	<center class="container">
 		<div class="me-logo">
-  		<%= image_tag("mech-logo.jpg", :class => "img-rounded") %>
+  		<%#= image_tag("mech-logo-s.png", :class => "img-rounded") %>
 	  </div>
 	  <p class="lead">绝对精彩的C++智能体对抗游戏！</p>
 		<p class="lead">
       <a href="/signup" class="btn btn-success btn-lg">立即加入战斗</a>
     </p>
 	</center>
+</div> -->
+
+
+<div id="myCarousel" class="carousel slide">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="fill" style="background-image:url('<%= image_path("home-page-1.jpg") %>')"></div>
+            <div class="carousel-caption">
+                <h2>Caption 1</h2>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('<%= image_path("home-page-2.jpg") %>')"></div>
+            <div class="carousel-caption">
+                <h2>Caption 2</h2>
+            </div>
+        </div>
+        <div class="item">
+            <div class="fill" style="background-image:url('<%= image_path("home-page-3.jpg") %>')"></div>
+            <div class="carousel-caption">
+                <h2>Caption 3</h2>
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+        <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+        <span class="icon-next"></span>
+    </a>
 </div>

@@ -6,18 +6,22 @@ class Mech
   
   mount_uploader :code, CodeUploader
   
-  field :create_at, type: DateTime # mech create time
-  # field :carrier_id, type: String
-  # field :weapon_id, type: String
-  # validates :carrier_id, presence: true
-  # validates :weapon_id, presence: true
-  # validates :code, presence: true
-  # field :code_dir, type: String
+  field :create_at, type: DateTime
+  field :name, type: String
+  field :author, type: String
+  field :weapon, type: String
+  field :engine, type: String
+  
   belongs_to :user
-  # belongs_to :weapon
-  # belongs_to :carrier
 
-  # has_one :code
+  def get_mech_info
+    system "compile/RobotAppearanceReader #{self.code_dir}libmyAI.so #{self.code_dir}appearance.json"
+    json_info = JSON::parse(File::read("#{self.code_dir}appearance.json"))
+    self.update_attributes(:name => json_info['name'], 
+                          :author => json_info['author'],
+                          :weapon => json_info['weapon'],
+                          :engine => json_info['engine'])
+  end
 
   def code_dir
     self.code.path.split('.')[0]+'/'
@@ -25,6 +29,7 @@ class Mech
 
   def compile
     self.unzip_file(self.code.path,"public/uploads/#{self.class.to_s.underscore}/code/#{self.id}")
+    system "compile/compile_user_ai.sh -p #{self.code_dir}"
   end
 
   def unzip_file (file, destination)

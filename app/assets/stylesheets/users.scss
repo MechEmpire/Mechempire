@@ -20,3 +20,61 @@
     }
   }
 }
+
+
+// custom user
+.user-info-detial{
+  padding-left: 0px;
+  li{
+    line-height: 1.8em;
+  }
+}
+.user-info-icon{
+  color: #ccc;
+  margin-right: 0.2em;
+}
+.follower{
+  border-right: 1px solid #ccc;
+}
+.user-follow{
+  a{
+    span{
+      color: #999;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+    strong, label{
+      font-size: 20px;
+    }
+  }
+  a:link {  
+    color: #000000;  
+    text-decoration: none;  
+  }  
+  a:visited {  
+    text-decoration: none;  
+    color: #000000;  
+  }  
+  a:hover {  
+    text-decoration: none;  
+    color: #23527c;  
+  }  
+  a:active {  
+    text-decoration: none;  
+    color: #000000;  
+  }  
+}
+
+.my-mech-body{
+  margin-top: 5px;
+}
+.my-mech-name{
+  font-size: 20px;
+}
+.my-mech-create-at{
+  font-size: 13px;
+  color: #999;
+}
+.my-mech-info{
+  margin-left: 20px;
+}

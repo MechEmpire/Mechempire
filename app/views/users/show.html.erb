@@ -1,17 +1,85 @@
-<p>
-  <%= gravatar_for(@user, size: 20) %>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<p>
-  <strong>Motto:</strong>
-  <%= @user.motto %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %>
+<div class="custom-container">
+  <div class="row">
+    <div class="col-md-3">
+      <%=link_to gravatar_for(@user, size: 240), @user , :class => "thumbnail" %>
+      <h1 class="user-info-name">
+        <%= @user.name %>
+      </h1>
+      <hr>
+      <ul class="user-info-detial">
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-envelope"></i>
+          </span> 
+          <span>
+            <%= @user.email %>
+          </span>
+        </li>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-clock-o"></i>
+          </span>
+          <span>
+            <%= @user.join_time.strftime("%Y年%m月%d") %>加入
+          </span>
+        </li>
+      </ul>
+      <hr>
+      <div class="row">
+        <center class="col-md-6 user-follow follower">
+          <a href="" title="">
+            <span>关注者</span><br>
+            <strong>12</strong>
+            <label> 人</label>
+          </a>
+        </center>
+        <center class="col-md-6 user-follow">
+          <a href="" title="">
+            <span>关注了</span><br>
+            <strong>122</strong>
+            <label> 人</label>
+          </a>
+        </center>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h1>我的机甲</h1>
+      <hr>
+      <div class="custom-well">
+      <% @user.meches_per_page(params[:page]).each do |mech| %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-mech-head">
+              <span class="my-mech-name">
+                <%= link_to(mech.name.nil? ? "无名英雄" : mech.name, mech) %>
+              <span>
+              <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>
+            </div>
+            <div class="my-mech-body">
+              <div class="my-mech-info">
+                <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong>石山石</p>
+                <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
+                <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
+                <p>
+                  <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star"></span>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <% end %>
+        <center>
+          <%= paginate @user.meches_per_page(params[:page]), :outer_window => 2 %>
+        </center>
+      </div>
+      <h1>我的战斗</h1>
+      <hr>
+    </div>
+  </div>
+</div>

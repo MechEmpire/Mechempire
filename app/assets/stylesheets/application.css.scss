@@ -12,10 +12,42 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  */
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap-sprockets";
  @import "bootstrap-sass-official/assets/stylesheets/bootstrap";
 
 .alert-notice{
 	@extend .alert-success;
+}
+
+.custom-container{
+  @extend .container;
+  margin-top: 15px;
+}
+.custom-well{
+  @extend .well;
+  background-color: #fff;
+}
+.pagination{
+  margin: 10px 0 0 0;
+}
+html,
+body {
+    height: 100%;
+}
+
+body {
+  background-color: #fff;
+  color: #333;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+ul{
+  list-style: none;
+}
+hr{
+  margin:10px 0;
 }

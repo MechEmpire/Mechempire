@@ -9,6 +9,7 @@ class User
   field :active_code, type: String
   field :is_actived, type: Boolean
   field :admin, type: Boolean
+  field :join_time, type: DateTime
   # field :avatar_address, type: String
   field :password_digest, type: String
   # field :password_confirmation, type: String
@@ -43,6 +44,10 @@ class User
 
   def battle
     exec "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
+  end
+
+  def meches_per_page(page)
+    self.meches.order("create_at DESC").page(page).per(2)
   end
 
   private

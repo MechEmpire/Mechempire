@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .lead{
-	margin: 25px;
-	font-size: 23px !important;
-	color: #fff;
+	// margin: 25px;
+	// font-size: 23px !important;
+	// color: #fff;
 }
 .mech-nav{
 	margin-bottom: 0;
@@ -19,4 +19,25 @@
 }
 .mech-main{
 	background-color: #6f5499;
+}
+.mech-nav-logo{
+  height: 40px;
+  margin-top: 5px;
+}
+
+div.carousel {
+    height: 60%;
+}
+
+div.carousel .item,
+div.carousel .item.active,
+div.carousel .carousel-inner {
+    height: 100%;
+}
+
+div.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
 }

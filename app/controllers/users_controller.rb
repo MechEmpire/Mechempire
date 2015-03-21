@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update, :admin]
   before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user,     only: [:destroy, :admin]
   # GET /users
   # GET /users.json
   def index
@@ -39,10 +39,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     
-    @user.name = @user.email.split("@")[0]
+    @user.name = @user.email.split("@")[0].titleize
     @user.active_code = rand(Time.now.to_i).to_s
     @user.is_actived = false
     @user.admin  = false
+    @user.join_time = Time.now
     respond_to do |format|
       if @user.save
         UserMailer.signup_confirm_email(@user).deliver
@@ -99,6 +100,10 @@ class UsersController < ApplicationController
     end
 
     redirect_to root_path
+  end
+
+  def admin
+    # render :layout => "admin"
   end
 
   def resend_active_mail

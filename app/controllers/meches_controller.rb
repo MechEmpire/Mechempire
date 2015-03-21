@@ -4,14 +4,18 @@ class MechesController < ApplicationController
 
   def index
     #just display one record per page
-    # @meches = Mech.page(params[:page]).per(1)
-    @meches = Carrier.all
+    @meches = Mech.page(params[:page]).per(10)
+    # @meches = Carrier.all
   end
 
   def create
     @mech = Mech.new( mech_params )
     @mech.create_at = Time.now
     @mech.user_id = current_user.id
+
+    # if @mech.compile
+
+    # end
 
     respond_to do |format|
       if @mech.save
@@ -47,9 +51,7 @@ class MechesController < ApplicationController
     end
 
     def mech_params
-      params.require(:mech).permit(:carrier_id, 
-                                   :weapon_id,
-                                   :code)
+      params.require(:mech).permit(:code)
     end
 
     def signed_in_user

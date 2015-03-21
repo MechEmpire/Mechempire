@@ -1,10 +1,30 @@
-<% provide(:title, '| 机甲展示') %>
+<% provide(:title, '| 机甲列表') %>
 <center class="row">
-  <h1>机甲展示</h1>
+  <h1>机甲列表</h1>
 </center>
+<table class="table">
+  <thead>
+    <tr>
+      <th>机甲名称</th>
+      <th>作者</th>
+      <th>拥有者</th>
+      <th>武器</th>
+      <th>引擎</th>
+      <th>创建时间</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @meches.each do |m| %>
+      <tr>
+        <td><%= m.name %></td>
+        <td><%= m.author %></td>
+        <td><%= m.user.name unless m.user.nil? %></td>
+        <td><%= m.weapon %></td>
+        <td><%= m.engine %></td>
+        <td><%= m.create_at.to_formatted_s(:db) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<% @meches.each do |m| %>
-  <%= m.name %><br>
-  <%= m.introduce %><br>
-  <%= m.samplepic %>
-<% end %>
+<%= paginate @meches, :outer_window => 2 %>
