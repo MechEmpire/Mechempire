@@ -51,3 +51,30 @@ ul{
 hr{
   margin:10px 0;
 }
+a:link {  
+  color: #000000;  
+  text-decoration: none;  
+}  
+a:visited {  
+  text-decoration: none;  
+  color: #000000;  
+}  
+a:hover {  
+  text-decoration: none;  
+  color: #23527c;  
+}  
+a:active {  
+  text-decoration: none;  
+  color: #000000;  
+}
+footer{
+  color: #999;
+  a{
+    color: #999 !important;
+  }
+  margin: 40px 0 30px 0;
+}
+.foot_hr{
+  width: 90%;
+  margin: 20px auto;
+}

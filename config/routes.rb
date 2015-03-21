@@ -31,6 +31,10 @@ Rails.application.routes.draw do
   match '/signin',  to: 'sessions#new', via: 'get'
   match '/signout',  to: 'sessions#destory', via: 'delete'
   match '/active', to: 'users#active', via: 'get'
+  match '/about', to: 'home#about', via: 'get'
+  match '/aboutus', to:'home#aboutus',via: 'get'
+  match '/join', to: 'home#join', via: 'get'
+  match '/achieve', to: 'home#achieve', via: 'get'
   # match '/admin', to: 'users#admin', via: 'get'
 
   # match '/setting'
