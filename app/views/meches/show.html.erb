@@ -1,4 +1,64 @@
-<p>
-  <strong>UserName:</strong>
-  <%= link_to @mech.user.name, @mech.user %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">
+        <%= @mech.name.nil? ? "无名英雄" : @mech.name %>
+        <small><i class="fa fa-user"></i>&nbsp;<%= @mech.user.name %></small>
+      </h1>
+      <!-- <ol class="breadcrumb">
+        <li><a href="index.html">Home</a>
+        </li>
+        <li class="active">Portfolio Item</li>
+      </ol> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <img src="http://placehold.it/600x400" alt="机甲图片">
+    </div>
+    <div class="col-md-5">
+      <div class="mech-item-info">
+        <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong>石山石</p>
+        <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
+        <p>
+          <strong><i class="fa fa-clock-o"></i> 创建时间：</strong>
+          <%= time_ago_in_words(@mech.create_at) + "前创建" %>
+        </p>
+        <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
+        <p>
+          <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star"></span>
+          <span class="glyphicon glyphicon-star-empty"></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="page-header">更多机甲</h3>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+  </div>
+</div>
