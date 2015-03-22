@@ -14,6 +14,23 @@ class Mech
   
   belongs_to :user
 
+  has_and_belongs_to_many :battles
+
+  def battle_with(opponent)
+    battle = Battle.new
+    battle.time = Time.now
+    battle.meches << self
+    battle.meches << opponent
+    # battle.users << self.user
+    # battle.users << opponent.user
+    battle.save
+    self.battles << battle
+    # self.user.battles << battle
+    # opponent.user.battles << battle
+    opponent.battles << battle
+    # exec "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
+  end
+
   def get_mech_info
     system "compile/RobotAppearanceReader #{self.code_dir}libmyAI.so #{self.code_dir}appearance.json"
     json_info = JSON::parse(File::read("#{self.code_dir}appearance.json"))

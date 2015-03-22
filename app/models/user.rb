@@ -15,6 +15,7 @@ class User
   # field :password_confirmation, type: String
   # field :password, type: String
 
+  # has_and_belongs_to_many :battles
   has_and_belongs_to_many :battles
   has_many :meches
   has_secure_password
@@ -42,12 +43,16 @@ class User
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def battle
-    exec "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
-  end
-
   def meches_per_page(page)
     self.meches.order("create_at DESC").page(page).per(2)
+  end
+
+  def battle_count
+    sum = 0
+    self.meches.each do |mech|
+      sum = sum + mech.battles.count
+    end
+    return sum
   end
 
   private
