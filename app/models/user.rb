@@ -38,7 +38,7 @@ class User
     SecureRandom.urlsafe_base64
   end
 
-  def User.hash(token)
+  def User.hash_custom(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
 
@@ -53,14 +53,14 @@ class User
   private
 
     def create_remember_token
-      self.remember_token = User.hash(User.new_remember_token)
+      self.remember_token = User.hash_custom(User.new_remember_token)
     end
 
-  def test
-    puts redis_key(:following)
-  end
+  # def test
+  #   puts redis_key(:following)
+  # end
 
-  def redis_key(str)
-    "user:#{self.id}:#{str}"
-  end
+  # def redis_key(str)
+  #   "user:#{self.id}:#{str}"
+  # end
 end

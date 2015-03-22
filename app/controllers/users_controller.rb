@@ -44,6 +44,7 @@ class UsersController < ApplicationController
     @user.is_actived = false
     @user.admin  = false
     @user.join_time = Time.now
+
     respond_to do |format|
       if @user.save
         UserMailer.signup_confirm_email(@user).deliver
