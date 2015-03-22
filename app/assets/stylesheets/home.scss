@@ -82,3 +82,59 @@ div.carousel .fill {
 .img-center {
   margin: 0 auto;
 }
+.helper-row{
+  // margin: 80px 0;
+}
+.helper-item{
+  margin-top: 20px;
+  text-align: center;
+  a{
+    font-size: 24px;
+    color: #fff;
+    span{
+      position: absolute;
+      top: 50%;
+      left: 35%;
+      color: #fff;
+      font-size: 30px;
+    }
+  }
+}
+.helper-image{
+  max-width: 360px;
+  overflow: hidden;
+}
+.join-us{
+  p{
+    font-size: 18px;
+  }
+}
+
+.home-page-newer-title{
+  margin: 80px 0;
+  h1{
+    color: #999;
+  }
+}
+.home-page-newer-item{
+  h2 {
+    margin-top: 40px;
+  }
+  p{
+    color: #999;
+    line-height: 2em;
+    font-size: 18px;
+  }
+  a{
+    color: #998;
+  }
+}
+.home-page-gray{
+  background-color: #eef1f2;
+  margin-top:40px;
+  padding-bottom: 40px;
+}
+.home-page-content-gray{
+  margin-top: 40px;
+  text-align: left;
+}
