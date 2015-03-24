@@ -41,7 +41,7 @@ gem 'bcrypt'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 
-gem 'capistrano', '~> 3.3.0'
+# gem 'capistrano', '~> 3.3.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
