@@ -20,6 +20,9 @@
 .alert-notice{
 	@extend .alert-success;
 }
+.alert{
+  margin-bottom: 0px;
+}
 
 .custom-container{
   @extend .container;

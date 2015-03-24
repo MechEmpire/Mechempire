@@ -10,6 +10,8 @@ class User
   field :is_actived, type: Boolean
   field :admin, type: Boolean
   field :join_time, type: DateTime
+  field :sex, type: String
+  field :blog, type: String
   # field :avatar_address, type: String
   field :password_digest, type: String
   # field :password_confirmation, type: String

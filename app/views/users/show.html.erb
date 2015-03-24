@@ -3,7 +3,14 @@
     <div class="col-md-3">
       <%=link_to gravatar_for(@user, size: 240), @user , :class => "thumbnail" %>
       <h1 class="user-info-name">
-        <%= @user.name %>
+        <%= @user.name %> 
+        <small>
+          <% if @user.sex == "boy" %>
+            <i class="fa fa-mars"></i>
+          <% elsif @user.sex == "girl" %>
+            <i class="fa fa-venus"></i>
+          <% end %>
+        </small>
       </h1>
       <hr>
       <ul class="user-info-detial">
@@ -13,6 +20,22 @@
           </span> 
           <span>
             <%= @user.email %>
+          </span>
+        </li>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-link"></i>
+          </span> 
+          <span>
+            <%= link_to(@user.blog, @user.blog) %>
+          </span>
+        </li>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-volume-up"></i>
+          </span>
+          <span>
+            <%= @user.motto %>
           </span>
         </li>
         <li>
@@ -44,7 +67,14 @@
     </div>
     <div class="col-md-9">
       <div class="row custom-well my-achieve">
-        <h3>获得的成就</h3>
+        <div class="row">
+          <div class="col-md-9">
+            <h3>获得的成就</h3>
+          </div>
+          <div class="col-md-3">
+            <button class="btn btn-sm btn-default pull-right">关注</button>
+          </div>
+        </div>
         <hr>
         <div class="col-md-12 row">
           <div class="col-md-3">

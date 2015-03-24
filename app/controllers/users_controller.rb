@@ -65,7 +65,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.is_actived
         if @user.update_attributes(user_params)
-          format.html { redirect_to @user, notice: '个人信息更新成功！' }
+          format.html { redirect_to edit_user_path(@user), notice: '个人信息更新成功！' }
           format.json { render :show, status: :ok, location: @user }
         else
           format.html { render :edit }
@@ -135,7 +135,10 @@ class UsersController < ApplicationController
       params.require(:user).permit(:name, 
                                    :email, 
                                    :password, 
-                                   :password_confirmation)
+                                   :password_confirmation,
+                                   :sex,
+                                   :motto,
+                                   :blog)
     end
 
     def admin_user
