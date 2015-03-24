@@ -234,6 +234,7 @@ DEPENDENCIES
   kaminari
   mongoid (~> 4)!
   mongoid-grid_fs!
+  moped
   phantomjs
   rails (= 4.2.0)
   redis
