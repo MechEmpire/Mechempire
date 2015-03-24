@@ -22,14 +22,17 @@
             <%= @user.email %>
           </span>
         </li>
-        <li>
-          <span class="user-info-icon">
-            <i class="fa fa-link"></i>
-          </span> 
-          <span>
-            <%= link_to(@user.blog, @user.blog) %>
-          </span>
-        </li>
+        <% unless @user.blog.nil? %>
+          <li>
+            <span class="user-info-icon">
+              <i class="fa fa-link"></i>
+            </span> 
+            <span>
+              <%= link_to(@user.blog, @user.blog) %>
+            </span>
+          </li>
+        <% end %>
+        <% unless @user.motto.nil? %>
         <li>
           <span class="user-info-icon">
             <i class="fa fa-volume-up"></i>
@@ -38,6 +41,7 @@
             <%= @user.motto %>
           </span>
         </li>
+        <% end %>
         <li>
           <span class="user-info-icon">
             <i class="fa fa-clock-o"></i>

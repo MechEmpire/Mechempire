@@ -30,6 +30,16 @@ class UsersController < ApplicationController
     end
   end
 
+  def re_active
+    if UserMailer.signup_confirm_email(current_user).deliver
+      flash[:warning] = "邮件发送成功，请登录您的注册邮箱查看！"
+      redirect_to current_user
+    else
+      flash[:warning] = "邮件发送失败，请联系管理员！"
+      redirect_to current_user
+    end
+  end
+
   # GET /users/1/edit
   def edit
   end

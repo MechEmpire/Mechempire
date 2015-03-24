@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   match '/join', to: 'home#join', via: 'get'
   match '/achieve', to: 'home#achieve', via: 'get'
   match '/mechlist', to: 'meches#mech_list', via: 'get'
+  match '/reactive', to: 'users#re_active',via: 'get'
   # match '/admin', to: 'users#admin', via: 'get'
 
   # match '/setting'

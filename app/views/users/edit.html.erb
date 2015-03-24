@@ -14,6 +14,7 @@
       <div class="list-group">
         <%= link_to("基本资料", edit_user_path(current_user) , :class => "list-group-item") %>
         <%= link_to("修改密码", edit_user_path(current_user,:params => {'tab' => 'password'}) , :class => "list-group-item") %>
+        <%= link_to("账户激活", edit_user_path(current_user,:params => {'tab' => 'active'}) , :class => "list-group-item") unless current_user.is_actived? %>
         <!-- <a href="#" class="list-group-item">Category 3</a> -->
       </div>
     </div>
@@ -34,6 +35,16 @@
         </div>
         <div class="col-md-3">
         </div>
+      <% elsif params['tab'] == "active" && !current_user.is_actived? %>
+        <h3>重新激活</h3>
+        <hr>  
+        <div class="col-md-9">
+          <%= render 'active' %>
+        </div>
+        <div class="col-md-3">
+        </div>
+      <% else %>
+      <%= render :file => 'public/404.html' %>
       <% end %>
     </div>
   </div>
