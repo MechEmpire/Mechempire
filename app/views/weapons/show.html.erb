@@ -1,2 +1,79 @@
-<%= @weapon.name %><br>
-<%= @weapon.introduce %>
+<%#= @weapon.name %><br>
+<%#= @weapon.introduce %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">
+        <%= @weapon.name %>
+        <small><i class="fa fa-flag"></i>&nbsp;武器</small>
+        <!-- <button type="button" class="btn btn-default btn-sm pull-right"><i class="fa fa-heart"></i> 点赞</button> -->
+      </h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-7">
+      <%= image_tag(@weapon.samplepic, :width => "600", :heigt => "400")%>
+      <!-- <img src="http://placehold.it/600x400" alt="机甲图片"> -->
+    </div>
+    <div class="col-md-5">
+      <div class="mech-item-info">
+        <p>
+          <strong>
+            <i class="fa fa-rocket"></i> 伤害：
+          </strong>
+          <%= @weapon.damage%>
+        </p>
+        <p>
+          <strong>
+            <i class="fa fa-bomb"></i> 速度：
+          </strong>
+          <%= @weapon.speed %>
+        </p>
+        <p>
+          <strong>
+            <i class="fa fa-volume-up"></i> 冷却：
+          </strong>
+          <%= @weapon.cooling%>
+        </p>
+        <p>
+          <strong>
+            <i class="fa fa-area-chart"></i> 弹药量：
+          </strong>
+          <%= @weapon.ammo %>
+        </p>
+        <p>
+          <strong>
+            <i class="fa fa-info"></i> 描述：
+          </strong><br><br>
+          <%= @weapon.introduce %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="page-header">更多武器</h3>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+    <div class="col-sm-3 col-xs-6">
+      <a href="#">
+        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
+      </a>
+    </div>
+  </div>
+</div>

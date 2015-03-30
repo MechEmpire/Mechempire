@@ -12,6 +12,17 @@ class WeaponsController < ApplicationController
   end
 
   def create
+    @weapon = Weapon.new(weapon_params)
+
+    respond_to do |format|
+      if @weapon.save
+        format.html { redirect_to @weapon, notice: 'Weapon was successfully created.' }
+        format.json { render :show, status: :created, location: @weapon }
+      else
+        format.html { render :new }
+        format.json { render json: @weapon.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
@@ -28,6 +39,16 @@ class WeaponsController < ApplicationController
 
     def set_weapon
       @weapon = Weapon.find(params[:id])
+    end
+
+    def weapon_params
+      params.require(:weapon).permit(:name, 
+                                   :damage, 
+                                   :speed, 
+                                   :cooling,
+                                   :ammo,
+                                   :introduce,
+                                   :samplepic)
     end
 
     def admin_user

@@ -6,46 +6,13 @@
     </h1>
   </div>
 
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
+  <% @carriers.each do |carrier| %>
+    <div class="col-md-3 portfolio-item">
+      <a href="#">
+        <%= image_tag(carrier.samplepic, :class => "img-responsive")%>
+      </a>
+    </div>
+  <% end %>
   <div class="row text-center">
     <div class="col-lg-12">
       <ul class="pagination">
@@ -79,46 +46,14 @@
       <!-- <small>Secondary Text</small> -->
     </h1>
   </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
-  <div class="col-md-3 portfolio-item">
-    <a href="#">
-      <img class="img-responsive" src="http://placehold.it/750x450" alt="">
-    </a>
-  </div>
+  <% @weapons.each do |weapon| %>
+    <div class="col-md-3 portfolio-item">
+      <%= link_to image_tag(weapon.samplepic, :class => "img-responsive"), weapon %>
+      <!-- <a href="">
+        <%#= image_tag(weapon.samplepic, :class => "img-responsive")%>
+      </a> -->
+    </div>
+    <% end %>
   <div class="row text-center">
     <div class="col-lg-12">
       <ul class="pagination">

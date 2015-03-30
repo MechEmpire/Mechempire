@@ -9,7 +9,8 @@ class MechesController < ApplicationController
   end
 
   def mech_list
-    
+    @carriers = Carrier.all
+    @weapons = Weapon.all
   end
 
   def create
