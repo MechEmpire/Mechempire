@@ -54,16 +54,16 @@
       <hr>
       <div class="row">
         <center class="col-md-6 user-follow follower">
-          <a href="" title="">
+          <a href="#" title="关注者">
             <span>关注者</span><br>
-            <strong>12</strong>
+            <strong id="follower"><%= @user.follower.count%></strong>
             <label> 人</label>
           </a>
         </center>
         <center class="col-md-6 user-follow">
-          <a href="" title="">
+          <a href="#" title="关注了">
             <span>关注了</span><br>
-            <strong>122</strong>
+            <strong><%= @user.following.count%></strong>
             <label> 人</label>
           </a>
         </center>
@@ -75,9 +75,15 @@
           <div class="col-md-9">
             <h3>获得的成就</h3>
           </div>
-          <div class="col-md-3">
-            <button class="btn btn-sm btn-default pull-right">关注</button>
-          </div>
+          <% unless(current_user == @user) %>
+            <div class="col-md-3">
+              <% unless(current_user.following.include?(@user)) %>
+                <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default pull-right", :id => "following" %>
+              <% else %>
+                <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default pull-right", :id => "following" %>
+              <% end %>
+            </div>
+          <% end %>
         </div>
         <hr>
         <div class="col-md-12 row">

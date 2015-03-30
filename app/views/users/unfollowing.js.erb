@@ -1,0 +1,4 @@
+$('#following').on('ajax:success', function(event, xhr, status, error) {
+  $(this).attr("href", $(this).attr("href").replace("/unfollowing","/following"));
+  $(this).html("关注");
+});

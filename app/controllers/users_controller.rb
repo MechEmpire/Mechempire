@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:edit, :update, :admin]
+  before_action :signed_in_user, only: [:edit, :update, :admin, :following]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :admin]
   # GET /users
@@ -120,6 +120,48 @@ class UsersController < ApplicationController
   def resend_active_mail
     UserMailer.signup_confirm_email(@user).deliver
     flash[:success] = "激活邮件发送成功，请前往注册邮箱查看！"
+  end
+
+  def following
+    followed_user = User.find(params['followed_id'])
+
+    respond_to do |format|
+      unless followed_user.nil?
+        unless current_user.following.include?(followed_user)
+          current_user.following.push(followed_user)
+          followed_user.follower.push(current_user)
+          format.js
+        else
+          format.js do
+            render js: "alert('已关注，请勿重新关注！');"
+          end
+        end
+      else
+        format.js do
+          render js: "alert('关注用户不存在！');"
+        end
+      end
+    end
+  end
+
+  def unfollowing
+    unfollowed_user = User.find(params['unfollowed_id'])
+
+    respond_to do |format|
+      unless unfollowed_user.nil?
+        if current_user.following.include?(unfollowed_user)
+          current_user.following.delete(unfollowed_user)
+          unfollowed_user.follower.delete(current_user)
+          format.js
+        else
+          render js: "alert('未关注，请先关注！');"
+        end
+      else
+        format.js do
+          render js: "alert('取关用户不存在！');"
+        end
+      end
+    end
   end
 
   private

@@ -37,6 +37,8 @@ Rails.application.routes.draw do
   match '/achieve', to: 'home#achieve', via: 'get'
   match '/mechlist', to: 'meches#mech_list', via: 'get'
   match '/reactive', to: 'users#re_active',via: 'get'
+  match '/following/:followed_id', to: 'users#following',via: 'post', as: :follow_user
+  match '/unfollowing/:unfollowed_id', to: 'users#unfollowing', via: 'post', as: :unfollow_user
   # match '/admin', to: 'users#admin', via: 'get'
 
   # match '/setting'
