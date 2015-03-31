@@ -130,6 +130,7 @@ class UsersController < ApplicationController
         unless current_user.following.include?(followed_user)
           current_user.following.push(followed_user)
           followed_user.follower.push(current_user)
+          @follower_count = current_user.following.count
           format.js
         else
           format.js do
@@ -152,6 +153,7 @@ class UsersController < ApplicationController
         if current_user.following.include?(unfollowed_user)
           current_user.following.delete(unfollowed_user)
           unfollowed_user.follower.delete(current_user)
+          @follower_count = current_user.following.count
           format.js
         else
           render js: "alert('未关注，请先关注！');"

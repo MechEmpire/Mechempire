@@ -1,5 +1,5 @@
-$('#following').on('ajax:success', function(event, xhr, status, error) {
+$('#following').on('ajax:success', function(event, xhr, data, status, error) {
   $(this).html("取消关注");
   $(this).attr("href", $(this).attr("href").replace("/following","/unfollowing"));
-  // console.log(Number($("#follower").html()));
+  $("#follower").html("<%= @follower_count %>");
 });
