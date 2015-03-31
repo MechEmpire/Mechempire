@@ -12,6 +12,7 @@ class Mech
   field :weapon, type: String
   field :engine, type: String
   
+  validates :code, presence: true
   belongs_to :user
 
   has_and_belongs_to_many :battles
@@ -32,12 +33,12 @@ class Mech
   end
 
   def get_mech_info
-    system "compile/RobotAppearanceReader #{self.code_dir}libmyAI.so #{self.code_dir}appearance.json"
-    json_info = JSON::parse(File::read("#{self.code_dir}appearance.json"))
-    self.update_attributes(:name => json_info['name'], 
-                          :author => json_info['author'],
-                          :weapon => json_info['weapon'],
-                          :engine => json_info['engine'])
+    exec "compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout"
+    # json_info = JSON::parse(File::read("#{self.code_dir}appearance.json"))
+    # self.update_attributes(:name => json_info['name'], 
+    #                       :author => json_info['author'],
+    #                       :weapon => json_info['weapon'],
+    #                       :engine => json_info['engine'])
   end
 
   def code_dir

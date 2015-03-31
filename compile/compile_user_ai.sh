@@ -4,7 +4,7 @@ while getopts "p:" arg
   do
     case $arg in
          p)
-            g++ -O2 -fPIC -shared -o $OPTARG/libmyAI.so $OPTARG/myAI/*.cpp $OPTARG/RobotAIFactoryLinux.cpp
+            g++ -O2 -fPIC -shared -I/vagrant/Mechempire/compile/include/sys/ -I$OPTARG/ -o $OPTARG/libmyAI.so $OPTARG/*.cpp /vagrant/Mechempire/compile/include/sys/*.cpp /vagrant/Mechempire/compile/include/RobotAIFactoryLinux.cpp
             ;;
          ?)
         echo "unkonw argument"
