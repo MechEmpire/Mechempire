@@ -11,6 +11,7 @@ class Mech
   field :author, type: String
   field :weapon, type: String
   field :engine, type: String
+  field :state, type: String
   
   validates :code, presence: true
   belongs_to :user
@@ -33,12 +34,12 @@ class Mech
   end
 
   def get_mech_info
-    exec "compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout"
-    # json_info = JSON::parse(File::read("#{self.code_dir}appearance.json"))
-    # self.update_attributes(:name => json_info['name'], 
-    #                       :author => json_info['author'],
-    #                       :weapon => json_info['weapon'],
-    #                       :engine => json_info['engine'])
+    mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
+    json_info = JSON::parse(mech_info)
+    self.update_attributes(:name => json_info['name'], 
+                          :author => json_info['author'],
+                          :weapon => json_info['weapon'],
+                          :engine => json_info['engine'])
   end
 
   def code_dir
@@ -48,6 +49,11 @@ class Mech
   def compile
     self.unzip_file(self.code.path,"public/uploads/#{self.class.to_s.underscore}/code/#{self.id}")
     system "compile/compile_user_ai.sh -p #{self.code_dir}"
+    if FileTest::exist?("#{self.code_dir}libmyAI.so")
+      self.update_attribute("state","SUCCESS")
+    else
+      self.update_attribute("state","FAILED")
+    end
   end
 
   def unzip_file (file, destination)

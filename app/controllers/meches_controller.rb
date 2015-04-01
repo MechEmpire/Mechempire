@@ -18,12 +18,8 @@ class MechesController < ApplicationController
     @mech.create_at = Time.now
     @mech.user_id = current_user.id
 
-    # if @mech.compile
-
-    # end
-
     respond_to do |format|
-      if @mech.save
+      if @mech.save && @mech.compile && @mech.get_mech_info
         format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
         format.json { render :show, status: :created, location: @mech }
       else
