@@ -12,7 +12,7 @@ class Mech
   field :weapon, type: String
   field :engine, type: String
   field :state, type: String
-  
+
   validates :code, presence: true
   belongs_to :user
 

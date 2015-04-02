@@ -48,7 +48,8 @@ class WeaponsController < ApplicationController
                                    :cooling,
                                    :ammo,
                                    :introduce,
-                                   :samplepic)
+                                   :samplepic,
+                                   :iden)
     end
 
     def admin_user

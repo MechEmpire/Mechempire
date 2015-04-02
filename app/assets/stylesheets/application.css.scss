@@ -55,7 +55,7 @@ hr{
   margin:10px 0;
 }
 a:link {  
-  color: #000000;  
+  color: #ccc;  
   text-decoration: none;  
 }  
 a:visited {  
@@ -75,11 +75,12 @@ footer{
   a{
     color: #999 !important;
   }
-  margin: 40px 0 30px 0;
+  padding: 40px 0 30px 0;
 }
 .foot_hr{
   width: 90%;
-  margin: 20px auto;
+  margin:0px auto;
+  padding: 20px auto;
 }
 .row{
   margin-left: 0;

@@ -73,7 +73,7 @@
       <div class="row custom-well my-achieve">
         <div class="row">
           <div class="col-md-9">
-            <h3>获得的成就</h3>
+            <h3>战绩一览</h3>
           </div>
           <% unless(current_user == @user) %>
             <div class="col-md-3">
@@ -92,8 +92,8 @@
         <hr>
         <div class="col-md-12 row">
           <div class="col-md-3">
-            <i class="fa fa-rocket"></i>
-            <span> <%= @user.meches.count %> 机甲</span>
+            <i class="fa fa-plus-circle"></i>
+            <span> 25 积分</span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-space-shuttle"></i>
@@ -104,22 +104,22 @@
             <span> 25 胜利</span>
           </div>
           <div class="col-md-3">
-            <i class="fa fa-frown-o"></i>
-            <span> 25 失败</span>
+            <i class="fa fa-heart"></i>
+            <span> 25 赞</span>
           </div>
         </div>
         <div class="col-md-12 row">
-          <div class="col-md-3">
-            <i class="fa fa-plus-circle"></i>
-            <span> 25 积分</span>
-          </div>
           <div class="col-md-3">
             <i class="fa fa-arrow-circle-up"></i>
             <span> 25 排名</span>
           </div>
           <div class="col-md-3">
-            <i class="fa fa-heart"></i>
-            <span> 25 赞</span>
+            <i class="fa fa-rocket"></i>
+            <span> <%= @user.meches.count %> 机甲</span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-frown-o"></i>
+            <span> 25 失败</span>
           </div>
         </div>
       </div>
@@ -141,14 +141,15 @@
                 <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong>石山石</p>
                 <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
-                <p>
+                <a href="" class="btn btn-default">与之战斗</a>
+               <!--  <p>
                   <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star"></span>
                   <span class="glyphicon glyphicon-star-empty"></span>
-                </p>
+                </p> -->
               </div>
             </div>
           </div>

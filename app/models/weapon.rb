@@ -9,6 +9,7 @@ class Weapon
   field :ammo, type: Integer
   field :introduce, type: String
   field :samplepic, type: String
+  field :iden, type: String
 
   has_many :meches
   # belongs_to :mech
