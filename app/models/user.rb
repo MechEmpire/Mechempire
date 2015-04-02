@@ -19,7 +19,7 @@ class User
   # field :password, type: String
 
   # has_and_belongs_to_many :battles
-  has_and_belongs_to_many :battles
+  # has_and_belongs_to_many :battles
 
   has_and_belongs_to_many :following, class_name: 'User'
   has_and_belongs_to_many :follower, class_name: 'User'
@@ -54,13 +54,13 @@ class User
     self.meches.order("create_at DESC").page(page).per(2)
   end
 
-  def battle_count
-    sum = 0
-    self.meches.each do |mech|
-      sum = sum + mech.battles.count
-    end
-    return sum
-  end
+  # def battle_count
+  #   sum = 0
+  #   self.meches.each do |mech|
+  #     sum = sum + mech.battles.count
+  #   end
+  #   return sum
+  # end
 
   private
 

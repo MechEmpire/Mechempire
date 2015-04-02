@@ -97,7 +97,7 @@
           </div>
           <div class="col-md-3">
             <i class="fa fa-space-shuttle"></i>
-            <span> <%= @user.battle_count %> 战斗</span>
+            <span> <%#= @user.battle_count %> 战斗</span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-smile-o"></i>
@@ -142,7 +142,30 @@
                 <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
                 <% if mech.user != current_user %>
-                  <a href="" class="btn btn-default">与之战斗</a>
+                  <button class="btn btn-default" data-toggle="modal" data-target="#myMech" data-whatever="@mdo">与之战斗</button>
+                  <div class="modal fade" id="myMech" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          <h4 class="modal-title" id="ModalLabel">选择一个自己的机甲</h4>
+                        </div>
+                        <div class="modal-body row">
+                          <div class="container-fluid row col-md-12">
+                            <% current_user.meches.each do |mech| %>
+                              <center class="col-md-4 choise-my-mech">
+                                <a href="/battle/<%= mech._id%>/<%= mech._id %>"><%= mech.name %></a>
+                              </center>
+                            <% end %>
+                          </div>
+                        </div>
+                        <!-- <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Send message</button>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
                 <% end %>
                <!--  <p>
                   <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
@@ -165,12 +188,12 @@
       <div class="row custom-well">
         <h3>参与的战斗</h3>
         <hr>
-        <% @user.meches.each do |mech| %>
-          <% mech.battles.each do |battle| %>
+        <%# @user.meches.each do |mech| %>
+          <% #mech.battles.each do |battle| %>
             <div class="row">
               <p>
                 <i class="fa fa-clock-o"></i> 
-                <%= battle.time.to_formatted_s(:db) %>
+                <%#= battle.time.to_formatted_s(:db) %>
               </p>
               <div class="col-md-12 my-battle-show">
                 <center class="col-md-4 my-battle-user-info">
@@ -178,9 +201,9 @@
                     <div class="panel-heading">
                       <h3 class="panel-title">
                         <i class="fa fa-gavel"></i>
-                        <%= link_to(battle.meches.first.user.name, battle.meches.first.user) %>
+                        <%#= link_to(battle.meches.first.user.name, battle.meches.first.user) %>
                         ::
-                        <%= link_to(battle.meches.first.name.nil? ? "无名英雄" : battle.meches.first.name, battle.meches.first) %>
+                        <%#= link_to(battle.meches.first.name.nil? ? "无名英雄" : battle.meches.first.name, battle.meches.first) %>
                       </h3>
                     </div>
                     <div class="panel-body my-battle-mech-info">
@@ -206,9 +229,9 @@
                     <div class="panel-heading">
                       <h3 class="panel-title">
                         <i class="fa fa-shield"></i>
-                        <%= link_to(battle.meches.last.user.name, battle.meches.last.user) %> 
+                        <%#= link_to(battle.meches.last.user.name, battle.meches.last.user) %> 
                         ::
-                        <%= link_to(battle.meches.last.name.nil? ? "无名英雄" : battle.meches.last.name, battle.meches.last) %>
+                        <%#= link_to(battle.meches.last.name.nil? ? "无名英雄" : battle.meches.last.name, battle.meches.last) %>
                       </h3>
                     </div>
                     <div class="panel-body my-battle-mech-info">
@@ -228,8 +251,8 @@
                 </center>
               </div>
             </div>
-          <% end %>
-        <% end %>
+          <%# end %>
+        <% #end %>
       </div>
       <div class="row custom-well">
         <h3>最新动态</h3>
