@@ -141,7 +141,9 @@
                 <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong>石山石</p>
                 <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
-                <a href="" class="btn btn-default">与之战斗</a>
+                <% if mech.user != current_user %>
+                  <a href="" class="btn btn-default">与之战斗</a>
+                <% end %>
                <!--  <p>
                   <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
                   <span class="glyphicon glyphicon-star"></span>

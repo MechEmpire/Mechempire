@@ -41,7 +41,7 @@ body {
 }
 
 body {
-  background-color: #fff;
+  background-color: rgb(33,33,33);
   color: #333;
   font-family: verdana, arial, helvetica, sans-serif;
   font-size: 13px;
@@ -55,7 +55,7 @@ hr{
   margin:10px 0;
 }
 a:link {  
-  color: #ccc;  
+  color: #000000;  
   text-decoration: none;  
 }  
 a:visited {  
@@ -76,6 +76,7 @@ footer{
     color: #999 !important;
   }
   padding: 40px 0 30px 0;
+  bottom: 0px;
 }
 .foot_hr{
   width: 90%;
