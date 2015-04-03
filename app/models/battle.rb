@@ -3,8 +3,12 @@ class Battle
   Mongoid.raise_not_found_error = false
   field :time,  type: DateTime
   field :result, type: String
-  # has_and_belongs_to_many :meches
-  # has_and_belongs_to_many :user
-  has_one :attacker, class_name: "Mech", inverse_of: :attacked
-  has_one :defender, class_name: "Mech", inverse_of: :defended
+  field :defender_id, type: String
+  field :attacker_id, type: String
+
+  belongs_to :mech
+
+  def battle
+    # system "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
+  end
 end

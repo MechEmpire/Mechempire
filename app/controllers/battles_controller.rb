@@ -8,15 +8,25 @@ class BattlesController < ApplicationController
   end
 
   def create
-    defender = User.find(params['defender_id'])
-    attacker = User.find(params['attacker_id'])
+    defender = Mech.find(params['defender_id'])
+    attacker = Mech.find(params['attacker_id'])
+    is_success = true
 
-    @battle = Battle.new(:defender => defender, 
-                         :attacker => attacker,
-                         :time => Time.now)
+    if defender.nil? && attacker.nil?
+      is_success = false
+    end
 
+    if is_success
+      @battle = Battle.new(:defender_id => defender._id,
+                           :attacker_id => attacker._id,
+                           :time => Time.now)
+    end
+    
     respond_to do |format|
-      if @battle.save
+      if is_success && @battle.save
+        defender.battles << @battle
+        attacker.battles << @battle
+        
         format.html { redirect_to @battle, notice: '战斗成功，观看战斗结果！' }
         format.json { render :show, status: :created, location: @battle }
       else

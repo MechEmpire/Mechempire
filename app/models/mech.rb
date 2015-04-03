@@ -16,8 +16,10 @@ class Mech
   validates :code, presence: true
   belongs_to :user
 
-  belongs_to :attacked, class_name: "Battle", inverse_of: :attacker
-  belongs_to :defended, class_name: "Battle", inverse_of: :defender
+  has_many :battles
+
+  # belongs_to :attacked, class_name: "Battle", inverse_of: :attacker
+  # belongs_to :defended, class_name: "Battle", inverse_of: :defender
 
   # has_and_belongs_to_many :battles
 
