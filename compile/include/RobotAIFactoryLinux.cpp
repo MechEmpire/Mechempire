@@ -4,6 +4,7 @@
 #include "sys/RobotAI_Interface.h"
 #include "RobotAI.h"
 
+//这里不需要做任何改动
 
 extern "C" RobotAI_Interface* Export()
 {

@@ -12,6 +12,8 @@ class Battle
 
   def battle
     # system "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
+    #puts "battle/MechBattleConsoleForLinuxServer battle/BattleModeConfig.conf 2 #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so battle/result/#{self._id}.txt battle/result/#{self._id}.xml"
+    puts "battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}"
   end
 
   def defender
