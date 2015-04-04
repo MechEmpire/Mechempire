@@ -24,6 +24,10 @@
   margin-bottom: 0px;
 }
 
+table{
+  @extend .table;
+}
+
 .custom-container{
   @extend .container;
   margin-top: 15px;
@@ -45,6 +49,9 @@ body {
   font-family: verdana, arial, helvetica, sans-serif, "Microsoft YaHei", "微软雅黑";
   font-size: 13px;
   line-height: 18px;
+}
+.main-body{
+  min-height: 840px;
 }
 
 ul{

@@ -1,4 +1,19 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+<div class="container">
+  <h1>
+  <%= @match.name %>
+  <small>
+    <%= I18n.l @match.start_time, :format => :long %> 至 <%= I18n.l @match.end_time, :format => :long %>
+  </small>
+  </h1>
+  <hr>
+</div>
+<div class="container main-body">
+  <div class="col-md-9">
+    <p><%= markdown(@match.introduce) %></p>
+  </div>
+  <div class="col-md-3">
+    <a href="#" class="btn btn-default btn-block"> 立即报名 </a>
+    <h3>233 人报名</h3>
+    <hr>
+  </div>
+</div>

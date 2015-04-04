@@ -21,7 +21,10 @@
           <a href="/users">英雄榜</a>
         </li>
         <li>
-          <a href="#">战斗列表</a>
+          <a href="/battles">战斗列表</a>
+        </li>
+        <li>
+          <a href="/matches">比赛列表</a>
         </li>
         <li>
           <a href="/about">关于</a>
@@ -43,6 +46,7 @@
               <% if current_user.admin? %>
                 <li><%= link_to "添加载具", new_carrier_path %></li>
                 <li><%= link_to "添加武器", new_weapon_path %></li>
+                <li><%= link_to "创建比赛", new_match_path %></li>
                 <li class="divider"></li>
               <% end %>
               <li>

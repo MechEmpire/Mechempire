@@ -40,6 +40,8 @@ gem 'bcrypt'
 
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
+gem 'rails-i18n', '~> 4.0.0'
+gem 'redcarpet'
 
 # gem 'capistrano', '~> 3.3.0'
 

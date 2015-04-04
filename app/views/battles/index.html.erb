@@ -1,2 +1,14 @@
-<h1>Battles#index</h1>
-<p>Find me in app/views/battles/index.html.erb</p>
+<div class="container main-body">
+  <h1>战斗列表</h1>
+  <ul class="users">
+    <% @battles.each do |battle| %>
+      <li>
+        <%= link_to battle.defender.user.name + "::" + battle.defender.name, battle.defender %> 
+        VS 
+        <%= link_to battle.attacker.user.name + "::" + battle.attacker.name, battle.attacker %>
+
+        <%= link_to "去观战", battle %>
+      </li>
+    <% end %>
+  </ul>
+</div>

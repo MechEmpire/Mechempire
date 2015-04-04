@@ -8,7 +8,17 @@ class Battle
 
   belongs_to :mech
 
+  belongs_to :match
+
   def battle
     # system "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
+  end
+
+  def defender
+    Mech.find(self.defender_id)
+  end
+
+  def attacker
+    Mech.find(self.attacker_id)
   end
 end

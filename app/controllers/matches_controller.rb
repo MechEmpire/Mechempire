@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :admin_user, except: [:show]
 
   # GET /matches
   # GET /matches.json
@@ -28,7 +29,7 @@ class MatchesController < ApplicationController
 
     respond_to do |format|
       if @match.save
-        format.html { redirect_to @match, notice: 'Match was successfully created.' }
+        format.html { redirect_to @match, notice: '比赛创建成功' }
         format.json { render :show, status: :created, location: @match }
       else
         format.html { render :new }
@@ -69,6 +70,14 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params[:match]
+      # params[:match]
+      params.require(:match).permit(:name,
+                                    :introduce,
+                                    :start_time,
+                                    :end_time)
+    end
+
+    def admin_user
+      redirect_to(root_path) unless !current_user.nil? && current_user.admin?
     end
 end
