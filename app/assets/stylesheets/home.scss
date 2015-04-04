@@ -134,7 +134,8 @@ div.carousel .fill {
   padding-bottom: 60px;
 }
 .home-page-black{
-  background-color: #111111;
+  // background-color: #111111;
+  background-image: url(image_path("home-page-bg.png"));
   color: rgb(153,153,153);
 }
 .home-page-top{

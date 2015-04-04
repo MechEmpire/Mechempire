@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, except: [:show]
+  before_action :admin_user, except: [:show,:index]
 
   # GET /matches
   # GET /matches.json
