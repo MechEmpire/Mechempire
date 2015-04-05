@@ -113,7 +113,7 @@ div.carousel .fill {
 .home-page-newer-title{
   margin: 80px 0;
   h1{
-    color: #999;
+    // color: #999;
   }
 }
 .home-page-newer-item{
@@ -121,7 +121,7 @@ div.carousel .fill {
     margin-top: 40px;
   }
   p{
-    color: #999;
+    // color: #999;
     line-height: 2em;
     font-size: 18px;
   }
@@ -130,13 +130,20 @@ div.carousel .fill {
   }
 }
 .home-page-gray{
-  background-color: #fff;
+  // background-color: #fff;
+  background-image: url(image_path("home-page-white-bg.jpg"));
+  background-repeat: no-repeat;
   padding-bottom: 60px;
+  background-size: cover;
+  color: #fff;
+  // width:100%;
+  // height:100%;
 }
 .home-page-black{
   // background-color: #111111;
   background-image: url(image_path("home-page-bg.png"));
-  color: rgb(153,153,153);
+  // color: rgb(153,153,153);
+  color: #fff;
 }
 .home-page-top{
   padding-bottom:20px;
@@ -144,6 +151,12 @@ div.carousel .fill {
 .home-page-content-gray{
   margin-top: 40px;
   text-align: left;
+  background-color: rgba(0,0,0,0.6);
+  padding: 20px;
+  a{
+    color: #fff !important;
+  }
+  // color: #fff;
 }
 .reactive{
   color: #fff !important;

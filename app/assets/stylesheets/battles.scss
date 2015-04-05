@@ -4,3 +4,20 @@
 .game-player{
   padding-top: 40px;
 }
+.battle-star{
+  background-color: rgba(53, 95, 28, 0.4);
+  color: #fff;
+  padding: 10px 5px;
+  width: 30%;
+}
+.battle-info{
+  line-height: 25px;
+  padding-top: 7px;
+  text-align: left;
+}
+.battle-info-time{
+  color: #ccc;
+}
+.battle-info-double{
+  font-size: 16px;
+}

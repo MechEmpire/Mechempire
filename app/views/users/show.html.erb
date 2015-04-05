@@ -142,30 +142,30 @@
                 <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
                 <% if mech.user != current_user %>
-                  <button class="btn btn-default" data-toggle="modal" data-target="#myMech" data-whatever="@mdo">与之战斗</button>
-                  <div class="modal fade" id="myMech" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                          <h4 class="modal-title" id="ModalLabel">选择一个自己的机甲</h4>
-                        </div>
-                        <div class="modal-body row">
-                          <div class="container-fluid row col-md-12">
-                            <% current_user.meches.each do |m| %>
-                              <center class="col-md-4 choise-my-mech">
-                                <a href="/battle/<%= mech._id%>/<%= m._id %>"><%= mech.name %></a>
-                              </center>
-                            <% end %>
+                  <% if current_user.nil? %>
+                    <%= link_to "与之战斗", signin_path ,:class => "btn btn-default" %>
+                  <% else %>
+                    <button class="btn btn-default" data-toggle="modal" data-target="#myMech">与之战斗</button>
+                    <div class="modal fade" id="myMech" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="ModalLabel">选择一个自己的机甲</h4>
+                          </div>
+                          <div class="modal-body row">
+                            <div class="container-fluid row col-md-12">
+                              <% current_user.meches.each do |m| %>
+                                <center class="col-md-4 choise-my-mech">
+                                  <a href="/battle/<%= mech._id%>/<%= m._id %>"><%= mech.name %></a>
+                                </center>
+                              <% end %>
+                            </div>
                           </div>
                         </div>
-                        <!-- <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Send message</button>
-                        </div> -->
                       </div>
                     </div>
-                  </div>
+                  <% end %>
                 <% end %>
                <!--  <p>
                   <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
