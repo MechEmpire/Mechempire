@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if !@user.is_actived
+    if signed_in? && !current_user.is_actived
       flash[:danger] = "您的账号还未激活，请激活之后再使用！"
     end
     # @user.battle
