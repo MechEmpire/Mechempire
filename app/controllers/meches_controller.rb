@@ -51,9 +51,9 @@ class MechesController < ApplicationController
       @mech = Mech.find(params[:id])
     end
 
-    # def mech_params
-    #   params.require(:mech).permit(:code)
-    # end
+    def mech_params
+      params.require(:mech).permit(:code)
+    end
 
     # def signed_in_user
     #   unless signed_in?
