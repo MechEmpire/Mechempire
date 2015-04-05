@@ -14,6 +14,7 @@ class User
   field :blog, type: String
   # field :avatar_address, type: String
   field :password_digest, type: String
+  # field :score, type: Integer
   # field :following, type: Array
   # field :password_confirmation, type: String
   # field :password, type: String
@@ -23,6 +24,8 @@ class User
 
   has_and_belongs_to_many :following, class_name: 'User'
   has_and_belongs_to_many :follower, class_name: 'User'
+
+  has_and_belongs_to_many :matches
 
   has_many :meches
   has_secure_password

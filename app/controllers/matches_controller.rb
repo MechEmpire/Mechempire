@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, except: [:show,:index]
+  before_action :set_match, only: [:show, :edit, :update, :destroy, :apply, :addmech]
+  before_action :admin_user, except: [:show,:index,:apply,:addmech]
 
   # GET /matches
   # GET /matches.json
@@ -20,6 +20,40 @@ class MatchesController < ApplicationController
 
   # GET /matches/1/edit
   def edit
+  end
+
+  
+  def apply
+    respond_to do |format|
+      if current_user && !@match.users.include?(current_user) && @match.users.push(current_user) && !@match.has_end?
+        # @applyer_count = @match.users.count
+        format.js
+      else
+        format.js  do
+          render js: 'alert("报名不成功!")'
+        end
+      end
+    end
+  end
+
+  def addmech
+    mech = Mech.find(params["mech_id"])
+    respond_to do |format|
+      if mech && current_user.meches.include?(mech) && @match.users.include?(current_user) && !@match.has_end?
+        last_mech = @match.meches.find_by(:user => current_user)
+        if last_mech
+          @match.meches.delete(last_mech)
+        end
+        @match.meches.push(mech)
+        format.js do
+          render js: "alert('机甲更新成功')"
+        end
+      else
+        format.js do
+          render js: "alert('机甲更新失败!')"
+        end
+      end
+    end
   end
 
   # POST /matches
@@ -43,7 +77,7 @@ class MatchesController < ApplicationController
   def update
     respond_to do |format|
       if @match.update(match_params)
-        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
+        format.html { redirect_to @match, notice: '更新成功' }
         format.json { render :show, status: :ok, location: @match }
       else
         format.html { render :edit }
@@ -75,9 +109,5 @@ class MatchesController < ApplicationController
                                     :introduce,
                                     :start_time,
                                     :end_time)
-    end
-
-    def admin_user
-      redirect_to(root_path) unless !current_user.nil? && current_user.admin?
     end
 end

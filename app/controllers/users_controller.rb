@@ -172,12 +172,12 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     end
 
-    def signed_in_user
-      unless signed_in?
-        store_location
-        redirect_to signin_url, notice: "请登录后再进行此操作！"
-      end
-    end
+    # def signed_in_user
+    #   unless signed_in?
+    #     store_location
+    #     redirect_to signin_url, notice: "请登录后再进行此操作！"
+    #   end
+    # end
 
     def correct_user
       @user = User.find(params[:id])
@@ -195,7 +195,7 @@ class UsersController < ApplicationController
                                    :blog)
     end
 
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
-    end
+    # def admin_user
+    #   redirect_to(root_path) unless current_user.admin?
+    # end
 end

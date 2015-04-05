@@ -12,11 +12,15 @@ class Mech
   field :weapon, type: String
   field :engine, type: String
   field :state, type: String
+  field :score, type: Integer, default: -> { 0 }
+  field :win_times,type: Integer, default: -> { 0 }
+  field :fail_times,type: Integer, default: -> { 0 }
+  field :draw_times,type: Integer, default: -> { 0 }
 
   validates :code, presence: true
   belongs_to :user
 
-  has_many :battles
+  has_and_belongs_to_many :battles
 
   # belongs_to :attacked, class_name: "Battle", inverse_of: :attacker
   # belongs_to :defended, class_name: "Battle", inverse_of: :defender

@@ -157,7 +157,7 @@
                             <div class="container-fluid row col-md-12">
                               <% current_user.meches.each do |m| %>
                                 <center class="col-md-4 choise-my-mech">
-                                  <a href="/battle/<%= mech._id%>/<%= m._id %>"><%= mech.name %></a>
+                                  <a href="/battle/<%= mech._id%>/<%= m._id %>"><%= m.name %></a>
                                 </center>
                               <% end %>
                             </div>

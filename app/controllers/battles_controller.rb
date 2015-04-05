@@ -13,18 +13,12 @@ class BattlesController < ApplicationController
     attacker = Mech.find(params['attacker_id'])
     is_success = true
 
-    if defender.nil? && attacker.nil?
-      is_success = false
-    end
-
-    if is_success
-      @battle = Battle.new(:defender_id => defender._id,
-                           :attacker_id => attacker._id,
-                           :time => Time.now)
-    end
+    @battle = Battle.new(:defender_id => defender._id,
+                         :attacker_id => attacker._id,
+                         :time => Time.now)
     
     respond_to do |format|
-      if is_success && @battle.save
+      if !defender.nil? && !attacker.nil? && @battle.battle && @battle.save
         defender.battles << @battle
         attacker.battles << @battle
         
