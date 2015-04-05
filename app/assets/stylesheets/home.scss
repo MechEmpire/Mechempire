@@ -15,7 +15,7 @@
 }
 
 div.carousel{
-    height: 60%;
+    height: 450px;
 }
 div.about-main{
 	height: 40%;
@@ -140,8 +140,8 @@ div.carousel .fill {
   // height:100%;
 }
 .home-page-black{
-  // background-color: #111111;
-  background-image: url(image_path("home-page-bg.png"));
+  background-color: #000;
+  // background-image: url(image_path("home-page-bg.png"));
   // color: rgb(153,153,153);
   color: #fff;
 }
@@ -154,7 +154,7 @@ div.carousel .fill {
   background-color: rgba(0,0,0,0.4);
   padding: 20px;
   a{
-    color: #fff !important;
+    // color: #fff;
   }
   // color: #fff;
 }
