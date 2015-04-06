@@ -1,0 +1,33 @@
+<battleStatistics>
+	<recordFileName>battle/result/552270a37661671ab6000000.txt</recordFileName>
+	<numRobots>2</numRobots>
+	<winnerID>-1</winnerID>
+
+	<robotslist>
+		<robot>
+<name>蛋疼的蜘蛛</name>
+<name>狄学长</name>
+<weapon>0</weapon>
+<engine>0</engine>
+<weaponRed>-50</weaponRed>
+<weaponGreen>-50</weaponGreen>
+<weaponBlue>-50</weaponBlue>
+<engineRed>-50</engineRed>
+<engineGreen>-50</engineGreen>
+<engineBlue>-50</engineBlue>
+</robot>
+<robot>
+<name>蛋疼的蜘蛛</name>
+<name>狄学长</name>
+<weapon>0</weapon>
+<engine>0</engine>
+<weaponRed>-50</weaponRed>
+<weaponGreen>-50</weaponGreen>
+<weaponBlue>-50</weaponBlue>
+<engineRed>-50</engineRed>
+<engineGreen>-50</engineGreen>
+<engineBlue>-50</engineBlue>
+</robot>
+
+	</robotslist>
+</battleStatistics>>

@@ -12,6 +12,11 @@ class User
   field :join_time, type: DateTime
   field :sex, type: String
   field :blog, type: String
+  field :battle_count, type: Integer, default: -> { 0 }
+  field :win_times, type: Integer, default: -> { 0 }
+  field :fail_times, type: Integer, default: -> { 0 }
+  field :score, type: Integer, default: -> { 0 }
+  field :draw_times, type: Integer, default: -> { 0 }
 
   field :password_digest, type: String
 

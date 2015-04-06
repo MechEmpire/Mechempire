@@ -19,18 +19,39 @@ class Battle
       self.winner_id = self.defender_id
       self.defender.update_attributes(:score => self.defender.score + 3,
                                       :win_times => self.defender.win_times + 1)
+      self.defender.user.update_attributes(:score => self.defender.user.score + 3,
+                                      :win_times => self.defender.user.win_times + 1,
+                                      :battle_count => self.defender.user.battle_count + 1)
+
       self.attacker.update_attributes(:score => self.attacker.score - 1,
                                       :fail_times => self.attacker.fail_times + 1)
+
+      self.attacker.user.update_attributes(:score => self.attacker.user.score - 1,
+                                      :fail_times => self.attacker.user.fail_times + 1,
+                                      :battle_count => self.attacker.user.battle_count + 1)
     elsif winnerID == "1"
       self.winner_id = self.attacker_id
       self.attacker.update_attributes(:score => self.attacker.score + 3,
                                       :win_times => self.attacker.win_times + 1)
+      self.attacker.user.update_attributes(:score => self.attacker.user.score + 3,
+                                      :win_times => self.attacker.user.win_times + 1,
+                                      :battle_count => self.attacker.user.battle_count + 1)
+
       self.defender.update_attributes(:score => self.defender.score - 1,
                                       :fail_times => self.defender.fail_times + 1)
+      self.defender.user.update_attributes(:score => self.defender.user.score - 1,
+                                      :fail_times => self.defender.user.fail_times + 1,
+                                      :battle_count => self.defender.user.battle_count + 1)
     elsif winnerID == "-1"
       self.winner_id = nil
       self.attacker.update_attribute("draw_times", self.attacker.draw_times + 1)
+      self.attacker.user.update_attributes(:draw_times => self.attacker.user.draw_times + 1,
+                                           :battle_count => self.attacker.user.battle_count + 1)
+
       self.defender.update_attribute("draw_times", self.defender.draw_times + 1)
+      self.defender.user.update_attributes(:draw_times => self.defender.user.draw_times + 1,
+                                           :battle_count => self.defender.user.battle_count + 1)
+
     end
   end
 
