@@ -1,5 +1,5 @@
 class BattlesController < ApplicationController
-  before_action :set_battle, only: [:show]
+  before_action :set_battle, only: [:show, :download]
 
   def index
     @battles = Battle.all
@@ -42,6 +42,10 @@ class BattlesController < ApplicationController
 
   def show
 
+  end
+
+  def download
+    send_file "battle/result/#{@battle._id}.txt", :type => 'application/txt'
   end
 
   private
