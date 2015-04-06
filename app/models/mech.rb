@@ -9,6 +9,7 @@ class Mech
   field :create_at, type: DateTime
   field :name, type: String
   field :author, type: String
+  field :manifesto, type: String
   field :weapon, type: String
   field :engine, type: String
   field :state, type: String
@@ -22,25 +23,15 @@ class Mech
 
   has_and_belongs_to_many :battles
 
-  # belongs_to :attacked, class_name: "Battle", inverse_of: :attacker
-  # belongs_to :defended, class_name: "Battle", inverse_of: :defender
+  validates :manifesto, length: { maximum: 60 }
 
-  # has_and_belongs_to_many :battles
+  def engine_info
+    Carrier.find_by(:iden => self.engine)
+  end
 
-  # def battle_with(opponent)
-  #   battle = Battle.new
-  #   battle.time = Time.now
-  #   battle.meches << self
-  #   battle.meches << opponent
-  #   # battle.users << self.user
-  #   # battle.users << opponent.user
-  #   battle.save
-  #   self.battles << battle
-  #   # self.user.battles << battle
-  #   # opponent.user.battles << battle
-  #   opponent.battles << battle
-  #   # exec "../MechBattleConsoleForLinuxServer/MechBattleConsoleForLinuxServer ../MechBattleConsoleForLinuxServer/BattleModeConfig.conf 2 ../MechBattleConsoleForLinuxServer/libmyAI2.so ../MechBattleConsoleForLinuxServer/libmyAI1.so"
-  # end
+  def weapon_info
+    Weapon.find_by(:iden => self.weapon) 
+  end
 
   def get_mech_info
     mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`

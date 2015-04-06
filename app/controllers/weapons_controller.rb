@@ -42,11 +42,7 @@ class WeaponsController < ApplicationController
     end
 
     def weapon_params
-      params.require(:weapon).permit(:name, 
-                                   :damage, 
-                                   :speed, 
-                                   :cooling,
-                                   :ammo,
+      params.require(:weapon).permit(:name,
                                    :introduce,
                                    :samplepic,
                                    :iden)

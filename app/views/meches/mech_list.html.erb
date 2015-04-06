@@ -9,7 +9,7 @@
   <% @carriers.each do |carrier| %>
     <div class="col-md-3 portfolio-item">
       <a href="#">
-        <%= image_tag(carrier.samplepic, :class => "img-responsive")%>
+        <%= link_to image_tag(carrier.samplepic, :class => "img-responsive"), carrier %>
       </a>
     </div>
   <% end %>
@@ -49,9 +49,6 @@
   <% @weapons.each do |weapon| %>
     <div class="col-md-3 portfolio-item">
       <%= link_to image_tag(weapon.samplepic, :class => "img-responsive"), weapon %>
-      <!-- <a href="">
-        <%#= image_tag(weapon.samplepic, :class => "img-responsive")%>
-      </a> -->
     </div>
     <% end %>
   <div class="row text-center">

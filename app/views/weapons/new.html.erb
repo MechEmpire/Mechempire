@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container main-body">
   <h2>添加武器</h2>
   <hr>
   <%= form_for(@weapon) do |f|%>
@@ -10,22 +10,6 @@
     <div class="form-group">
       <%= f.label :name , :value => "武器名称："%><br>
       <%= f.text_field :name , :class => "form-control", :placeholder => " 请输入武器名称"%>
-    </div>
-    <div class="form-group">
-      <%= f.label :damage , :value => "武器伤害值："%><br>
-      <%= f.text_field :damage , :class => "form-control", :placeholder => " 请输入武器伤害值"%>
-    </div>
-    <div class="form-group">
-      <%= f.label :speed , :value => "武器速度："%><br>
-      <%= f.text_field :speed , :class => "form-control", :placeholder => " 请输入武器速度"%>
-    </div>
-    <div class="form-group">
-      <%= f.label :cooling , :value => "武器冷却值："%><br>
-      <%= f.text_field :cooling , :class => "form-control", :placeholder => " 请输入武器冷却值"%>
-    </div>
-    <div class="form-group">
-      <%= f.label :ammo , :value => "弹药量："%><br>
-      <%= f.text_field :ammo , :class => "form-control", :placeholder => " 请输入武器弹药量"%>
     </div>
     <div class="form-group">
       <%= f.label :introduce, :value => "武器介绍："%><br>

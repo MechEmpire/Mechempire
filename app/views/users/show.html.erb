@@ -93,15 +93,15 @@
         <div class="col-md-12 row">
           <div class="col-md-3">
             <i class="fa fa-plus-circle"></i>
-            <span> 25 积分</span>
+            <span> <%= @user.battle_info[4] %> 积分</span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-space-shuttle"></i>
-            <span> <%#= @user.battle_count %> 战斗</span>
+            <span> <%= @user.battle_info[0] %> 战斗</span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-smile-o"></i>
-            <span> 25 胜利</span>
+            <span> <%= @user.battle_info[1] %> 胜利</span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-heart"></i>
@@ -119,7 +119,7 @@
           </div>
           <div class="col-md-3">
             <i class="fa fa-frown-o"></i>
-            <span> 25 失败</span>
+            <span> <%= @user.battle_info[2] %> 失败</span>
           </div>
         </div>
       </div>
@@ -138,8 +138,8 @@
             <br>
             <div class="my-mech-body">
               <div class="my-mech-info">
-                <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong>石山石</p>
-                <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong>石山石</p>
+                <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to mech.engine_info.name, mech.engine_info %></p>
+                <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to mech.weapon_info.name, mech.weapon_info %></p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
                 <% if mech.user != current_user %>
                   <% if current_user.nil? %>
@@ -167,14 +167,6 @@
                     </div>
                   <% end %>
                 <% end %>
-               <!--  <p>
-                  <strong><i class="fa fa-area-chart"></i> 战斗力指数：</strong>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
-                </p> -->
               </div>
             </div>
           </div>

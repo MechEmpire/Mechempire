@@ -104,3 +104,38 @@ footer{
   margin-left: 0;
   margin-right: 0;
 }
+.pagination{
+  margin: 10px auto;
+  text-align: center;
+  span{
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 42px;
+    margin: 0 3px 0 0;
+    width: 42px;
+    a{
+      border: 1px solid #222;
+      color: #fff !important;
+      display: inline-block;
+      font-family: "OCRA Tribute";
+      font-size: 17.25px;
+      font-size: 1.725rem;
+      height: 100%;
+      line-height: 45px;
+      text-align: center;
+      text-decoration: none;
+      -webkit-transition: background-color 250ms ease;
+      -moz-transition: background-color 250ms ease;
+      -o-transition: background-color 250ms ease;
+      -ms-transition: background-color 250ms ease;
+      transition: background-color 250ms ease;
+      width: 100%;
+    }
+    a:hover, a.current{
+      border: 1px solid #33c8f3;
+      background-color: #33c8f3;
+    }
+  }
+}

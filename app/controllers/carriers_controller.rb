@@ -12,6 +12,17 @@ class CarriersController < ApplicationController
   end
 
   def create
+    @carrier = Carrier.new(carrier_params)
+
+    respond_to do |format|
+      if @carrier.save
+        format.html { redirect_to @carrier, notice: 'Carrier was successfully created.' }
+        format.json { render :show, status: :created, location: @carrier }
+      else
+        format.html { render :new }
+        format.json { render json: @carrier.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def edit
@@ -29,7 +40,10 @@ class CarriersController < ApplicationController
       @carrier = Carrier.find(params[:id])
     end
 
-    # def admin_user
-    #   redirect_to(root_path) unless current_user.admin?
-    # end
+    def carrier_params
+      params.require(:carrier).permit(:name,
+                                   :introduce,
+                                   :samplepic,
+                                   :iden)
+    end
 end

@@ -3,10 +3,10 @@ class Weapon
   Mongoid.raise_not_found_error = false
 
   field :name, type: String
-  field :damage, type: Integer
-  field :speed, type: Integer
-  field :cooling, type: Integer
-  field :ammo, type: Integer
+  # field :damage, type: Integer
+  # field :speed, type: Integer
+  # field :cooling, type: Integer
+  # field :ammo, type: Integer
   field :introduce, type: String
   field :samplepic, type: String
   field :iden, type: String

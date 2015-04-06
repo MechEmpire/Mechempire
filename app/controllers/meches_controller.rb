@@ -52,13 +52,6 @@ class MechesController < ApplicationController
     end
 
     def mech_params
-      params.require(:mech).permit(:code)
+      params.require(:mech).permit(:code,:manifesto)
     end
-
-    # def signed_in_user
-    #   unless signed_in?
-    #     store_location
-    #     redirect_to signin_url, notice: "请登录后再进行此操作！"
-    #   end
-    # end
 end

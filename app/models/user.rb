@@ -12,15 +12,8 @@ class User
   field :join_time, type: DateTime
   field :sex, type: String
   field :blog, type: String
-  # field :avatar_address, type: String
-  field :password_digest, type: String
-  # field :score, type: Integer
-  # field :following, type: Array
-  # field :password_confirmation, type: String
-  # field :password, type: String
 
-  # has_and_belongs_to_many :battles
-  # has_and_belongs_to_many :battles
+  field :password_digest, type: String
 
   has_and_belongs_to_many :following, class_name: 'User'
   has_and_belongs_to_many :follower, class_name: 'User'
@@ -57,25 +50,25 @@ class User
     self.meches.order("create_at DESC").page(page).per(2)
   end
 
-  # def battle_count
-  #   sum = 0
-  #   self.meches.each do |mech|
-  #     sum = sum + mech.battles.count
-  #   end
-  #   return sum
-  # end
+  def battle_info
+    battle_count = 0
+    win_times = 0
+    fail_times = 0
+    draw_times = 0
+    score = 0
+    self.meches.each do |mech|
+      battle_count = battle_count + mech.battles.count
+      win_times = win_times + mech.win_times
+      fail_times = fail_times + mech.fail_times
+      draw_times = draw_times = mech.draw_times
+      score = score + mech.score
+    end
+    return [battle_count, win_times, fail_times, draw_times, score]
+  end
 
   private
 
     def create_remember_token
       self.remember_token = User.hash_custom(User.new_remember_token)
     end
-
-  # def test
-  #   puts redis_key(:following)
-  # end
-
-  # def redis_key(str)
-  #   "user:#{self.id}:#{str}"
-  # end
 end
