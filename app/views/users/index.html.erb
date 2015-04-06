@@ -1,12 +1,10 @@
 <% provide(:title, '| 英雄榜') %>
-<div class="container main-body">
-  <center>
-    <h1>英雄榜</h1>
-  </center>
+<center class="container main-body">
+  <h1>英雄榜</h1>
 
   <ul class="users">
     <%= render @users %>
   </ul>
 
   <%= paginate @users, :outer_window => 2 %>
-</div>
+</center>
