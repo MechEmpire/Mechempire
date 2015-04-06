@@ -34,7 +34,12 @@ table{
 }
 .custom-well{
   @extend .well;
-  background-color: #fff;
+  // background-color: #fff;
+  background-color: rgba(0,0,0,0.4);
+  border: 1px solid #444;
+  h3{
+    margin-top:0;
+  }
 }
 .pagination{
   margin: 10px 0 0 0;
@@ -67,7 +72,7 @@ ul{
 }
 hr{
   margin:10px 0;
-  color: #444;
+  border-top: 1px solid #444;
 }
 a:link {  
   color: #33c8f3 !important;  
@@ -92,15 +97,10 @@ footer{
   }
   padding: 40px 0 30px 0;
   bottom: 0px;
-  background-color: #212121;
+  background-color: #000;
   border-top: 1px solid black;
 }
 .row{
   margin-left: 0;
   margin-right: 0;
-}
-.custom-well{
-  h3{
-    margin-top:0;
-  }
 }
