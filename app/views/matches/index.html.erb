@@ -1,28 +1,45 @@
-<div class="container main-body">
+<center class="container main-body">
   <h1>比赛列表</h1>
   <ul class="users">
     <% @matches.each do |match| %>
       <li>
-        <%= link_to match.name, match %>
+        <span class="col-md-2">
+          <% if Time.now < match.end_time && Time.now > match.start_time %>
+            <div class="match-status">
+              正在进行
+            </div>
+          <% elsif Time.now > match.end_time %>
+            <div class="match-status">
+              已结束
+            </div>
+          <% else %>
+            <div class="match-status">
+              未开始
+            </div>
+          <% end %>
+        </span>
+        <span class="col-md-6 battle-info">
+          <div class="battle-info-time">
+            <%= I18n.l match.start_time, :format => :long %> 至 <%= I18n.l match.end_time, :format => :long %>
+          </div>
+          <div class="battle-info-double">
+            <%= link_to match.name, match %>
+          </div>
+        </span>
+        <span class="col-md-2 battle-info">
+          <div class="match-apply-count">
+            <%= match.users.count %> 人报名
+          </div>
+          <div class="match-mech-count">
+            <%= match.meches.count %> 个机甲
+          </div>
+        </span>
+        <span class="col-md-2 battle-info">
+          <div>
+            观看比赛录像
+          </div>
+        </span>
       </li>
     <% end %>
   </ul>
-</div>
-
-<!-- <table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% #@matches.each do |match| %>
-      <tr>
-        <td><%#= link_to 'Show', match %></td>
-        <td><%#= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%#= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% #end %>
-  </tbody>
-</table> -->
+</center>

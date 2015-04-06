@@ -25,7 +25,7 @@ class MatchesController < ApplicationController
   
   def apply
     respond_to do |format|
-      if current_user && !@match.users.include?(current_user) && @match.users.push(current_user) && !@match.has_end?
+      if current_user && !@match.users.include?(current_user) && @match.users.push(current_user) && !@match.has_end? && @match.has_start
         # @applyer_count = @match.users.count
         format.js
       else
@@ -39,7 +39,7 @@ class MatchesController < ApplicationController
   def addmech
     mech = Mech.find(params["mech_id"])
     respond_to do |format|
-      if mech && current_user.meches.include?(mech) && @match.users.include?(current_user) && !@match.has_end?
+      if mech && current_user.meches.include?(mech) && @match.users.include?(current_user) && !@match.has_end? && @match.has_start
         last_mech = @match.meches.find_by(:user => current_user)
         if last_mech
           @match.meches.delete(last_mech)

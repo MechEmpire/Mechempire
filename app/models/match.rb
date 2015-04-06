@@ -15,6 +15,10 @@ class Match
     Time.now > self.end_time
   end
 
+  def has_start?
+    Time.now > self.start_time
+  end
+
   def create_racecard
     meches_count = self.meches.count
     team = self.meches
