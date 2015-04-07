@@ -1,37 +1,4 @@
 Rails.application.routes.draw do
-  resources :matches
-
-  # get 'battles/index'
-
-  # get 'battles/new'
-
-  # get 'battles/create'
-
-  # get 'battles/destroy'
-
-  # get 'battles/edit'
-
-  # get 'battles/update'
-
-  # get 'weapons/index'
-
-  # get 'weapons/show'
-
-  # get 'weapons/create'
-
-  # get 'weapons/edit'
-
-  # get 'weapons/destroy'
-
-  # get 'carriers/index'
-
-  # get 'carriers/show'
-
-  # get 'carriers/create'
-
-  # get 'carriers/edit'
-
-  # get 'carriers/destroy'
 
   root 'home#index'
 
@@ -41,6 +8,7 @@ Rails.application.routes.draw do
   resources :carriers
   resources :weapons
   resources :battles
+  resources :matches
 
   match '/signup',  to: 'users#new', via: 'get'
   match '/signin',  to: 'sessions#new', via: 'get'
@@ -58,6 +26,7 @@ Rails.application.routes.draw do
   match '/matches/apply/:id', to: 'matches#apply', via: 'post'
   match '/matches/addmech/:id/:mech_id', to: 'matches#addmech', via: 'post'
   match '/battles/download/:id', to: 'battles#download', via: 'get', as: :download_video
+  
   # match '/admin', to: 'users#admin', via: 'get'
 
   # match '/setting'

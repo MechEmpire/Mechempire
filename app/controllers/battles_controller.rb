@@ -1,5 +1,7 @@
 class BattlesController < ApplicationController
   before_action :set_battle, only: [:show, :download]
+  before_action :actived_user, only: [:create]
+  before_action :admin_user, except: [:create, :download, :index, :show]
 
   def index
     @battles = Battle.all

@@ -1,6 +1,7 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy, :apply, :addmech]
   before_action :admin_user, except: [:show,:index,:apply,:addmech]
+  before_action :actived_user, only: [:apply, :addmech]
 
   # GET /matches
   # GET /matches.json
@@ -26,7 +27,6 @@ class MatchesController < ApplicationController
   def apply
     respond_to do |format|
       if current_user && !@match.users.include?(current_user) && @match.users.push(current_user) && !@match.has_end? && @match.has_start
-        # @applyer_count = @match.users.count
         format.js
       else
         format.js  do

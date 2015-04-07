@@ -1,6 +1,7 @@
 class MechesController < ApplicationController
   before_action :set_mech, only: [:show, :edit, :update, :destroy]
   before_action :signed_in_user, only: [:create, :edit, :update, :new]
+  before_action :actived_user, only: [:create]
 
   def index
     #just display one record per page

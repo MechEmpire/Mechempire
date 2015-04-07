@@ -1,23 +1,19 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :signed_in_user, only: [:edit, :update, :admin, :following]
+  before_action :signed_in_user, only: [:edit, :update, :admin, :following, :unfollowing, :re_active]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :admin]
+  before_action :actived_user, only: [:update,:following,:unfollowing]
+
   # GET /users
   # GET /users.json
   def index
-    # @users = User.all
-    @users = User.page(params[:page]).per(1)
-    # @user.battle
+    @users = User.order("score DESC").page(params[:page]).per(1)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    if signed_in? && !current_user.is_actived
-      flash[:danger] = "您的账号还未激活，请激活之后再使用！"
-    end
-    # @user.battle
   end
 
   # GET /users/new
@@ -31,11 +27,11 @@ class UsersController < ApplicationController
   end
 
   def re_active
-    if UserMailer.signup_confirm_email(current_user).deliver
-      flash[:warning] = "邮件发送成功，请登录您的注册邮箱查看！"
+    if !current.is_actived && UserMailer.signup_confirm_email(current_user).deliver
+      flash[:warning] = "邮件发送成功，请登录您的注册邮箱查看!"
       redirect_to current_user
     else
-      flash[:warning] = "邮件发送失败，请联系管理员！"
+      flash[:warning] = "邮件发送失败, 请重试, 如多次未成功请联系管理员!"
       redirect_to current_user
     end
   end
@@ -60,7 +56,7 @@ class UsersController < ApplicationController
         UserMailer.signup_confirm_email(@user).deliver
         sign_in @user
 
-        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户！' }
+        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -73,16 +69,10 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.is_actived
-        if @user.update_attributes(user_params)
-          format.html { redirect_to edit_user_path(@user), notice: '个人信息更新成功！' }
-          format.json { render :show, status: :ok, location: @user }
-        else
-          format.html { render :edit }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
-        end
+      if @user.update_attributes(user_params)
+        format.html { redirect_to edit_user_path(@user), notice: '个人信息更新成功!' }
+        format.json { render :show, status: :ok, location: @user }
       else
-        flash[:danger] = "账号未激活，无法更新个人信息！"
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -111,15 +101,6 @@ class UsersController < ApplicationController
     end
 
     redirect_to root_path
-  end
-
-  def admin
-    # render :layout => "admin"
-  end
-
-  def resend_active_mail
-    UserMailer.signup_confirm_email(@user).deliver
-    flash[:success] = "激活邮件发送成功，请前往注册邮箱查看！"
   end
 
   def following
@@ -167,24 +148,15 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
     end
-
-    # def signed_in_user
-    #   unless signed_in?
-    #     store_location
-    #     redirect_to signin_url, notice: "请登录后再进行此操作！"
-    #   end
-    # end
 
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_path) unless current_user?(@user)
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, 
                                    :email, 
@@ -194,8 +166,4 @@ class UsersController < ApplicationController
                                    :motto,
                                    :blog)
     end
-
-    # def admin_user
-    #   redirect_to(root_path) unless current_user.admin?
-    # end
 end

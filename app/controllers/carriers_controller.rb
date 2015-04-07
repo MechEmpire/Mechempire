@@ -1,6 +1,7 @@
 class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user,  only: [:new, :destroy, :edit, :create]
+  before_action :admin_user,  only: [:new, :destroy, :edit, :create, :update]
+  
   def index
     @carriers = Carrier.all
   end
