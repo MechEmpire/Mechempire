@@ -25,7 +25,10 @@ Rails.application.routes.draw do
   match '/battle/:defender_id/:attacker_id', to: 'battles#create', via: 'get'
   match '/matches/apply/:id', to: 'matches#apply', via: 'post'
   match '/matches/addmech/:id/:mech_id', to: 'matches#addmech', via: 'post'
+  match '/matches/result/:id', to: 'matches#result', via: 'get', as: :match_result
+  match '/matches/video/:id', to: 'matches#video', via: 'get', as: :match_rvideo
   match '/battles/download/:id', to: 'battles#download', via: 'get', as: :download_video
+  match '/battles/star/:id', to: 'battles#star', via: 'post', as: :star_battle
   
   # match '/admin', to: 'users#admin', via: 'get'
 

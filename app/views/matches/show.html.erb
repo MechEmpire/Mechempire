@@ -46,8 +46,9 @@
       <% else %>
         <a id="apply" href="/matches/apply/<%= @match._id %>" class="btn btn-default btn-block" data-remote="true" data-method="post"> 立即报名 </a>
       <% end %>
-      <% else %>
-      <a href="#" title="ds" class="btn btn-default">查看比赛结果</a>
+    <% else %>
+      <!-- <a href="#" title="查看比赛结果" class="btn btn-default btn-block custom-btn">查看比赛结果</a> -->
+      <%= link_to "查看比赛视频", match_rvideo_path(@match), :class => "btn btn-default btn-block custom-btn"%>
     <% end %>
     <h3><span id="applyer_count"><%= @match.users.count %></span> 人报名</h3>
     <hr>

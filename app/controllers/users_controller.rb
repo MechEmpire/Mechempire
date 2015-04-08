@@ -8,12 +8,14 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order("score DESC").page(params[:page]).per(1)
+    @users = User.order("score DESC").page(params[:page]).per(5)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
+    @battles = []
+    # @user.meches.each do
   end
 
   # GET /users/new

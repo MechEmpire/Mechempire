@@ -7,9 +7,12 @@ class Battle
   field :attacker_id, type: String
   field :winner_id, type: String
 
-  belongs_to :mech
+  has_and_belongs_to_many :meches
+  has_and_belongs_to_many :users, class_name: 'User', inverse_of: :battles
 
   belongs_to :match
+
+  has_and_belongs_to_many :starers, class_name: 'User', inverse_of: :stareds
 
   def battle
     system "battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}"

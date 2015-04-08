@@ -180,6 +180,34 @@
       <div class="row custom-well">
         <h3>参与的战斗</h3>
         <hr>
+        <ul class="users">
+          <% @user.battles.each do |battle| %>
+            <li>
+              <span class="col-md-2">
+                <div class="battle-star">
+                  <%= battle.starers.count %><br>
+                  赞
+                </div>
+              </span>
+              <span class="col-md-7 battle-info">
+                <div class="battle-info-time">
+                  <%= time_ago_in_words(battle.time) + "前" %><br>
+                </div>
+                <div class="battle-info-double">
+                  <%= link_to battle.defender.user.name, battle.defender.user %> ::
+                  <%= link_to battle.defender.name, battle.defender %>
+                  VS 
+                  <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
+                  <%= link_to battle.attacker.name, battle.attacker %>
+                </div>
+              </span>
+              <span class="col-md-3">
+                <%= link_to "去观战", battle %>
+              </span>
+            </li>
+          <% end %>
+        </ul>
+        <%#= paginate @user.battles, :outer_window => 2 %>
         <%# @user.meches.each do |mech| %>
           <% #mech.battles.each do |battle| %>
             <!-- <div class="row">

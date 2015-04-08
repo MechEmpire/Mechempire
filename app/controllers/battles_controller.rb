@@ -1,10 +1,11 @@
 class BattlesController < ApplicationController
-  before_action :set_battle, only: [:show, :download]
+  before_action :set_battle, only: [:show, :download, :star]
   before_action :actived_user, only: [:create]
   before_action :admin_user, except: [:create, :download, :index, :show]
+  before_action :signed_in_user, only: [:star, :create]
 
   def index
-    @battles = Battle.all
+    @battles = Battle.page(params[:page]).per(5)
   end
 
   def new
@@ -23,6 +24,10 @@ class BattlesController < ApplicationController
       if !defender.nil? && !attacker.nil? && @battle.battle && @battle.save
         defender.battles << @battle
         attacker.battles << @battle
+
+        defender.user.battles << @battle
+        attacker.user.battles << @battle
+
         
         format.html { redirect_to @battle, notice: '战斗成功，观看战斗结果！' }
         format.json { render :show, status: :created, location: @battle }
@@ -43,7 +48,19 @@ class BattlesController < ApplicationController
   end
 
   def show
+  end
 
+  def star
+    respond_to do |format|
+      if !@battle.starers.include?(current_user)
+        @battle.starers << current_user
+        format.js
+      else
+        format.js do 
+          render js:"alert('点赞失败')"
+        end
+      end
+    end
   end
 
   def download

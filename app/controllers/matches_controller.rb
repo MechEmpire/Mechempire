@@ -1,17 +1,26 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy, :apply, :addmech]
+  before_action :set_match, only: [:show, :edit, :update, :destroy, :apply, :addmech, :result, :video]
   before_action :admin_user, except: [:show,:index,:apply,:addmech]
   before_action :actived_user, only: [:apply, :addmech]
 
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all
+    @matches = Match.page(params[:page]).per(1)
+     # @users = User.order("score DESC").page(params[:page]).per(1)
   end
 
   # GET /matches/1
   # GET /matches/1.json
   def show
+  end
+
+  def result
+    
+  end
+
+  def video
+    @battles = @match.battles.page(params[:page]).per(1)
   end
 
   # GET /matches/new
