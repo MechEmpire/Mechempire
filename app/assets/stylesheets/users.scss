@@ -37,17 +37,17 @@
   margin-right: 0.2em;
 }
 .follower{
-  border-right: 1px solid #ccc;
+  // border-right: 1px solid #ccc;
 }
 .user-follow{
   a{
+    line-height: 0.5em;
     span{
       color: #999;
       font-size: 15px;
-      margin-bottom: 2px;
     }
     strong, label{
-      font-size: 20px;
+      font-size: 18px;
     }
   }
 }
@@ -82,4 +82,7 @@
 }
 .my-achieve{
   line-height: 2.0em;
+}
+.zhanjiyilan{
+  padding-left: 0px !important;
 }

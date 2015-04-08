@@ -1,8 +1,8 @@
 <div class="custom-container main-body">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3 custom-well">
       <%=link_to gravatar_for(@user, size: 240), @user , :class => "thumbnail" %>
-      <h1 class="user-info-name">
+      <h3 class="user-info-name">
         <%= @user.name %> 
         <small>
           <% if @user.sex == "boy" %>
@@ -11,9 +11,19 @@
             <i class="fa fa-venus"></i>
           <% end %>
         </small>
-      </h1>
+      </h3>
       <hr>
       <ul class="user-info-detial">
+        <% unless @user.motto.nil? %>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-volume-up"></i>
+          </span>
+          <span>
+            <%= @user.motto %>
+          </span>
+        </li>
+        <% end %>
         <li>
           <span class="user-info-icon">
             <i class="fa fa-envelope"></i>
@@ -32,16 +42,6 @@
             </span>
           </li>
         <% end %>
-        <% unless @user.motto.nil? %>
-        <li>
-          <span class="user-info-icon">
-            <i class="fa fa-volume-up"></i>
-          </span>
-          <span>
-            <%= @user.motto %>
-          </span>
-        </li>
-        <% end %>
         <li>
           <span class="user-info-icon">
             <i class="fa fa-clock-o"></i>
@@ -53,38 +53,38 @@
       </ul>
       <hr>
       <div class="row">
-        <center class="col-md-6 user-follow follower">
+        <div class="col-md-6 user-follow follower">
           <a href="#" title="关注者">
             <span>关注者</span><br>
             <strong id="follower"><%= @user.follower.count%></strong>
             <label> 人</label>
           </a>
-        </center>
-        <center class="col-md-6 user-follow">
+        </div>
+        <div class="col-md-6 user-follow">
           <a href="#" title="关注了">
             <span>关注了</span><br>
             <strong><%= @user.following.count%></strong>
             <label> 人</label>
           </a>
-        </center>
+        </div>
       </div>
     </div>
     <div class="col-md-9">
       <div class="row custom-well my-achieve">
         <div class="row">
-          <div class="col-md-9">
+          <div class="col-md-9 zhanjiyilan">
             <h3>战绩一览</h3>
           </div>
           <% unless(current_user == @user) %>
             <div class="col-md-3">
               <% unless current_user.nil?%>
                 <% unless(current_user.following.include?(@user)) %>
-                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default pull-right", :id => "following" %>
+                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default custom-btn pull-right", :id => "following" %>
                 <% else %>
-                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default pull-right", :id => "following" %>
+                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default custom-btn pull-right", :id => "following" %>
                 <% end %>
               <% else %>
-                <%= link_to "关注", signin_path, :class => "btn btn-sm btn-default pull-right" %>
+                <%= link_to "关注", signin_path, :class => "btn btn-sm btn-default custom-btn pull-right" %>
               <% end %>
             </div>
           <% end %>
@@ -93,37 +93,33 @@
         <div class="col-md-12 row">
           <div class="col-md-3">
             <i class="fa fa-plus-circle"></i>
-            <span> <%= @user.score %> 积分</span>
+            <span>积分 <%= @user.score %> </span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-space-shuttle"></i>
-            <span> <%= @user.battle_count %> 战斗</span>
+            <span>战斗 <%= @user.battle_count %> </span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-smile-o"></i>
-            <span> <%= @user.win_times %> 胜利</span>
+            <span>胜利 <%= @user.win_times %> </span>
           </div>
           <div class="col-md-3">
-            <i class="fa fa-heart"></i>
-            <span> 25 赞</span>
+            <i class="fa fa-frown-o"></i>
+            <span>平局 <%= @user.draw_times %> </span>
           </div>
         </div>
         <div class="col-md-12 row">
           <div class="col-md-3">
             <i class="fa fa-arrow-circle-up"></i>
-            <span> 25 排名</span>
+            <span>排名 25 </span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-rocket"></i>
-            <span> <%= @user.meches.count %> 机甲</span>
+            <span>机甲 <%= @user.meches.count %> </span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-frown-o"></i>
-            <span> <%= @user.fail_times %> 失败</span>
-          </div>
-          <div class="col-md-3">
-            <i class="fa fa-frown-o"></i>
-            <span> <%= @user.draw_times %> 平局</span>
+            <span>失败 <%= @user.fail_times %> </span>
           </div>
         </div>
       </div>
@@ -136,20 +132,11 @@
             <div class="my-mech-head">
               <span class="my-mech-name">
                 <%= link_to(mech.name.nil? ? "无名英雄" : mech.name, mech) %>
-              <span>
-              <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>
-            </div>
-            <br>
-            <div class="my-mech-body">
-              <div class="my-mech-info">
-                <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(mech.engine_info.name, mech.engine_info) unless mech.engine_info.nil? %></p>
-                <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(mech.weapon_info.name, mech.weapon_info) unless mech.weapon_info.nil? %></p>
-                <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
                 <% if mech.user != current_user %>
                   <% if current_user.nil? %>
-                    <%= link_to "与之战斗", signin_path ,:class => "btn btn-default" %>
+                    <%= link_to "与之战斗", signin_path ,:class => "btn btn-default custom-btn" %>
                   <% else %>
-                    <button class="btn btn-default" data-toggle="modal" data-target="#myMech">与之战斗</button>
+                    <a href="javascript:void(0);" class="btn btn-default btn-sm custom-btn" data-toggle="modal" data-target="#myMech">与之战斗</a>
                     <div class="modal fade" id="myMech" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -171,6 +158,15 @@
                     </div>
                   <% end %>
                 <% end %>
+              <span>
+              <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>
+            </div>
+            <br>
+            <div class="my-mech-body">
+              <div class="my-mech-info">
+                <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(mech.engine_info.name, mech.engine_info) unless mech.engine_info.nil? %></p>
+                <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(mech.weapon_info.name, mech.weapon_info) unless mech.weapon_info.nil? %></p>
+                <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong>我是最牛逼的机甲</p>
               </div>
             </div>
           </div>
