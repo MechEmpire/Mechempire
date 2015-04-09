@@ -131,7 +131,7 @@
           <div class="col-md-12">
             <div class="my-mech-head">
               <span class="my-mech-name">
-                <%= link_to(mech.name.nil? ? "无名英雄" : mech.name, mech) %>
+                <%= link_to(mech.name.nil? ? "无名英雄" : mech.name, mech) %> &nbsp;
                 <% if mech.user != current_user %>
                   <% if current_user.nil? %>
                     <%= link_to "与之战斗", signin_path ,:class => "btn btn-default custom-btn" %>

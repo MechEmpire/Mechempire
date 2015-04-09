@@ -147,6 +147,12 @@ a.custom-btn:hover{
   background-color: #33c8f3;
 }
 .dropdown-menu, .modal-content{
-  background-color: #111;
+  background-image: url(image_path("home-page-bg.png"));
   border: 1px #444 solid;
+}
+.dropdown-menu .divider{
+  background-color: #444;
+}
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+  background-color: rgba(68, 68, 68, 0.6);
 }
