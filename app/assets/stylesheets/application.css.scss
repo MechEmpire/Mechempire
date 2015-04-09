@@ -52,7 +52,7 @@ body {
   background-image: url(image_path("home-page-bg.png"));
   font-family: "微软雅黑","Microsoft YaHei", verdana, arial, helvetica, sans-serif;
   font-size: 13px;
-  line-height: 18px;
+  line-height: 150%;
   color: #F7F7F7;
 }
 h1 h2 h3 h4 h5 h6{
@@ -118,9 +118,7 @@ footer{
       border: 1px solid #222;
       color: #fff !important;
       display: inline-block;
-      font-family: Arial Helvetica sans-serif;
-      font-size: 17.25px;
-      font-size: 1.725rem;
+      font-size: 14px;
       height: 100%;
       line-height: 45px;
       text-align: center;
@@ -146,7 +144,8 @@ a.custom-btn:hover{
   border-color: transparent;
   background-color: #33c8f3;
 }
-.dropdown-menu, .modal-content{
+
+.list-group > a, .dropdown-menu, .modal-content{
   background-image: url(image_path("home-page-bg.png"));
   border: 1px #444 solid;
 }
@@ -155,4 +154,11 @@ a.custom-btn:hover{
 }
 .dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
   background-color: rgba(68, 68, 68, 0.6);
+}
+
+.list-group > a:hover, .list-group > a:focus {
+  background-color: rgba(68, 68, 68, 0.6);
+}
+.page-header{
+  border-bottom: 1px solid #444;
 }

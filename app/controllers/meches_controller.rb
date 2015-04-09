@@ -4,9 +4,7 @@ class MechesController < ApplicationController
   before_action :actived_user, only: [:create]
 
   def index
-    #just display one record per page
     @meches = Mech.page(params[:page]).per(10)
-    # @meches = Carrier.all
   end
 
   def mech_list
@@ -20,9 +18,18 @@ class MechesController < ApplicationController
     @mech.user_id = current_user.id
 
     respond_to do |format|
-      if @mech.save && @mech.compile && @mech.get_mech_info
-        format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
-        format.json { render :show, status: :created, location: @mech }
+      if @mech.save
+        status, stderr = @mech.compile
+        if status == 0 && @mech.get_mech_info
+          format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
+          format.json { render :show, status: :created, location: @mech }
+        else
+          flash[:danger] = "代码编译失败，错误信息:" + stderr
+          FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
+          @mech.destroy
+          format.html { render :new }
+          format.json { render json: @mech.errors, status: :unprocessable_entity }
+        end
       else
         format.html { render :new }
         format.json { render json: @mech.errors, status: :unprocessable_entity }

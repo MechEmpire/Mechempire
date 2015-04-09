@@ -4,10 +4,9 @@
   <div class="row">
     <div class="col-md-3">
       <div class="list-group">
-        <%= link_to("基本资料", edit_user_path(current_user) , :class => "list-group-item") %>
-        <%= link_to("修改密码", edit_user_path(current_user,:params => {'tab' => 'password'}) , :class => "list-group-item") %>
-        <%= link_to("账户激活", edit_user_path(current_user,:params => {'tab' => 'active'}) , :class => "list-group-item") unless current_user.is_actived? %>
-        <!-- <a href="#" class="list-group-item">Category 3</a> -->
+        <%= link_to("基本资料", edit_user_path(current_user), :class => "list-group-item") %>
+        <%= link_to("修改密码", edit_user_path(current_user, :params => {'tab' => 'password'}) , :class => "list-group-item") %>
+        <%= link_to("账户激活", edit_user_path(current_user, :params => {'tab' => 'active'}) , :class => "list-group-item") unless current_user.is_actived? %>
       </div>
     </div>
     <div class="col-md-9">
@@ -18,6 +17,8 @@
           <%= render 'base_info_form' %>
         </div>
         <div class="col-md-3">
+          <%=link_to gravatar_for(current_user, size: 240), current_user , :class => "thumbnail edit_user" %>
+          <a href="http://en.gravatar.com/" title="修改头像">去Gravatar修改头像</a>
         </div>
       <% elsif params['tab'] == "password" %>
         <h3>修改密码</h3>

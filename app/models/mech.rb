@@ -3,6 +3,7 @@ class Mech
   Mongoid.raise_not_found_error = false
 
   require 'zip'
+  require 'open4'
   
   mount_uploader :code, CodeUploader
   
@@ -40,15 +41,7 @@ class Mech
                           :author => json_info['author'],
                           :weapon => json_info['weapon'],
                           :engine => json_info['engine'])
-  end
 
-  def code_dir
-    self.code.path.split('.')[0]+'/'
-  end
-
-  def compile
-    self.unzip_file(self.code.path,"public/uploads/#{self.class.to_s.underscore}/code/#{self.id}")
-    system "compile/compile_user_ai.sh -p #{self.code_dir}"
     if FileTest::exist?("#{self.code_dir}libmyAI.so")
       self.update_attribute("state","SUCCESS")
     else
@@ -56,10 +49,25 @@ class Mech
     end
   end
 
+  def code_dir
+    File.dirname(self.code.path) + '/code/'
+  end
+
+  def compile
+    self.unzip_file(self.code.path,"public/uploads/#{self.class.to_s.underscore}/code/#{self.id}/code")
+    pid, stdin, stdout, stderr = Open4.popen4("compile/compile_user_ai.sh -p #{self.code_dir}")
+    ignored, status = Process::waitpid2 pid
+
+    compile_error = stderr.read.strip.gsub(self.code_dir, "")
+
+    return status.exitstatus, compile_error
+  end
+
   def unzip_file (file, destination)
     Zip::File.open(file) { |zip_file|
       zip_file.each { |f|
-        f_path=File.join(destination, f.name)
+        next if f.name =~ /__MACOSX/ or f.name =~ /\.DS_Store/ or !f.file?
+        f_path = File.join(destination, File.basename(f.name))
         FileUtils.mkdir_p(File.dirname(f_path))
         zip_file.extract(f, f_path) unless File.exist?(f_path)
       }
