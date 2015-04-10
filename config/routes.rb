@@ -22,13 +22,14 @@ Rails.application.routes.draw do
   match '/reactive', to: 'users#re_active',via: 'get'
   match '/following/:followed_id', to: 'users#following',via: 'post', as: :follow_user
   match '/unfollowing/:unfollowed_id', to: 'users#unfollowing', via: 'post', as: :unfollow_user
-  match '/battle/:defender_id/:attacker_id', to: 'battles#create', via: 'get'
+  match '/battle/:defender_id/:attacker_id', to: 'battles#create', via: 'post'
   match '/matches/apply/:id', to: 'matches#apply', via: 'post'
   match '/matches/addmech/:id/:mech_id', to: 'matches#addmech', via: 'post'
   match '/matches/result/:id', to: 'matches#result', via: 'get', as: :match_result
   match '/matches/video/:id', to: 'matches#video', via: 'get', as: :match_rvideo
   match '/battles/download/:id', to: 'battles#download', via: 'get', as: :download_video
   match '/battles/star/:id', to: 'battles#star', via: 'post', as: :star_battle
+  match '/meches/surrender/:id', to: 'meches#surrender', via: 'post', as: :mect_surrender
   
   # match '/admin', to: 'users#admin', via: 'get'
 

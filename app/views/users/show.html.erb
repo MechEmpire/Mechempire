@@ -38,7 +38,7 @@
               <i class="fa fa-link"></i>
             </span> 
             <span>
-              <%= link_to(@user.blog, @user.blog) %>
+              <%= link_to(@user.blog.truncate(27), @user.blog) %>
             </span>
           </li>
         <% end %>
@@ -75,16 +75,16 @@
           <div class="col-md-9 zhanjiyilan">
             <h3>战绩一览</h3>
           </div>
-          <% unless(current_user == @user) %>
+          <% unless current_user?(@user) %>
             <div class="col-md-3">
-              <% unless current_user.nil?%>
+              <% unless current_user.nil? %>
                 <% unless(current_user.following.include?(@user)) %>
-                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default custom-btn pull-right", :id => "following" %>
+                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
                 <% else %>
-                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm btn-default custom-btn pull-right", :id => "following" %>
+                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
                 <% end %>
               <% else %>
-                <%= link_to "关注", signin_path, :class => "btn btn-sm btn-default custom-btn pull-right" %>
+                <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
               <% end %>
             </div>
           <% end %>
@@ -93,7 +93,7 @@
         <div class="col-md-12 row">
           <div class="col-md-3">
             <i class="fa fa-plus-circle"></i>
-            <span>积分 <%= @user.score %> </span>
+            积分 <span id="my-score"><%= @user.score %> </span>
           </div>
           <div class="col-md-3">
             <i class="fa fa-space-shuttle"></i>
@@ -132,11 +132,11 @@
             <div class="my-mech-head">
               <span class="my-mech-name">
                 <%= link_to(mech.name.nil? ? "无名英雄" : mech.name, mech) %> &nbsp;
-                <% if mech.user != current_user %>
+                <% if !current_user?(mech.user) && mech.state == "SUCCESS" %>
                   <% if current_user.nil? %>
-                    <%= link_to "与之战斗", signin_path ,:class => "btn btn-default custom-btn" %>
+                    <%= link_to "与之战斗", signin_path ,:class => "btn btn-sm custom-btn"%>
                   <% else %>
-                    <a href="javascript:void(0);" class="btn btn-default btn-sm custom-btn" data-toggle="modal" data-target="#myMech">与之战斗</a>
+                    <a href="" class="btn btn-sm custom-btn" data-toggle="modal" data-target="#myMech">与之战斗</a>
                     <div class="modal fade" id="myMech" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                       <div class="modal-dialog">
                         <div class="modal-content">
@@ -146,10 +146,14 @@
                           </div>
                           <div class="modal-body row">
                             <div class="container-fluid row col-md-12">
-                              <% current_user.meches.each do |m| %>
-                                <center class="col-md-4 choise-my-mech">
-                                  <a href="/battle/<%= mech._id%>/<%= m._id %>"><%= m.name %></a>
-                                </center>
+                              <% if my_meches = current_user.meches.where(:state => "SUCCESS").all %>
+                                <% my_meches.each do |m| %>
+                                  <center class="col-md-4 choise-my-mech">
+                                    <a href="/battle/<%= mech._id%>/<%= m._id %>" data-method="post"><%= m.name %></a>
+                                  </center>
+                                <% end %>
+                              <% else %>
+                                <center>暂无可战斗机甲，快去添加吧</center>
                               <% end %>
                             </div>
                           </div>
@@ -157,8 +161,17 @@
                       </div>
                     </div>
                   <% end %>
+                <% else %>
+                  <% if mech.state == "SUCCESS" %>
+                    <%= link_to "认怂", mect_surrender_path(mech) ,
+                        :class => "btn btn-sm custom-btn", 
+                        :id=> "surrender",:remote => true, 
+                        :method => "post", 
+                        data: { confirm: "认怂之后状态不可更改哦，确定吗？" }
+                    %>
+                  <% end %>
                 <% end %>
-              <span>
+              </span>
               <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>
             </div>
             <br>
@@ -167,6 +180,15 @@
                 <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(mech.engine_info.name, mech.engine_info) unless mech.engine_info.nil? %></p>
                 <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(mech.weapon_info.name, mech.weapon_info) unless mech.weapon_info.nil? %></p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong><%= mech.manifesto%></p>
+                <p><strong><i class="fa fa-bar-chart"></i> 机甲状态：</strong>
+                  <% if mech.state == "SUCCESS" %>
+                    <span id="mech-state-iden" style="color:red;">时刻准备着战斗</span>
+                  <% elsif mech.state == "SURRENDER" %>
+                    <span style="color:white;">已认怂</span>
+                  <% else %>
+                    <span style="color:green;">编译失败</span>
+                  <% end %>
+                </p>
               </div>
             </div>
           </div>
@@ -179,15 +201,14 @@
       </div>
       <div class="row custom-well">
         <h3>参与的战斗</h3>
-        <hr>
         <ul class="users">
           <% @user.battles.each do |battle| %>
             <li>
               <span class="col-md-2">
-                <div class="battle-star">
+                <center class="battle-star">
                   <%= battle.starers.count %><br>
                   赞
-                </div>
+                </center>
               </span>
               <span class="col-md-7 battle-info">
                 <div class="battle-info-time">

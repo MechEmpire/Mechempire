@@ -14,14 +14,16 @@ class BattlesController < ApplicationController
   def create
     defender = Mech.find(params['defender_id'])
     attacker = Mech.find(params['attacker_id'])
-    is_success = true
+    store_location
 
-    @battle = Battle.new(:defender_id => defender._id,
-                         :attacker_id => attacker._id,
-                         :time => Time.now)
+    if defender.state == "SUCCESS" && attacker.state == "SUCCESS"
+      @battle = Battle.new(:defender_id => defender._id,
+                           :attacker_id => attacker._id,
+                           :time => Time.now)
+    end
     
     respond_to do |format|
-      if !defender.nil? && !attacker.nil? && @battle.battle && @battle.save
+      if @battle && !defender.nil? && !attacker.nil? && @battle.battle && @battle.save
         defender.battles << @battle
         attacker.battles << @battle
 
@@ -32,7 +34,8 @@ class BattlesController < ApplicationController
         format.html { redirect_to @battle, notice: '战斗成功，观看战斗结果！' }
         format.json { render :show, status: :created, location: @battle }
       else
-        format.html { render :new }
+        flash[:danger] = "战斗失败"
+        format.html { redirect_back_or(root_path)}
         format.json { render json: @battle.errors, status: :unprocessable_entity }
       end
     end

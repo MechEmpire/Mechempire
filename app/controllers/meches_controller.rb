@@ -1,5 +1,5 @@
 class MechesController < ApplicationController
-  before_action :set_mech, only: [:show, :edit, :update, :destroy]
+  before_action :set_mech, only: [:show, :edit, :update, :destroy, :surrender]
   before_action :signed_in_user, only: [:create, :edit, :update, :new]
   before_action :actived_user, only: [:create]
 
@@ -33,6 +33,18 @@ class MechesController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @mech.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def surrender
+    respond_to do |format|
+      if @mech.update_attribute("state","SURRENDER") && @mech.user.update_attribute("score", @mech.user.score - 3)
+        format.js
+      else
+        format.js do
+          render js: "alert('认怂失败')"
+        end
       end
     end
   end
