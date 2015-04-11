@@ -29,7 +29,9 @@ Rails.application.routes.draw do
   match '/matches/video/:id', to: 'matches#video', via: 'get', as: :match_rvideo
   match '/battles/download/:id', to: 'battles#download', via: 'get', as: :download_video
   match '/battles/star/:id', to: 'battles#star', via: 'post', as: :star_battle
-  match '/meches/surrender/:id', to: 'meches#surrender', via: 'post', as: :mect_surrender
+  match '/matches/genracecard/:id', to: 'matches#gen_racecard', via: 'post', as: :gen_match_racecard
+  match '/matches/racecard/:id', to: 'matches#racecard', via: 'get', as: :match_racecard
+  # match '/meches/surrender/:id', to: 'meches#surrender', via: 'post', as: :mect_surrender
   
   # match '/admin', to: 'users#admin', via: 'get'
 

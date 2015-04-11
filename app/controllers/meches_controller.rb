@@ -37,17 +37,17 @@ class MechesController < ApplicationController
     end
   end
 
-  def surrender
-    respond_to do |format|
-      if @mech.update_attribute("state","SURRENDER") && @mech.user.update_attribute("score", @mech.user.score - 3)
-        format.js
-      else
-        format.js do
-          render js: "alert('认怂失败')"
-        end
-      end
-    end
-  end
+  # def surrender
+  #   respond_to do |format|
+  #     if @mech.update_attribute("state","SURRENDER") && @mech.user.update_attribute("score", @mech.user.score - 3)
+  #       format.js
+  #     else
+  #       format.js do
+  #         render js: "alert('认怂失败')"
+  #       end
+  #     end
+  #   end
+  # end
 
   def new
     @mech = Mech.new

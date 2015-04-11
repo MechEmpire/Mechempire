@@ -48,7 +48,7 @@
       <% end %>
     <% else %>
       <!-- <a href="#" title="查看比赛结果" class="btn btn-default btn-block custom-btn">查看比赛结果</a> -->
-      <%= link_to "查看比赛视频", match_rvideo_path(@match), :class => "btn btn-default btn-block custom-btn"%>
+      <%= link_to "查看比赛视频", match_racecard(@match), :class => "btn btn-default btn-block custom-btn"%>
     <% end %>
     <h3><span id="applyer_count"><%= @match.users.count %></span> 人报名</h3>
     <hr>
@@ -63,7 +63,7 @@
         <%= link_to '编辑比赛', edit_match_path(@match), :class => "btn btn-default btn-block"%>
         <%= link_to '删除比赛', @match, method: :delete,
                                 data: { confirm: "确认删除吗？" }, :class => "btn btn-danger btn-block" %>
-        <%= link_to '生成赛程表', '#', :class => "btn btn-success btn-block"%>
+        <%= link_to '生成赛程表', gen_match_racecard_path(@match), :class => "btn btn-success btn-block", :method => "post" %>
       </ul>
     <% end %>
   </div>

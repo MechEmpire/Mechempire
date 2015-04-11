@@ -161,15 +161,6 @@
                       </div>
                     </div>
                   <% end %>
-                <% else %>
-                  <% if mech.state == "SUCCESS" %>
-                    <%= link_to "认怂", mect_surrender_path(mech) ,
-                        :class => "btn btn-sm custom-btn", 
-                        :id=> "surrender",:remote => true, 
-                        :method => "post", 
-                        data: { confirm: "认怂之后状态不可更改哦，确定吗？" }
-                    %>
-                  <% end %>
                 <% end %>
               </span>
               <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>
@@ -183,8 +174,6 @@
                 <p><strong><i class="fa fa-bar-chart"></i> 机甲状态：</strong>
                   <% if mech.state == "SUCCESS" %>
                     <span id="mech-state-iden" style="color:red;">时刻准备着战斗</span>
-                  <% elsif mech.state == "SURRENDER" %>
-                    <span style="color:white;">已认怂</span>
                   <% else %>
                     <span style="color:green;">编译失败</span>
                   <% end %>

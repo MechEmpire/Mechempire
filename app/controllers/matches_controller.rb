@@ -1,13 +1,28 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :edit, :update, :destroy, :apply, :addmech, :result, :video]
-  before_action :admin_user, except: [:show,:index,:apply,:addmech]
-  before_action :actived_user, only: [:apply, :addmech]
+  before_action :set_match, only: [:show, 
+                                   :edit, 
+                                   :update, 
+                                   :destroy, 
+                                   :apply, 
+                                   :addmech, 
+                                   :result, 
+                                   :video, 
+                                   :racecard,
+                                   :gen_racecard]
+
+  before_action :admin_user, except: [:show,
+                                      :index,
+                                      :apply,
+                                      :addmech,
+                                      :racecard]
+
+  before_action :actived_user, only: [:apply, 
+                                      :addmech]
 
   # GET /matches
   # GET /matches.json
   def index
     @matches = Match.page(params[:page]).per(1)
-     # @users = User.order("score DESC").page(params[:page]).per(1)
   end
 
   # GET /matches/1
@@ -35,7 +50,7 @@ class MatchesController < ApplicationController
   
   def apply
     respond_to do |format|
-      if current_user && !@match.users.include?(current_user) && @match.users.push(current_user) && !@match.has_end? && @match.has_start
+      if current_user && !@match.users.include?(current_user) && @match.users.push(current_user) && !@match.has_end? && @match.has_start?
         format.js
       else
         format.js  do
@@ -48,7 +63,7 @@ class MatchesController < ApplicationController
   def addmech
     mech = Mech.find(params["mech_id"])
     respond_to do |format|
-      if mech && current_user.meches.include?(mech) && @match.users.include?(current_user) && !@match.has_end? && @match.has_start
+      if mech && current_user.meches.include?(mech) && @match.users.include?(current_user) && !@match.has_end? && @match.has_start?
         last_mech = @match.meches.find_by(:user => current_user)
         if last_mech
           @match.meches.delete(last_mech)
@@ -63,6 +78,20 @@ class MatchesController < ApplicationController
         end
       end
     end
+  end
+
+  def gen_racecard
+    respond_to do |format|
+      if @match.battles.clear && @match.create_racecard
+        format.html {render :racecard, notice: '对战表生成成功'}
+      else
+        flash["danger"] = "对战表生成失败"
+        format.html { redirect_to @match }
+      end
+    end
+  end
+
+  def racecard
   end
 
   # POST /matches
