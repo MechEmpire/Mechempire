@@ -164,9 +164,6 @@
                     <% end %>
                   <% end %>
                 <% else %>
-                  <%= link_to "删除机甲", mech, method: :delete,
-                                  :class => "btn btn-sm custom-btn",
-                                  data: { confirm: "操作之后历史版本将全部删除，确认操作？" } %>
                   <%= link_to "更新机甲", edit_mech_path(mech),
                                   :class => "btn btn-sm custom-btn" %>
                 <% end %>

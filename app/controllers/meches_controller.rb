@@ -2,7 +2,7 @@ class MechesController < ApplicationController
   before_action :set_mech, only: [:show, :edit, :update, :destroy, :surrender]
   before_action :signed_in_user, only: [:create, :edit, :update, :new, :destroy]
   before_action :actived_user, only: [:create, :destroy, :update]
-  before_action :mech_user, only: [:destroy, :update, :edit]
+  before_action :mech_user, only: [:update, :edit]
 
   def index
     @meches = Mech.page(params[:page]).per(10)
@@ -62,16 +62,16 @@ class MechesController < ApplicationController
   end
 
   def destroy
-    respond_to do |format|
-      if @mech.destroy
-        FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
-        format.html { redirect_to current_user, notice: '机甲删除成功!' }
-        format.json { head :no_content }
-      else
-        format.html { redirect_to current_user, notice: '机甲删除失败!' }
-        format.json { head :no_content }
-      end
-    end
+    # respond_to do |format|
+    #   if @mech.destroy
+    #     FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
+    #     format.html { redirect_to current_user, notice: '机甲删除成功!' }
+    #     format.json { head :no_content }
+    #   else
+    #     format.html { redirect_to current_user, notice: '机甲删除失败!' }
+    #     format.json { head :no_content }
+    #   end
+    # end
   end
 
   def update
