@@ -1,18 +1,16 @@
-<% provide(:title, '| 机甲列表') %>
-<div class="container main-body">
+<!-- <div class="container main-body">
   <div class="col-lg-12">
     <h1 class="page-header">引擎列表
-      <!-- <small>Secondary Text</small> -->
     </h1>
   </div>
 
-  <% @carriers.each do |carrier| %>
+  <%# @carriers.each do |carrier| %>
     <div class="col-md-3 portfolio-item">
       <a href="#">
-        <%= link_to image_tag(carrier.samplepic, :class => "img-responsive"), carrier %>
+        <%#= link_to image_tag(carrier.samplepic, :class => "img-responsive"), carrier %>
       </a>
     </div>
-  <% end %>
+  <% #end %>
   <div class="row text-center">
     <div class="col-lg-12">
       <ul class="pagination">
@@ -43,14 +41,14 @@
 
   <div class="col-lg-12">
     <h1 class="page-header">武器列表
-      <!-- <small>Secondary Text</small> -->
+
     </h1>
   </div>
-  <% @weapons.each do |weapon| %>
+  <% #@weapons.each do |weapon| %>
     <div class="col-md-3 portfolio-item">
-      <%= link_to image_tag(weapon.samplepic, :class => "img-responsive"), weapon %>
+      <%#= link_to image_tag(weapon.samplepic, :class => "img-responsive"), weapon %>
     </div>
-    <% end %>
+    <%# end %>
   <div class="row text-center">
     <div class="col-lg-12">
       <ul class="pagination">
@@ -78,4 +76,41 @@
       </ul>
     </div>
   </div>
-</div>
+</div> -->
+
+<center class="container main-body">
+  <object width="100%" height="600" id="movie_name" align="middle">
+    <param name="movie" value="<%= image_path('IntroductionWeb.swf')%>"/>
+    <param name="quality" value="high">
+    <param name="bgcolor" value="#000000">
+    <param name="play" value="true">
+    <param name="loop" value="true">
+    <param name="wmode" value="direct">
+    <param name="scale" value="showall">
+    <param name="menu" value="true">
+    <param name="devicefont" value="false">
+    <param name="salign" value="">
+    <param name="allowscriptaccess" value="sameDomain">
+    <!--[if !IE]>-->
+    <object type="application/x-shockwave-flash" data="<%= image_path('IntroductionWeb.swf')%>" width="550" height="400">
+        <param name="movie" value="<%= image_path('IntroductionWeb.swf')%>"/>
+        <param name="quality" value="high">
+        <param name="bgcolor" value="#000000">
+        <param name="play" value="true">
+        <param name="loop" value="true">
+        <param name="wmode" value="direct">
+        <param name="scale" value="showall">
+        <param name="menu" value="true">
+        <param name="devicefont" value="false">
+        <param name="salign" value="">
+        <param name="allowscriptaccess" value="sameDomain">
+
+    <!--<![endif]-->
+        <a href="http://www.adobe.com/go/getflash">
+            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
+        </a>
+    <!--[if !IE]>-->
+    </object>
+    <!--<![endif]-->
+  </object>
+</center>
