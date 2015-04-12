@@ -7,6 +7,10 @@
     <%= f.label :password, :value => "密 码:"%><br>
     <%= f.password_field :password , :class => "form-control", :placeholder => "请输入密码"%>
   </div>
+  <div class="form-group">
+    <%= f.label :remember, :value => "记住我:"%>
+    <%= f.check_box :remember %>
+  </div>
   
   <div class="form-group">
     <%= f.submit "登 录", class: "btn btn-success btn-block" %>

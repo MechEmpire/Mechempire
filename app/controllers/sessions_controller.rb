@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      sign_in user
+      if params[:session][:remember]
+        sign_in_forever user
+      else
+        sign_in user
+      end
       redirect_to user
     else
       flash[:danger] = '用户名或密码错误!'

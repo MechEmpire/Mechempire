@@ -29,7 +29,7 @@ class UsersController < ApplicationController
   end
 
   def re_active
-    if !current.is_actived && UserMailer.signup_confirm_email(current_user).deliver
+    if !current_user.is_actived && UserMailer.signup_confirm_email(current_user).deliver
       flash[:warning] = "邮件发送成功，请登录您的注册邮箱查看!"
       redirect_to current_user
     else
