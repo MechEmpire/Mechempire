@@ -1,8 +1,8 @@
 class BattlesController < ApplicationController
-  before_action :set_battle, only: [:show, :download, :star]
-  before_action :actived_user, only: [:create]
+  before_action :set_battle, only: [:show, :download, :star, :destroy]
+  before_action :actived_user, only: [:create, :destroy]
   before_action :admin_user, except: [:create, :download, :index, :show]
-  before_action :signed_in_user, only: [:star, :create]
+  before_action :signed_in_user, only: [:star, :create, :destroy]
 
   def index
     @battles = Battle.page(params[:page]).per(5)
@@ -42,6 +42,7 @@ class BattlesController < ApplicationController
   end
 
   def destroy
+
   end
 
   def edit

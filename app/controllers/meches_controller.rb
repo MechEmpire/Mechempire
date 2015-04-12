@@ -1,7 +1,8 @@
 class MechesController < ApplicationController
   before_action :set_mech, only: [:show, :edit, :update, :destroy, :surrender]
-  before_action :signed_in_user, only: [:create, :edit, :update, :new]
-  before_action :actived_user, only: [:create]
+  before_action :signed_in_user, only: [:create, :edit, :update, :new, :destroy]
+  before_action :actived_user, only: [:create, :destroy, :update]
+  before_action :mech_user, only: [:destroy, :update, :edit]
 
   def index
     @meches = Mech.page(params[:page]).per(10)
@@ -61,9 +62,37 @@ class MechesController < ApplicationController
   end
 
   def destroy
+    respond_to do |format|
+      if @mech.destroy
+        FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
+        format.html { redirect_to current_user, notice: '机甲删除成功!' }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to current_user, notice: '机甲删除失败!' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   def update
+    respond_to do |format|
+      if @mech.backup_code && @mech.update_attributes(mech_params)
+        status, stderr = @mech.compile
+        if status == 0 && @mech.get_mech_info
+          format.html { redirect_to @mech, notice: '机甲更新成功，快去战斗吧！' }
+          format.json { render :show, status: :created, location: @mech }
+        else
+          flash[:danger] = "代码编译失败，错误信息:" + stderr
+          FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}/code"
+          format.html { render :new }
+          format.json { render json: @mech.errors, status: :unprocessable_entity }
+        end
+      else
+        flash['danger'] = "机甲更新失败"
+        format.html { render :edit }
+        format.json { render json: @mech.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   private

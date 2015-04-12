@@ -34,6 +34,10 @@ class Mech
     Weapon.find_by(:iden => self.weapon) 
   end
 
+  def backup_code
+    system "mv #{self.code_dir} #{self.dir}/code-#{Time.now.to_i}"
+  end
+
   def get_mech_info
     mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
     json_info = JSON::parse(mech_info)
@@ -51,6 +55,10 @@ class Mech
 
   def code_dir
     File.dirname(self.code.path) + '/code/'
+  end
+
+  def dir
+    "public/uploads/#{self.class.to_s.underscore}/code/#{self.id}"
   end
 
   def compile
