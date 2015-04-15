@@ -1,6 +1,7 @@
 <center class="container main-body game-player">
   <embed width="100%" height="600" src="<%= image_path('Battlefield.swf')%>"  flashvars="record_url=<%= download_video_path(@battle) %>" />
   <br><br>
+  <%= link_to "战斗录像下载", download_video_path(@battle) %>
   <% if @battle.starers.include?(current_user) %>
     <a href="javascript:void(0);" title="已赞" class="btn btn-default custom-btn">已赞</a>
   <% else %>
