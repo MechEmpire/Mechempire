@@ -5,7 +5,7 @@ class BattlesController < ApplicationController
   before_action :signed_in_user, only: [:star, :create, :destroy]
 
   def index
-    @battles = Battle.page(params[:page]).per(5)
+    @battles = Battle.order("time DESC").page(params[:page]).per(5)
   end
 
   def new
