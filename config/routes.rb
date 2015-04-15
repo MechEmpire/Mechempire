@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   match '/battles/star/:id', to: 'battles#star', via: 'post', as: :star_battle
   match '/matches/genracecard/:id', to: 'matches#gen_racecard', via: 'post', as: :gen_match_racecard
   match '/matches/racecard/:id', to: 'matches#racecard', via: 'get', as: :match_racecard
+  # match 'battle/result/:id'
   # match '/meches/surrender/:id', to: 'meches#surrender', via: 'post', as: :mect_surrender
   
   # match '/admin', to: 'users#admin', via: 'get'

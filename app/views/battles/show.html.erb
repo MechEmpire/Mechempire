@@ -1,40 +1,6 @@
 <center class="container main-body game-player">
-  <object width="100%" height="600" id="movie_name" align="middle">
-    <param name="movie" value="<%= image_path('Armors.swf')%>"/>
-    <param name="quality" value="high">
-    <param name="bgcolor" value="#000000">
-    <param name="play" value="true">
-    <param name="loop" value="true">
-    <param name="wmode" value="direct">
-    <param name="scale" value="showall">
-    <param name="menu" value="true">
-    <param name="devicefont" value="false">
-    <param name="salign" value="">
-    <param name="allowscriptaccess" value="sameDomain">
-    <!--[if !IE]>-->
-    <object type="application/x-shockwave-flash" data="<%= image_path('Armors.swf')%>" width="550" height="400">
-        <param name="movie" value="<%= image_path('Armors.swf')%>"/>
-        <param name="quality" value="high">
-        <param name="bgcolor" value="#000000">
-        <param name="play" value="true">
-        <param name="loop" value="true">
-        <param name="wmode" value="direct">
-        <param name="scale" value="showall">
-        <param name="menu" value="true">
-        <param name="devicefont" value="false">
-        <param name="salign" value="">
-        <param name="allowscriptaccess" value="sameDomain">
-
-    <!--<![endif]-->
-        <a href="http://www.adobe.com/go/getflash">
-            <img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player"/>
-        </a>
-    <!--[if !IE]>-->
-    </object>
-    <!--<![endif]-->
-  </object>
+  <embed width="100%" height="600" src="<%= image_path('Battlefield.swf')%>"  flashvars="record_url=<%= download_video_path(@battle) %>" />
   <br><br>
-  <%= link_to "战斗录像下载", download_video_path(@battle) %>
   <% if @battle.starers.include?(current_user) %>
     <a href="javascript:void(0);" title="已赞" class="btn btn-default custom-btn">已赞</a>
   <% else %>
