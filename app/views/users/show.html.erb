@@ -54,14 +54,14 @@
       <hr>
       <div class="row">
         <div class="col-md-6 user-follow follower">
-          <a href="#" title="关注者">
+          <a href="/users/follower/<%= @user.id %>" title="关注者">
             <span>关注者</span><br>
             <strong id="follower"><%= @user.follower.count%></strong>
             <label> 人</label>
           </a>
         </div>
         <div class="col-md-6 user-follow">
-          <a href="#" title="关注了">
+          <a href="/users/followed/<%= @user.id %>" title="关注了">
             <span>关注了</span><br>
             <strong><%= @user.following.count%></strong>
             <label> 人</label>

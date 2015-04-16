@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :follower, :followed]
   before_action :signed_in_user, only: [:edit, :update, :admin, :following, :unfollowing, :re_active]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :admin]
@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.order("score DESC").page(params[:page]).per(5)
+    @users = User.order("score DESC").page(params[:page]).per(10)
   end
 
   # GET /users/1
@@ -147,6 +147,12 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def follower
+  end
+
+  def followed
   end
 
   private
