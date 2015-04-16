@@ -31,7 +31,7 @@ div.about-main{
 }
 
 div.aboutus-main{
-  height: 40%;
+  height: 200px;
   width: 100%;
   margin: 0;
   background-image: url("http://ww3.sinaimg.cn/mw1024/9631b1bbjw1er37cx0cjkj21hc0u010v.jpg");
@@ -71,13 +71,13 @@ div.carousel .fill {
 .about-menu {
   width: 100%;
   margin-bottom: 40px;
-  border-bottom: 1px solid #eee;
+  margin-top:20px;
 }
 
-.about-menu-link.selected {
+.selected {
   font-weight: bold;
-  color: #333;
-  border-bottom-color: #d26911;
+  color: #f7f7f7 !important;
+  border-bottom: 3px solid #31b7e3 !important;
 }
 
 .about-menu-link {
@@ -87,7 +87,10 @@ div.carousel .fill {
   font-size: 18px;
   color: #777;
   text-align: center;
-  border-bottom: 3px solid #fff;
+  border-bottom: 3px solid #444;
+}
+.about-menu-link:hover{
+    border-bottom-color: #31b7e3;
 }
 .img-center {
   margin: 0 auto;
@@ -180,4 +183,7 @@ div.carousel .fill {
 }
 hr.main-page-hr{
   border-top: 1px solid #fff;
+}
+.my-temp{
+  padding: 0px 40px 40px;
 }

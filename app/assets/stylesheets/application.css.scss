@@ -63,7 +63,7 @@ p{
 }
 .main-body{
   min-height: 840px;
-  margin-top: 20px;
+  margin: 30px auto 80px; 
 }
 
 ul{
@@ -74,12 +74,13 @@ hr{
   border-top: 1px solid #444;
 }
 a:link {  
-  color: #33c8f3 !important;  
-  text-decoration: none;  
+  color: #31b7e3 !important;  
+  text-decoration: none; 
+  transition: 0.3s ease; 
 }  
 a:visited {  
   text-decoration: none;  
-  color: #33c8f3 !important;  
+  color: #31b7e3 !important;  
 }  
 a:hover {  
   text-decoration: none;  
@@ -87,7 +88,7 @@ a:hover {
 }  
 a:active {  
   text-decoration: none;  
-  color: #33c8f3 !important;  
+  color: #31b7e3 !important;  
 }
 footer{
   color: #999;
