@@ -41,18 +41,19 @@ class Mech
   end
 
   def get_mech_info
-    mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
-    json_info = JSON::parse(mech_info)
-    self.update_attributes(:name => json_info['name'], 
-                          :author => json_info['author'],
-                          :weapon => json_info['weapon'],
-                          :engine => json_info['engine'])
 
     if FileTest::exist?("#{self.code_dir}libmyAI.so")
       self.update_attribute("state","SUCCESS")
+      mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
+      json_info = JSON::parse(mech_info)
+      self.update_attributes(:name => json_info['name'], 
+                            :author => json_info['author'],
+                            :weapon => json_info['weapon'],
+                            :engine => json_info['engine'])
     else
       self.update_attribute("state","FAILED")
     end
+
   end
 
   def code_dir
@@ -69,6 +70,10 @@ class Mech
     ignored, status = Process::waitpid2 pid
 
     compile_error = stderr.read.strip.gsub(self.code_dir, "")
+
+    File.open("public/uploads/#{self.class.to_s.underscore}/code/#{self.id}/code/status.txt", "w+") do |f|
+      f.write(status.exitstatus)
+    end
 
     return status.exitstatus, compile_error
   end

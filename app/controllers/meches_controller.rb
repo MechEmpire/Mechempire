@@ -78,12 +78,12 @@ class MechesController < ApplicationController
     respond_to do |format|
       if @mech.backup_code && @mech.update_attributes(mech_params)
         status, stderr = @mech.compile
-        if status == 0 && @mech.get_mech_info
+        if @mech.get_mech_info && status == 0
           format.html { redirect_to @mech, notice: '机甲更新成功，快去战斗吧！' }
           format.json { render :show, status: :created, location: @mech }
         else
           flash[:danger] = "代码编译失败，错误信息:" + stderr
-          FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}/code"
+          #FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}/code"
           format.html { render :new }
           format.json { render json: @mech.errors, status: :unprocessable_entity }
         end
