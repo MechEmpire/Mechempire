@@ -98,6 +98,9 @@ class MechesController < ApplicationController
   private
     def set_mech
       @mech = Mech.find(params[:id])
+      if @mech.nil?
+        render :file => 'public/404.html'
+      end
     end
 
     def mech_params

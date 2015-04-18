@@ -39,6 +39,9 @@ class WeaponsController < ApplicationController
 
     def set_weapon
       @weapon = Weapon.find(params[:id])
+      if @weapon.nil?
+        render :file => 'public/404.html'
+      end
     end
 
     def weapon_params
@@ -47,8 +50,4 @@ class WeaponsController < ApplicationController
                                    :samplepic,
                                    :iden)
     end
-
-    # def admin_user
-    #   redirect_to(root_path) unless current_user.admin?
-    # end
 end

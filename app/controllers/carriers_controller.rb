@@ -39,6 +39,9 @@ class CarriersController < ApplicationController
   private
     def set_carrier
       @carrier = Carrier.find(params[:id])
+      if @carrier.nil?
+        render :file => 'public/404.html'
+      end
     end
 
     def carrier_params

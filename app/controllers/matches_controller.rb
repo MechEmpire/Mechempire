@@ -138,6 +138,9 @@ class MatchesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_match
       @match = Match.find(params[:id])
+      if @match.nil?
+        render :file => 'public/404.html'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -23,7 +23,7 @@ class Match
     meches_count = self.meches.count
     team = self.meches
     user_temp = User.new
-    puts team.class
+    # puts team.class
     if meches_count % 2 != 0
       self.meches.push(user_temp)
       meches_count += 1

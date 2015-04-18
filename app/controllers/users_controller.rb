@@ -158,6 +158,9 @@ class UsersController < ApplicationController
   private
     def set_user
       @user = User.find(params[:id])
+      if @user.nil?
+        render :file => 'public/404.html'
+      end
     end
 
     def correct_user

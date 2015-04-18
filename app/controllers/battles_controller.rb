@@ -75,7 +75,10 @@ class BattlesController < ApplicationController
   private
 
     def set_battle
-       @battle = Battle.find(params[:id])
+      @battle = Battle.find(params[:id])
+      if @battle.nil?
+        render :file => 'public/404.html'
+      end
     end
     # def battle_params
     #   params.require(:battle).permit(:attacker_id,
