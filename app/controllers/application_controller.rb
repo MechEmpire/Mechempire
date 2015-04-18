@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
     unless signed_in? && current_user.is_actived
       respond_to do |format|
         format.html do
-          flash[:danger] = "您的账号还未激活，请激活之后再使用!" 
+          flash[:danger] = "您的账号还未激活，请激活之后再使用，如需重新发送激活邮件，请前往设置页面发送!" 
           redirect_to current_user
         end
         format.js do

@@ -79,7 +79,7 @@ Rails.application.configure do
       :address => "smtp.qq.com",
       :port => "25",
       :authentication => :plain,
-      :user_name => "1210137461@qq.com",
-      :password => "qqggr940110,."
+      :user_name => "mechempire@foxmail.com",
+      :password => "mech2o16"
   }
 end
