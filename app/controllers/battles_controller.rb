@@ -52,7 +52,6 @@ class BattlesController < ApplicationController
   end
 
   def show
-    @result_uri = "battle/result/#{@battle._id}.txt"
   end
 
   def star
