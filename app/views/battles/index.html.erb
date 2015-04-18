@@ -2,29 +2,31 @@
   <h1>战斗列表</h1>
   <ul class="users">
     <% @battles.each do |battle| %>
-      <li>
-        <span class="col-md-2">
-          <div class="battle-star">
-            <%= battle.starers.count %><br>
-            赞
-          </div>
-        </span>
-        <span class="col-md-7 battle-info">
-          <div class="battle-info-time">
-            <%= time_ago_in_words(battle.time) + "前" %><br>
-          </div>
-          <div class="battle-info-double">
-            <%= link_to battle.defender.user.name, battle.defender.user %> ::
-            <%= link_to battle.defender.name, battle.defender %>
-            VS 
-            <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
-            <%= link_to battle.attacker.name, battle.attacker %>
-          </div>
-        </span>
-        <span class="col-md-3">
-          <%= link_to "去观战", battle %>
-        </span>
-      </li>
+      <% if battle.defender.user && battle.attacker.user && battle.defender && battle.attacker%>
+        <li>
+          <span class="col-md-2">
+            <div class="battle-star">
+              <%= battle.starers.count %><br>
+              赞
+            </div>
+          </span>
+          <span class="col-md-7 battle-info">
+            <div class="battle-info-time">
+              <%= time_ago_in_words(battle.time) + "前" %><br>
+            </div>
+            <div class="battle-info-double">
+              <%= link_to battle.defender.user.name, battle.defender.user %> ::
+              <%= link_to battle.defender.name, battle.defender %>
+              VS 
+              <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
+              <%= link_to battle.attacker.name, battle.attacker %>
+            </div>
+          </span>
+          <span class="col-md-3">
+            <%= link_to "去观战", battle , :class => "btn btn-sm custom-btn pull-right" %>
+          </span>
+        </li>
+      <% end %>
     <% end %>
   </ul>
   <%= paginate @battles, :outer_window => 2 %>

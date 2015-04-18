@@ -92,10 +92,6 @@
         <hr>
         <div class="col-md-12 row">
           <div class="col-md-3">
-            <i class="fa fa-plus-circle"></i>
-            积分 <span id="my-score"><%= @user.score %> </span>
-          </div>
-          <div class="col-md-3">
             <i class="fa fa-space-shuttle"></i>
             <span>战斗 <%= @user.battle_count %> </span>
           </div>
@@ -109,10 +105,10 @@
           </div>
         </div>
         <div class="col-md-12 row">
-          <div class="col-md-3">
+          <!-- <div class="col-md-3">
             <i class="fa fa-arrow-circle-up"></i>
             <span>排名 25 </span>
-          </div>
+          </div> -->
           <div class="col-md-3">
             <i class="fa fa-rocket"></i>
             <span>机甲 <%= @user.meches.count %> </span>
@@ -120,6 +116,10 @@
           <div class="col-md-3">
             <i class="fa fa-frown-o"></i>
             <span>失败 <%= @user.fail_times %> </span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-plus-circle"></i>
+            积分 <span id="my-score"><%= @user.score %> </span>
           </div>
         </div>
       </div>
@@ -197,29 +197,31 @@
         <h3>参与的战斗</h3>
         <ul class="users">
           <% @user.battles.each do |battle| %>
-            <li>
-              <span class="col-md-2">
-                <center class="battle-star">
-                  <%= battle.starers.count %><br>
-                  赞
-                </center>
-              </span>
-              <span class="col-md-7 battle-info">
-                <div class="battle-info-time">
-                  <%= time_ago_in_words(battle.time) + "前" %><br>
-                </div>
-                <div class="battle-info-double">
-                  <%= link_to battle.defender.user.name, battle.defender.user %> ::
-                  <%= link_to battle.defender.name, battle.defender %>
-                  VS 
-                  <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
-                  <%= link_to battle.attacker.name, battle.attacker %>
-                </div>
-              </span>
-              <span class="col-md-3">
-                <%= link_to "去观战", battle %>
-              </span>
-            </li>
+            <% if battle.defender.user && battle.attacker.user && battle.defender && battle.attacker%>
+              <li>
+                <span class="col-md-2">
+                  <center class="battle-star">
+                    <%= battle.starers.count %><br>
+                    赞
+                  </center>
+                </span>
+                <span class="col-md-7 battle-info">
+                  <div class="battle-info-time">
+                    <%= time_ago_in_words(battle.time) + "前" %><br>
+                  </div>
+                  <div class="battle-info-double">
+                    <%= link_to battle.defender.user.name, battle.defender.user %> ::
+                    <%= link_to battle.defender.name, battle.defender %>
+                    VS 
+                    <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
+                    <%= link_to battle.attacker.name, battle.attacker %>
+                  </div>
+                </span>
+                <span class="col-md-3">
+                  <%= link_to "去观战", battle %>
+                </span>
+              </li>
+            <% end %>
           <% end %>
         </ul>
       </div>

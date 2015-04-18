@@ -16,9 +16,20 @@
     <br> 积分 <br>
     <%= user.score %>
   </span>
-  <!-- <span class="col-md-3 user-list-info">
-    <br> 排名 <br>
-    未实现
-    <%#=  %>
-  </span> -->
+  <span class="col-md-3 user-list-info">
+    <% unless current_user?(user) %>
+      <div class="col-md-3">
+        <br>
+        <% unless current_user.nil? %>
+          <% unless(current_user.following.include?(user)) %>
+            <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
+          <% else %>
+            <%= link_to "取消关注", unfollow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
+          <% end %>
+        <% else %>
+          <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+        <% end %>
+      </div>
+    <% end %>
+  </span>
 </li>
