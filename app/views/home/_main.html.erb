@@ -1,4 +1,4 @@
-<div id="myCarousel" class="carousel slide">
+<div id="myCarousel" class="carousel slide" data-interval="2000">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -13,20 +13,28 @@
             <div class="carousel-caption">
                 <h1>别样的游戏玩法</h1>
                 <h3>告别鼠标，用代码操纵你的机甲！</h3>
+                <% unless signed_in? %>
+                    <%= link_to "立即注册", signin_path, :class => "btn custom-btn btn-lg"%>
+                    <br><br>
+                <% end %>
             </div>
         </div>
         <div class="item">
             <div class="fill" style="background-image:url('<%= image_path("home-page-2.jpg") %>')"></div>
             <div class="carousel-caption">
-                <h1>愉快的编程体验</h1>
-                <h3>抛弃丑陋的控制台，体验编程的乐趣！</h3>
+                <h1>人工智能并不遥远</h1>
+                <h3>制作你专属的智能体，去征战！</h3>
+                <a href="#" title="下载最新AI模版" class="btn custom-btn btn-lg">下载最新AI模版</a>
+                <br><br>
             </div>
         </div>
         <div class="item">
             <div class="fill" style="background-image:url('<%= image_path("home-page-3.jpg") %>')"></div>
             <div class="carousel-caption">
-                <h1>高大上的人工智能</h1>
-                <h3>用你制作的智能体，去征服世界吧！</h3>
+                <h1>酷炫的游戏画面</h1>
+                <h3>让编程不在枯燥，充满乐趣！</h3>
+                <a href="#" title="下载游戏播放器" class="btn custom-btn btn-lg">下载最新AI模版</a>
+                <br><br>
             </div>
         </div>
     </div>
@@ -87,7 +95,7 @@
 <div class="row home-page-black">
     <div class="container">
         <center class="home-page-newer-title">
-            <h1>加入机甲帝国，开启征战之旅</h1>
+            <h1>战斗的号角已经吹响</h1>
             <p class="lead">你会获得不一样的精彩，总之这里就写一些文艺的话吧！我也不知道写啥了</p>
         </center>
     </div>
