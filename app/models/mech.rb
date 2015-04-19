@@ -69,13 +69,13 @@ class Mech
     pid, stdin, stdout, stderr = Open4.popen4("compile/compile_user_ai.sh -p #{self.code_dir}")
     ignored, status = Process::waitpid2 pid
 
-    compile_error = stderr.read.strip.gsub(self.code_dir, "")
+    # compile_error = stderr.read.strip.gsub(self.code_dir, "")
 
     File.open("public/uploads/#{self.class.to_s.underscore}/code/#{self.id}/code/status.txt", "w+") do |f|
       f.write(status.exitstatus)
     end
 
-    return status.exitstatus, compile_error
+    return status.exitstatus, stderr.read
   end
 
   def unzip_file (file, destination)
