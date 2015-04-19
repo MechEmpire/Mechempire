@@ -1,6 +1,6 @@
 class WeaponsController < ApplicationController
   before_action :set_weapon, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:new, :destroy, :edit, :create]
+  before_action :admin_user, only: [:new, :destroy, :edit, :create, :edit, :update]
   def index
     @weapons = Weapon.all
   end
@@ -25,7 +25,16 @@ class WeaponsController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    respond_to do |format|
+      if @weapon.update(weapon_params)
+        format.html { redirect_to @weapon, notice: '更新成功' }
+        format.json { render :show, status: :ok, location: @weapon }
+      else
+        format.html { render :edit }
+        format.json { render json: @weapon.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def destroy

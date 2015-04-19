@@ -1,2 +1,26 @@
-<h1>Weapons#edit</h1>
-<p>Find me in app/views/weapons/edit.html.erb</p>
+<div class="container main-body">
+  <h2>添加武器</h2>
+  <hr>
+  <%= form_for(@weapon) do |f|%>
+    <%= render 'shared/weapon_error_messages' %>
+    <div class="form-group">
+      <%= f.label :iden , :value => "武器id："%><br>
+      <%= f.text_field :iden , :class => "form-control", :placeholder => " 请输入武器id"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :name , :value => "武器名称："%><br>
+      <%= f.text_field :name , :class => "form-control", :placeholder => " 请输入武器名称"%>
+    </div>
+    <div class="form-group">
+      <%= f.label :introduce, :value => "武器介绍："%><br>
+      <%= f.text_area :introduce , :class => "form-control", :row => 5 %>
+    </div>
+    <div class="form-group">
+      <%= f.label :samplepic, :value => "武器图片"%><br>
+      <%= f.text_field :samplepic , :class => "form-control", :placeholder => "请输入武器图片链接"%>
+    </div>
+    <div class="form-group">
+      <%= f.submit :class => "btn btn-success btn-block", :value => "确认添加武器" %>
+    </div>
+  <% end %>
+</div>

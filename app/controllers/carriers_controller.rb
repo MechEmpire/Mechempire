@@ -1,6 +1,6 @@
 class CarriersController < ApplicationController
   before_action :set_carrier, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user,  only: [:new, :destroy, :edit, :create, :update]
+  before_action :admin_user,  only: [:new, :destroy, :edit, :create, :update, :edit]
   
   def index
     @carriers = Carrier.all
@@ -26,7 +26,16 @@ class CarriersController < ApplicationController
     end
   end
 
-  def edit
+  def update
+    respond_to do |format|
+      if @carrier.update(carrier_params)
+        format.html { redirect_to @carrier, notice: '更新成功' }
+        format.json { render :show, status: :ok, location: @carrier }
+      else
+        format.html { render :edit }
+        format.json { render json: @carrier.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def new
