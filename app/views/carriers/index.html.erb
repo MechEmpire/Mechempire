@@ -12,7 +12,7 @@
     <tbody>
       <% @carriers.each do |m| %>
         <tr>
-          <td><%= link_to m.name, m %></td>
+          <td><%= link_to m.name.truncate(13), m %></td>
           <td><%= m.introduce %></td>
         </tr>
       <% end %>
