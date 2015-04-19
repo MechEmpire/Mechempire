@@ -1,10 +1,11 @@
 #!/bin/bash
-
+#/usr/bin/env > /tmp/who
+#ulimit -m 131072 -t 60
 while getopts "p:" arg
   do
     case $arg in
          p)
-            g++ -O2 -fPIC -shared -I/vagrant/Mechempire/compile/include/sys/ -I$OPTARG/ -o $OPTARG/libmyAI.so $OPTARG/*.cpp /vagrant/Mechempire/compile/include/sys/*.cpp /vagrant/Mechempire/compile/include/RobotAIFactoryLinux.cpp
+          timeout 30  g++ -O2 -fno-asm -fPIC -shared -I/home/rails-deploy/Mechempire/compile/include/sys/ -I$OPTARG/ -o $OPTARG/libmyAI.so $OPTARG/*.cpp /home/rails-deploy/Mechempire/compile/include/sys/*.cpp /home/rails-deploy/Mechempire/compile/include/RobotAIFactoryLinux.cpp
             ;;
          ?)
         echo "unkonw argument"
