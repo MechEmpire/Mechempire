@@ -173,6 +173,9 @@
             <br>
             <div class="my-mech-body">
               <div class="my-mech-info">
+                <p><strong><i class="fa fa-space-shuttle"></i> 战斗：<%= mech.battles.count %></p>
+                <p><strong><i class="fa fa-smile-o"></i> 胜利：<%= mech.win_times %></p>
+                <p><strong><i class="fa fa-frown-o"></i> 失败：<%= mech.fail_times %></p>
                 <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(mech.engine_info.name, mech.engine_info) unless mech.engine_info.nil? %></p>
                 <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(mech.weapon_info.name, mech.weapon_info) unless mech.weapon_info.nil? %></p>
                 <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong><%= mech.manifesto%></p>
