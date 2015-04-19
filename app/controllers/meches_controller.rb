@@ -3,7 +3,7 @@ class MechesController < ApplicationController
   before_action :signed_in_user, only: [:create, :edit, :update, :new, :destroy]
   before_action :actived_user, only: [:create, :destroy, :update]
   before_action :mech_user, only: [:update, :edit]
-  before_action :admin_user, only: [:index]
+  before_action :admin_user, only: []
 
   def index
     @meches = Mech.page(params[:page]).per(10)
