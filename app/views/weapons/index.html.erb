@@ -12,7 +12,7 @@
     <tbody>
       <% @weapons.each do |m| %>
         <tr>
-          <td><%= m.name %></td>
+          <td><%=link_to m.name, m %></td>
           <td><%= m.introduce %></td>
         </tr>
       <% end %>

@@ -10,7 +10,8 @@
   </div>
   <div class="row">
     <div class="col-md-7">
-      <img src="http://placehold.it/600x400" alt="机甲图片">
+      <!-- <img src="http://placehold.it/600x400" alt="机甲图片"> -->
+      <embed width="100%" height="400" src="<%= image_path('DisplayWindow.swf')%>"  flashvars="robot_data=<%= @mech.mech_info_json%>" />
     </div>
     <div class="col-md-5">
       <div class="mech-item-info">
@@ -19,6 +20,13 @@
         <p><strong><i class="fa fa-frown-o"></i> 失败：<%= @mech.fail_times %></p>
         <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(@mech.engine_info.name, @mech.engine_info) unless @mech.engine_info.nil? %></p>
         <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(@mech.weapon_info.name, @mech.weapon_info) unless @mech.weapon_info.nil? %></p>
+        <p><strong><i class="fa fa-rocket"></i> 机甲状态：</strong>
+        <% if @mech.state == "SUCCESS" %>
+          <span id="mech-state-iden" style="color:red;">时刻准备着战斗</span>
+        <% else %>
+          <span style="color:green;">编译失败</span>
+        <% end %>
+        </p>
         <p>
           <strong><i class="fa fa-clock-o"></i> 创建时间：</strong>
           <%= time_ago_in_words(@mech.create_at) + "前创建" %>

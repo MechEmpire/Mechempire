@@ -40,6 +40,10 @@ class Mech
     system "mv #{self.code_dir} #{self.dir}/code-#{Time.now.to_i}"
   end
 
+  def mech_info_json
+    mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
+  end
+
   def get_mech_info
 
     if FileTest::exist?("#{self.code_dir}libmyAI.so")
