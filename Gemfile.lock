@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: git://github.com/mongoid/mongoid.git
-  revision: 35aea60b285afce7a1d1f22602b14b21e91c08fa
+  revision: cc69597eedb41e8b7e07d485f5095ae4ccbbbe22
   specs:
-    mongoid (4.0.1)
+    mongoid (4.0.2)
       activemodel (~> 4.0)
       moped (~> 2.0.0)
       origin (~> 2.1)
@@ -82,7 +82,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.0)
-    connection_pool (2.1.1)
+    connection_pool (2.2.0)
     erubis (2.7.0)
     execjs (2.2.2)
     font-awesome-rails (4.3.0.0)
@@ -108,8 +108,8 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     mini_portile (0.6.2)
-    minitest (5.5.1)
-    moped (2.0.3)
+    minitest (5.6.0)
+    moped (2.0.4)
       bson (~> 2.2)
       connection_pool (~> 2.0)
       optionable (~> 0.2.0)
@@ -175,7 +175,7 @@ GEM
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
     thor (0.19.1)
-    thread_safe (0.3.4)
+    thread_safe (0.3.5)
     tilt (1.4.1)
     turbolinks (2.5.3)
       coffee-rails

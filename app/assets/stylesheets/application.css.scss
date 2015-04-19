@@ -27,6 +27,9 @@
 table{
   @extend .table;
 }
+.panel-body{
+  background-image: url('http://ww3.sinaimg.cn/bmiddle/9631b1bbjw1eraoavtl3kj203k03k0si.jpg');
+}
 
 .custom-container{
   @extend .container;
@@ -147,7 +150,7 @@ a.custom-btn:hover{
 }
 
 .list-group > a, .dropdown-menu, .modal-content{
-  background-image: url(image_path("home-page-bg.png"));
+  background-image: url('http://ww3.sinaimg.cn/bmiddle/9631b1bbjw1eraoavtl3kj203k03k0si.jpg');
   border: 1px #444 solid;
 }
 .dropdown-menu .divider{
