@@ -1,5 +1,5 @@
 <li>
-  <span class="col-md-3 battle-info">
+  <span class="col-md-2 battle-info">
     <%= gravatar_for user, size: 52 %>
     <%= link_to user.name, user %>
     <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
@@ -7,16 +7,23 @@
                                   data: { confirm: "确认删除用户吗？" } %>
     <% end %>
   </span>
-  <span class="col-md-3 user-list-info">
+  <span class="col-md-2 user-list-info">
+    <br> 机甲 <br>
+    <%= user.meches.count %> <br>
+  </span>
+  <span class="col-md-2 user-list-info">
     <br> 战斗 <br>
     <%= user.battle_count %> <br>
-    <!-- 获得 <%#= user.battle_info[1] %> 次胜利 <br> -->
   </span>
-  <span class="col-md-3 user-list-info">
+  <span class="col-md-2 user-list-info">
+    <br> 胜利 <br>
+    <%= user.win_times %> <br>
+  </span>
+  <span class="col-md-2 user-list-info">
     <br> 积分 <br>
     <%= user.score %>
   </span>
-  <span class="col-md-3 user-list-info">
+  <span class="col-md-2 user-list-info">
     <% unless current_user?(user) %>
       <div class="col-md-3">
         <br>
