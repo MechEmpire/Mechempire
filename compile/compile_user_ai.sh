@@ -11,6 +11,6 @@ while getopts "p:" arg
          ?)
         echo "unkonw argument"
     exit 1
-    ;;
+    ;;  
   esac
 done
