@@ -22,7 +22,7 @@
         <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(@mech.weapon_info.name, @mech.weapon_info) unless @mech.weapon_info.nil? %></p>
         <p><strong><i class="fa fa-rocket"></i> 机甲状态：</strong>
         <% if @mech.state == "SUCCESS" %>
-          <span id="mech-state-iden" style="color:red;">时刻准备着战斗</span>
+          <span id="mech-state-iden" style="color:red;">备战中</span>
         <% else %>
           <span style="color:green;">编译失败</span>
         <% end %>
