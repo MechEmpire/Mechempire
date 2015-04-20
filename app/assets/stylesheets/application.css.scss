@@ -54,7 +54,7 @@ body {
 body {
   background-image: url(image_path("home-page-bg.png"));
   font-family: "微软雅黑","Microsoft YaHei", verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 150%;
   color: #F7F7F7;
 }
@@ -119,7 +119,7 @@ footer{
     margin: 0 3px 0 0;
     width: 42px;
     a{
-      border: 1px solid #222;
+      border: 1px solid #444;
       color: #fff !important;
       display: inline-block;
       font-size: 14px;
@@ -168,4 +168,15 @@ a.custom-btn:hover{
 }
 #cnzz_stat_icon_1254816734{
   display: none;
+}
+.my-temp div h3 {
+  margin-top: 20px;
+  padding-bottom: 30px;
+}
+.clear {
+  clear: both;
+}
+h1, .h1, h2, .h2, h3, .h3 {
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
