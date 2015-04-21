@@ -37,10 +37,10 @@ class Mech
   end
 
   def backup_code
-    system "mv #{self.code_dir} #{self.dir}/code-#{Time.now.to_i}"
-    # pid, stdin, stdout, stderr = Open4.popen4("mv #{self.code_dir} #{self.dir}/code-#{Time.now.to_i}")
-    # ignored, status = Process::waitpid2 pid
-    # logger.error(stderr.read)
+    # system "mv #{self.code_dir} #{self.dir}/code-#{Time.now.to_i}"
+    pid, stdin, stdout, stderr = Open4.popen4("mv #{self.code_dir} #{self.dir}/code-#{Time.now.to_i}")
+    ignored, status = Process::waitpid2 pid
+    logger.error(stderr.read)
   end
 
   def mech_info_json
