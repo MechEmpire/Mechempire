@@ -24,7 +24,7 @@ class Battle
 
     # Log4r::Logger.new(stderr.read)
     # Log4r::Logger.new(status.exitstatus)
-    logger.fatal stderr.read
+    logger.error(stderr.read)
 
     if status.exitstatus != 0 || x.nil?
       return false
