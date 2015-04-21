@@ -22,4 +22,7 @@ class HomeController < ApplicationController
 
   def newer
   end
+  
+  def download
+  end
 end

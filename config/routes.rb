@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   match '/reactive', to: 'users#re_active',via: 'get'
   match '/gamebg',to: 'home#gamebg', via: 'get'
   match '/newer',to: 'home#newer', via: 'get'
+  match '/download',to: 'home#download', via: 'get'
 
   match '/users/followed/:id', to: 'users#followed', via: 'get', as: :followed
   match '/users/follower/:id', to: 'users#follower', via: 'get', as: :follower
