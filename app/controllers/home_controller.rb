@@ -19,4 +19,7 @@ class HomeController < ApplicationController
 
   def gamebg
   end
+
+  def newer
+  end
 end
