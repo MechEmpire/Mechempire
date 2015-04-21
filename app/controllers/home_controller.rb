@@ -16,4 +16,7 @@ class HomeController < ApplicationController
   def achieve
     
   end
+
+  def gamebg
+  end
 end

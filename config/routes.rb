@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   match '/achieve', to: 'home#achieve', via: 'get'
   match '/mechlist', to: 'meches#mech_list', via: 'get'
   match '/reactive', to: 'users#re_active',via: 'get'
+  match '/gamebg',to: 'home#gamebg', via: 'get'
 
   match '/users/followed/:id', to: 'users#followed', via: 'get', as: :followed
   match '/users/follower/:id', to: 'users#follower', via: 'get', as: :follower
