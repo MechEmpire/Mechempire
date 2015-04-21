@@ -22,8 +22,10 @@ class Battle
 
     x = File.read("battle/result/#{self._id}.xml")
 
-    Log4r::Logger.new(stderr.read)
-    Log4r::Logger.new(status.exitstatus)
+    # Log4r::Logger.new(stderr.read)
+    # Log4r::Logger.new(status.exitstatus)
+    logger.fatal stderr.read
+
     if status.exitstatus != 0 || x.nil?
       return false
     end
