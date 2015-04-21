@@ -18,9 +18,13 @@ class Battle
   def battle
     # system "battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}"
     pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
-    puts stderr.read
+    ignored, status = Process::waitpid2 pid
+
     x = File.read("battle/result/#{self._id}.xml")
-    if x.nil?
+
+    Log4r::Logger.new(stderr.read)
+    Log4r::Logger.new(status.exitstatus)
+    if status.exitstatus != 0 || x.nil?
       return false
     end
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
