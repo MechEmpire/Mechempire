@@ -13,7 +13,7 @@ cp /home/rails-deploy/Mechempire/battle/MechBattleConsoleForLinuxServer /tmp/jai
 cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf /tmp/jail/BattleModeConfig.conf
 cp $1 /tmp/jail/1.so
 cp $2 /tmp/jail/2.so
-cp run.sh /tmp/jail/run.sh
+cp /home/rails-deploy/Mechempire/battle/run.sh /tmp/jail/run.sh
 
 sudo chroot /tmp/jail /run.sh $1 $2 $3
 
