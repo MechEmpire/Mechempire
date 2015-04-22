@@ -38,7 +38,7 @@ class Battle
       self.defender.user.update_attributes(:win_times => self.defender.user.win_times + 1,
                                       :battle_count => self.defender.user.battle_count + 1)
 
-      self.attacker.update_attributes(:score => self.attacker.score -1,
+      self.attacker.update_attributes(:score => self.attacker.score - 1,
                                         :fail_times => self.attacker.fail_times + 1)
 
       self.attacker.user.update_attributes(:fail_times => self.attacker.user.fail_times + 1,
@@ -51,7 +51,7 @@ class Battle
       self.attacker.user.update_attributes(:win_times => self.attacker.user.win_times + 1,
                                       :battle_count => self.attacker.user.battle_count + 1)
 
-      self.defender.update_attributes(:score => self.defender.score -1,
+      self.defender.update_attributes(:score => self.defender.score - 1,
                                       :fail_times => self.defender.fail_times + 1)
       self.defender.user.update_attributes(:fail_times => self.defender.user.fail_times + 1,
                                       :battle_count => self.defender.user.battle_count + 1)
