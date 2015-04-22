@@ -3,6 +3,7 @@ PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 rm -rf /tmp/jail
 mkdir -p /tmp/jail/{bin,lib}
 cp /lib/x86_64-linux-gnu/ -r  /tmp/jail/lib
+cp /lib64/ -r /tmp/jail/
 cp /home/rails-deploy/Mechempire/battle/libBattleCore.so /tmp/jail/lib
 cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /tmp/jail/lib
 cp /bin/bash /tmp/jail/bin
