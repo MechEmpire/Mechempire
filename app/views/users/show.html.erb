@@ -11,6 +11,9 @@
             <i class="fa fa-venus"></i>
           <% end %>
         </small>
+        <% if !@user.is_active %>
+          <small>未激活</small>
+        <% end %>
       </h3>
       <hr>
       <ul class="user-info-detial">
