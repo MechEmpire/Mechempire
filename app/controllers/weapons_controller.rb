@@ -38,6 +38,11 @@ class WeaponsController < ApplicationController
   end
 
   def destroy
+    @weapon.destroy
+    respond_to do |format|
+      format.html { redirect_to weapons_url, notice: '删除成功!' }
+      format.json { head :no_content }
+    end
   end
 
   def new

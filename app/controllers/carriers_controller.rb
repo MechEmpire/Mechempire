@@ -43,6 +43,11 @@ class CarriersController < ApplicationController
   end
 
   def destroy
+    @carrier.destroy
+    respond_to do |format|
+      format.html { redirect_to carriers_url, notice: '删除成功!' }
+      format.json { head :no_content }
+    end
   end
 
   private

@@ -14,8 +14,8 @@ class BattlesController < ApplicationController
   def create
     defender = Mech.find(params['defender_id'])
     attacker = Mech.find(params['attacker_id'])
-    store_location
-
+    # store_location
+    
     if defender.state == "SUCCESS" && attacker.state == "SUCCESS"
       @battle = Battle.new(:defender_id => defender._id,
                            :attacker_id => attacker._id,
