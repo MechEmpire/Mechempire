@@ -12,7 +12,8 @@ cp battle/MechBattleConsoleForLinuxServer /tmp/jail/MechBattleConsoleForLinuxSer
 cp battle/BattleModeConfig.conf /tmp/jail/BattleModeConfig.conf
 cp $1 /tmp/jail/1.so
 cp $2 /tmp/jail/2.so
-sudo chroot /tmp/jail
-ulimit -t 60 -m 131072;
-timeout 60 /MechBattleConsoleForLinuxServer /BattleModeConfig.conf 2 /1.so /2.so /$3.txt /$3.xml
+cp run.sh /tmp/jail/run.sh
+
+sudo chroot /tmp/jail /run.sh $1 $2 $3
+
 
