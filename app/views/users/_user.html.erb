@@ -5,6 +5,9 @@
     <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
     <%= link_to "删除用户", user, method: :delete,
                                   data: { confirm: "确认删除用户吗？" } %>
+      <% if !user.is_actived %>
+        <small>未激活</small>
+      <% end %>
     <% end %>
   </span>
   <span class="col-md-2 user-list-info">
