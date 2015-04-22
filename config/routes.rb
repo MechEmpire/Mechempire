@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   match '/users/followed/:id', to: 'users#followed', via: 'get', as: :followed
   match '/users/follower/:id', to: 'users#follower', via: 'get', as: :follower
 
+  match '/meches/stop/:id', to: 'users#stop', via: 'post', as: :stop_mech
+  match '/meches/start/:id', to: 'users#start', via: 'post', as: :start_mech
+
   match '/following/:followed_id', to: 'users#following',via: 'post', as: :follow_user
   match '/unfollowing/:unfollowed_id', to: 'users#unfollowing', via: 'post', as: :unfollow_user
 

@@ -1,3 +1,4 @@
+<% if user.battles.count > 10 %>
 <li>
   <span class="col-md-2 battle-info">
     <%= gravatar_for user, size: 52 %>
@@ -43,3 +44,4 @@
     <% end %>
   </span>
 </li>
+<% end %>

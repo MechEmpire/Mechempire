@@ -169,8 +169,9 @@
                 <% else %>
                   <%= link_to "更新机甲", edit_mech_path(mech),
                                   :class => "btn btn-sm custom-btn" %>
-                  <%= link_to "休战", "#",
-                                  :class => "btn btn-sm custom-btn" %>
+                  <%= link_to "休战", stop_mech_path(mech),
+                                  :class => "btn btn-sm custom-btn",
+                                  :id => "stop_mech" %>
                 <% end %>
               </span>
               <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>

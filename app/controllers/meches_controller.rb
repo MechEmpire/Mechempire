@@ -1,5 +1,5 @@
 class MechesController < ApplicationController
-  before_action :set_mech, only: [:show, :edit, :update, :destroy, :surrender]
+  before_action :set_mech, only: [:show, :edit, :update, :destroy, :stop]
   before_action :signed_in_user, only: [:create, :edit, :update, :new, :destroy]
   before_action :actived_user, only: [:create, :destroy, :update]
   before_action :mech_user, only: [:update, :edit]
@@ -39,17 +39,29 @@ class MechesController < ApplicationController
     end
   end
 
-  # def surrender
-  #   respond_to do |format|
-  #     if @mech.update_attribute("state","SURRENDER") && @mech.user.update_attribute("score", @mech.user.score - 3)
-  #       format.js
-  #     else
-  #       format.js do
-  #         render js: "alert('认怂失败')"
-  #       end
-  #     end
-  #   end
-  # end
+  def stop
+    respond_to do |format|
+      if @mech.update_attribute("state","STOPING")
+        format.js
+      else
+        format.js do
+          render js: "alert('休战失败')"
+        end
+      end
+    end
+  end
+
+  def start
+    respond_to do |format|
+      if @mech.update_attribute("state","SUCCESS")
+        format.js
+      else
+        format.js do
+          render js: "alert('开战失败')"
+        end
+      end
+    end
+  end
 
   def new
     @mech = Mech.new
