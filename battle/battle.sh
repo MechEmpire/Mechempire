@@ -7,9 +7,9 @@ cp /lib64/ -r /tmp/jail/
 cp /home/rails-deploy/Mechempire/battle/libBattleCore.so /tmp/jail
 cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 /tmp/jail/lib
 cp /bin/bash /tmp/jail/bin
-cp cp /usr/bin/timeout /tmp/jail/bin
-cp battle/MechBattleConsoleForLinuxServer /tmp/jail/MechBattleConsoleForLinuxServer
-cp battle/BattleModeConfig.conf /tmp/jail/BattleModeConfig.conf
+cp /usr/bin/timeout /tmp/jail/bin
+cp /home/rails-deploy/Mechempire/battle/MechBattleConsoleForLinuxServer /tmp/jail/MechBattleConsoleForLinuxServer
+cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf /tmp/jail/BattleModeConfig.conf
 cp $1 /tmp/jail/1.so
 cp $2 /tmp/jail/2.so
 cp run.sh /tmp/jail/run.sh
