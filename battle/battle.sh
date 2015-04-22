@@ -1,7 +1,7 @@
 #!/bin/bash
 PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 rm -rf /tmp/jail
-mkdir -p /tmp/jail/{bin,lib,usr}
+mkdir -p /tmp/jail/{bin,lib,usr,battle}
 mkdir -p /tmp/jail/usr/lib
 cp /lib/x86_64-linux-gnu/ -r  /tmp/jail/lib
 cp /lib64/ -r /tmp/jail/
@@ -14,7 +14,7 @@ cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf /tmp/jail/BattleMo
 cp $1 /tmp/jail/1.so
 cp $2 /tmp/jail/2.so
 cp /home/rails-deploy/Mechempire/battle/run.sh /tmp/jail/run.sh
-
+cp /home/rails-deploy/Mechempire/battle/ -r /tmp/jail/
 sudo chroot /tmp/jail /run.sh $1 $2 $3
 
 
