@@ -15,7 +15,7 @@ class User
   field :battle_count, type: Integer, default: -> { 0 }
   field :win_times, type: Integer, default: -> { 0 }
   field :fail_times, type: Integer, default: -> { 0 }
-  field :score, type: Integer, default: -> { 0 }
+  field :score, type: Integer, default: -> { 1500 }
   field :draw_times, type: Integer, default: -> { 0 }
 
   field :password_digest, type: String
@@ -34,14 +34,14 @@ class User
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, length: { maximum: 50 }
-  validates :email, presence: true, 
-                    format: { with: VALID_EMAIL_REGEX }, 
+  validates :email, presence: true,
+                    format: { with: VALID_EMAIL_REGEX },
                     uniqueness: {case_sensitive: false}
-    
-  validates :password, presence: true, 
+
+  validates :password, presence: true,
                        length: { minimum: 6 },
                        if: :password
-  
+
   index({ email: 1, remember_token: 1 })
 
   before_save{ self.email = email.downcase }

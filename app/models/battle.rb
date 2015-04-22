@@ -33,22 +33,26 @@ class Battle
     if winnerID == "0"
       sb = 1.0
       self.winner_id = self.defender_id
-      self.defender.update_attributes(:win_times => self.defender.win_times + 1)
+      self.defender.update_attributes(:score => self.defender.score + 3,
+                                    :win_times => self.defender.win_times + 1)
       self.defender.user.update_attributes(:win_times => self.defender.user.win_times + 1,
                                       :battle_count => self.defender.user.battle_count + 1)
 
-      self.attacker.update_attributes(:fail_times => self.attacker.fail_times + 1)
+      self.attacker.update_attributes(:score => self.attacker.score -1,
+                                        :fail_times => self.attacker.fail_times + 1)
 
       self.attacker.user.update_attributes(:fail_times => self.attacker.user.fail_times + 1,
                                       :battle_count => self.attacker.user.battle_count + 1)
     elsif winnerID == "1"
       sa = 1.0
       self.winner_id = self.attacker_id
-      self.attacker.update_attributes(:win_times => self.attacker.win_times + 1)
+      self.attacker.update_attributes(:score => self.attacker.score + 3,
+                                      :win_times => self.attacker.win_times + 1)
       self.attacker.user.update_attributes(:win_times => self.attacker.user.win_times + 1,
                                       :battle_count => self.attacker.user.battle_count + 1)
 
-      self.defender.update_attributes(:fail_times => self.defender.fail_times + 1)
+      self.defender.update_attributes(:score => self.defender.score -1,
+                                      :fail_times => self.defender.fail_times + 1)
       self.defender.user.update_attributes(:fail_times => self.defender.user.fail_times + 1,
                                       :battle_count => self.defender.user.battle_count + 1)
     elsif winnerID == "-1"
@@ -63,8 +67,8 @@ class Battle
                                            :battle_count => self.defender.user.battle_count + 1)
 
     end
-    ra = self.attacker.score
-    rb = self.defender.score
+    ra = self.attacker.user.score
+    rb = self.defender.user.score
     ea = 1.0 / (1.0 + 10 **( (rb-ra)/400.0 ) )
     eb = 1.0 / (1.0 + 10 **( (ra-rb)/400.0 ) )
     k = 32 + 16 * (0.9 ** (self.defender.user.battle_count + self.attacker.user.battle_count ))
@@ -77,9 +81,7 @@ class Battle
       rb = 0
     end
 
-    self.attacker.update_attributes(:score => ra)
     self.attacker.user.update_attributes(:score => ra)
-    self.defender.update_attributes(:score => rb)
     self.defender.user.update_attributes(:score => rb)
 
   end
