@@ -26,7 +26,7 @@ class Battle
       return false
     end
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
-    
+
     sa = 0.0
     sb = 0.0
 
@@ -69,7 +69,7 @@ class Battle
     eb = 1.0 / (1.0 + 10 **( (ra-rb)/400.0 ) )
     k = 32 + 16 * (0.9 ** (self.defender.user.battle_count + self.attacker.user.battle_count ))
     ra = ra + k * (sa - ea)
-    rb = ra + k * (sb - eb)
+    rb = rb + k * (sb - eb)
     if ra < 0
       ra = 0
     end
