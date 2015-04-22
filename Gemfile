@@ -28,6 +28,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rubyzip'
 gem 'mongoid', '~> 4', github: 'mongoid/mongoid'
+gem 'mongoid_magic_counter_cache'
 # gem 'moped', '~> 2.0.4'
 gem 'bson_ext'
 

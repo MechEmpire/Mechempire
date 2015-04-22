@@ -1,7 +1,9 @@
 class User
   include Mongoid::Document
+  include Mongoid::MagicCounterCache
   Mongoid.raise_not_found_error = false
   include ActiveModel::SecurePassword
+
   field :name, type: String
   field :email, type: String
   field :motto, type: String
@@ -26,7 +28,8 @@ class User
   has_and_belongs_to_many :matches
 
   has_and_belongs_to_many :battles, class_name: 'Battle', inverse_of: :users
-
+  counter_cache :battles
+  
   has_and_belongs_to_many :stareds, class_name: 'Battle', inverse_of: :starers
 
   has_many :meches

@@ -109,6 +109,9 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.6.0)
+    mongoid_magic_counter_cache (1.1.1)
+      mongoid
+      rake
     moped (2.0.4)
       bson (~> 2.2)
       connection_pool (~> 2.0)
@@ -202,6 +205,7 @@ DEPENDENCIES
   kaminari
   mongoid (~> 4)!
   mongoid-grid_fs!
+  mongoid_magic_counter_cache
   open4
   rails (= 4.2.0)
   rails-i18n (~> 4.0.0)
