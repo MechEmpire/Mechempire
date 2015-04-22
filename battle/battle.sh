@@ -9,6 +9,7 @@ cp /lib64/ -r $JAIL_PATH/
 cp /home/rails-deploy/Mechempire/battle/libBattleCore.so $JAIL_PATH/usr/lib
 cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 $JAIL_PATH/lib
 cp /bin/bash $JAIL_PATH/bin
+cp /usr/bin/setuid $JAIL_PATH/bin
 cp /usr/bin/timeout $JAIL_PATH/bin
 cp /home/rails-deploy/Mechempire/battle/MechBattleConsoleForLinuxServer $JAIL_PATH/MechBattleConsoleForLinuxServer
 cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf $JAIL_PATH/BattleModeConfig.conf
