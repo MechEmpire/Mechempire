@@ -20,6 +20,10 @@ class Battle
     pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
     logger.error(stderr.read)
+    pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+    ignored, status = Process::waitpid2 pid
+    logger.error(stderr.read)
+    
     x = File.read("battle/result/#{self._id}.xml")
 
     if status.exitstatus != 0 || x.nil?
