@@ -1,6 +1,6 @@
 #!/bin/bash
 PATH=$PATH:"/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-JAIL_PATH = /tmp/jail_$3
+JAIL_PATH="/tmp/jail_$3"
 rm -rf $JAIL_PATH
 mkdir -p $JAIL_PATH/{bin,lib,usr,battle}
 mkdir -p $JAIL_PATH/usr/lib
