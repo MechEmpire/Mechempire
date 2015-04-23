@@ -16,37 +16,33 @@ class BattlesController < ApplicationController
     attacker = Mech.find(params['attacker_id'])
     store_location
 
+    # if defender.nil? || attacker.nil?
+    #   respond_to do |format|
+    #     flash[:danger] = "机甲参数错误"
+    #     format.html { redirect_back_or root_path}
+    #     # format.json { render json: @battle.errors, status: :unprocessable_entity }
+    #     return
+    #   end
+    # end
+
+    # if defender.state != "SUCCESS" && attacker.state != "SUCCESS"
+    #   respond_to do |format|
+    #     flash[:danger] = "机甲状态不可战"
+    #     format.html { redirect_back_or root_path}
+    #     # format.json { render json: @battle.errors, status: :unprocessable_entity }
+    #     return
+    #   end
+    # end
+
     @battle = Battle.new(:defender_id => defender._id,
                            :attacker_id => attacker._id,
                            :time => Time.now)
 
-    if defender.nil? || attacker.nil?
-      respond_to do |format|
-        flash[:danger] = "机甲参数错误"
-        format.html { redirect_back_or root_path}
-        format.json { render json: @battle.errors, status: :unprocessable_entity }
-        return
-      end
-    end
-
-    if defender.state != "SUCCESS" && attacker.state != "SUCCESS"
-      respond_to do |format|
-        flash[:danger] = "机甲状态不可战"
-        format.html { redirect_back_or root_path}
-        format.json { render json: @battle.errors, status: :unprocessable_entity }
-        return
-      end
-    end
-
-    # @battle = Battle.new(:defender_id => defender._id,
-    #                        :attacker_id => attacker._id,
-    #                        :time => Time.now)
-
     if !@battle.battle
       respond_to do |format|
         flash[:danger] = "战斗程序运行失败"
-        format.html { redirect_back_or root_path, status: :success}
-        format.json { render json: @battle.errors, status: :unprocessable_entity }
+        format.html { redirect_back_or root_path }
+        # format.json { render json: @battle.errors, status: :unprocessable_entity }
         return
       end
     end
