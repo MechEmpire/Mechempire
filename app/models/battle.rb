@@ -2,7 +2,7 @@ class Battle
   require 'open4'
   include Mongoid::Document
   include Mongoid::MagicCounterCache
-  Mongoid.raise_not_found_error = false
+  Mongoid.raise_not_found_error = false 
 
   field :time,  type: DateTime
   field :result, type: String
@@ -17,6 +17,7 @@ class Battle
   belongs_to :match
 
   has_and_belongs_to_many :starers, class_name: 'User', inverse_of: :stareds
+  # counter_cache :starers
 
   def battle
 

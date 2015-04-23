@@ -14,17 +14,17 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @battles = []
-    # @user.meches.each do
+    store_location
   end
 
   # GET /users/new
   def new
+    store_location
     if !signed_in?
       @user = User.new
     else
       flash[:warning] = "您已登录，请退出后再进行注册操作！"
-      redirect_to current_user
+      redirect_back_or current_user
     end
   end
 
@@ -40,6 +40,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    store_location
   end
 
   # POST /users
@@ -58,11 +59,9 @@ class UsersController < ApplicationController
         UserMailer.signup_confirm_email(@user).deliver
         sign_in @user
 
-        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
-        format.json { render :show, status: :created, location: @user }
+        format.html { redirect_back_or @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
       else
         format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
