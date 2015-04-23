@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where(:battle_count.gt => 10).order("score DESC").page(params[:page]).per(10)
+    @users = User.order("score DESC").page(params[:page]).per(10)
   end
 
   # GET /users/1
