@@ -31,15 +31,15 @@ class Battle
 
     logger.error(stderr.read)
 
-    if status.exitstatus
-      return false
-    end
-
-    if FileTest::exist?("battle/result/#{self._id}.xml")
-      x = File.read("battle/result/#{self._id}.xml")
-    else
-      return false
-    end
+    # if status.exitstatus
+    #   return false
+    # end
+    x = File.read("battle/result/#{self._id}.xml")
+    # if FileTest::exist?("battle/result/#{self._id}.xml")
+    #   x = File.read("battle/result/#{self._id}.xml")
+    # else
+    #   return false
+    # end
 
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
 
