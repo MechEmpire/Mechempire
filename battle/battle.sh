@@ -11,6 +11,7 @@ cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 $JAIL_PATH/lib
 cp /bin/bash $JAIL_PATH/bin
 cp /usr/bin/setuid $JAIL_PATH/bin
 cp /usr/bin/timeout $JAIL_PATH/bin
+cp /bin/rm $JAIL_PATH/bin
 cp /home/rails-deploy/Mechempire/battle/MechBattleConsoleForLinuxServer $JAIL_PATH/MechBattleConsoleForLinuxServer
 cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf $JAIL_PATH/BattleModeConfig.conf
 cp $1 $JAIL_PATH/1.so
