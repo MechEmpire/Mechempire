@@ -28,7 +28,8 @@ battle/libBattleCore.so
 battle/MechBattleConsoleForLinuxServer
 battle/classic.map
 battle/result/*
-battle/*.sh
+battle/battle.sh
+battle/result.sh
 public/uploads/*
 public/passenger.3000.log
 public/passenger.3000.pid.lock
