@@ -22,7 +22,11 @@
         <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(@mech.weapon_info.name, @mech.weapon_info) unless @mech.weapon_info.nil? %></p>
         <p><strong><i class="fa fa-rocket"></i> 机甲状态：</strong>
         <% if @mech.state == "SUCCESS" %>
-          <span id="mech-state-iden" style="color:red;">备战中</span>
+          <% if @mech.protect_begin_time + @mech.protect_time >= Time.now.to_i %>
+            <span id="mech-state-iden" style="color:green;">护盾保护中</span>
+          <% else %>
+            <span id="mech-state-iden" style="color:red;">备战中</span>
+          <% end %>
         <% else %>
           <span style="color:green;">编译失败</span>
         <% end %>
@@ -35,29 +39,4 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row">
-    <div class="col-lg-12">
-      <h3 class="page-header">更多机甲</h3>
-    </div>
-    <div class="col-sm-3 col-xs-6">
-      <a href="#">
-        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-    <div class="col-sm-3 col-xs-6">
-      <a href="#">
-        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-    <div class="col-sm-3 col-xs-6">
-      <a href="#">
-        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-    <div class="col-sm-3 col-xs-6">
-      <a href="#">
-        <img class="img-responsive img-hover img-related" src="http://placehold.it/500x300" alt="">
-      </a>
-    </div>
-  </div> -->
 </div>
