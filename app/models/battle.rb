@@ -20,9 +20,12 @@ class Battle
 
   def battle
     # system "battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}"
-    # pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
-    # ignored, status = Process::waitpid2 pid
-    # logger.error(stderr.read)
+
+    #run battle in sandbox
+    pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+    ignored, status = Process::waitpid2 pid
+    logger.error(stderr.read)
+    #get battle result
     pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
 
