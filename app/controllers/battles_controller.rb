@@ -72,7 +72,7 @@ class BattlesController < ApplicationController
   def destroy
     @battle.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: '删除用户成功!' }
+      format.html { redirect_to battles_url, notice: '删除用户成功!' }
       format.json { head :no_content }
     end
   end
