@@ -39,7 +39,8 @@ class Battle
     end
 
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
-
+    logger.info("sssss")
+    logger.info(winnerID)
     sa = 0.0
     sb = 0.0
 
