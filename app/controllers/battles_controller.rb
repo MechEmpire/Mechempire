@@ -20,7 +20,7 @@ class BattlesController < ApplicationController
     if defender.nil? || attacker.nil?
       respond_to do |format|
         flash[:danger] = "机甲参数错误"
-        format.html { redirect_back_or root_path}
+        format.html { redirect_to defender}
         # format.json { render json: @battle.errors, status: :unprocessable_entity }
         return
       end
@@ -29,7 +29,7 @@ class BattlesController < ApplicationController
     if defender.state != "SUCCESS" && attacker.state != "SUCCESS"
       respond_to do |format|
         flash[:danger] = "机甲状态不可战"
-        format.html { redirect_back_or root_path}
+        format.html { redirect_to defender}
         # format.json { render json: @battle.errors, status: :unprocessable_entity }
         return
       end
@@ -38,7 +38,7 @@ class BattlesController < ApplicationController
     if defender.protect_begin_time + defender.protect_time >= Time.now.to_i
       respond_to do |format|
         flash[:danger] = "攻击机甲处于护盾保护状态，无法战斗"
-        format.html { redirect_back_or root_path}
+        format.html { redirect_to defender}
         # format.json { render json: @battle.errors, status: :unprocessable_entity }
         return
       end
@@ -64,7 +64,7 @@ class BattlesController < ApplicationController
     if !@battle.battle
       respond_to do |format|
         flash[:danger] = "战斗程序运行失败"
-        format.html { redirect_back_or root_path }
+        format.html { redirect_to defender }
         @battle.destroy
         # format.json { render json: @battle.errors, status: :unprocessable_entity }
         return
