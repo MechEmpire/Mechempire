@@ -10,7 +10,7 @@
               <%= link_to "与之战斗", signin_path ,:class => "btn btn-sm custom-btn"%>
             <% else %>
               <a href="#" class="btn btn-sm custom-btn" data-toggle="modal" data-target="#myMech-<%=@mech._id %>">与之战斗</a>
-              <div class="modal fade" id="myMech-<%=mech._id %>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+              <div class="modal fade" id="myMech-<%=@mech._id %>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                   <div class="modal-content">
                     <div class="modal-header">
