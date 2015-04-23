@@ -6,13 +6,13 @@ mkdir -p $JAIL_PATH/{bin,lib,usr,battle}
 mkdir -p $JAIL_PATH/usr/lib
 cp /lib/x86_64-linux-gnu/ -r  $JAIL_PATH/lib
 cp /lib64/ -r $JAIL_PATH/
-cp /vagrant/Mechempire/battle/libBattleCore.so $JAIL_PATH/usr/lib
+cp /home/rails-deploy/Mechempire/battle/libBattleCore.so $JAIL_PATH/usr/lib
 cp /usr/lib/x86_64-linux-gnu/libstdc++.so.6 $JAIL_PATH/lib
 cp /bin/bash $JAIL_PATH/bin
 cp /usr/bin/setuid $JAIL_PATH/bin
 cp /usr/bin/timeout $JAIL_PATH/bin
-cp /vagrant/Mechempire/battle/MechBattleConsoleForLinuxServer $JAIL_PATH/MechBattleConsoleForLinuxServer
-cp /vagrant/Mechempire/battle/BattleModeConfig.conf $JAIL_PATH/BattleModeConfig.conf
+cp /home/rails-deploy/Mechempire/battle/MechBattleConsoleForLinuxServer $JAIL_PATH/MechBattleConsoleForLinuxServer
+cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf $JAIL_PATH/BattleModeConfig.conf
 cp $1 $JAIL_PATH/1.so
 cp $2 $JAIL_PATH/2.so
 
