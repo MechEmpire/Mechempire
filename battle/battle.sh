@@ -17,6 +17,5 @@ cp $1 $JAIL_PATH/1.so
 cp $2 $JAIL_PATH/2.so
 cp /home/rails-deploy/Mechempire/battle/run.sh $JAIL_PATH/run.sh
 cp /home/rails-deploy/Mechempire/battle/ -r $JAIL_PATH/
+chmod 777 -R $JAIL_PATH
 sudo chroot $JAIL_PATH /run.sh $1 $2 $3
-
-
