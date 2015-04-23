@@ -1,11 +1,12 @@
+<h2>
+  <%= link_to @battle.defender.user.name, @battle.defender.user %> ::
+  <%= link_to @battle.defender.name, @battle.defender %>
+  VS 
+  <%= link_to @battle.attacker.user.name, @battle.attacker.user %> ::
+  <%= link_to @battle.attacker.name, @battle.attacker %>
+</h2>
+<hr>
 <center class="container main-body game-player">
-  <h1>
-    <%= link_to @battle.defender.user.name, @battle.defender.user %> ::
-    <%= link_to @battle.defender.name, @battle.defender %>
-    VS 
-    <%= link_to @battle.attacker.user.name, @battle.attacker.user %> ::
-    <%= link_to @battle.attacker.name, @battle.attacker %>
-  </h1>
   <% if !current_user.nil? && current_user.admin? %>
     <%= link_to "删除战斗", @battle, method: :delete,
                                   data: { confirm: "确认删除吗？" } %>
