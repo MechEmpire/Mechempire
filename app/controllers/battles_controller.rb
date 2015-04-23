@@ -35,23 +35,24 @@ class BattlesController < ApplicationController
     end
 
     @battle = Battle.new(:defender_id => defender._id,
-                           :attacker_id => attacker._id,
-                           :time => Time.now)
-
-    if !@battle.battle
-      respond_to do |format|
-        flash[:danger] = "战斗程序运行失败"
-        format.html { redirect_back_or root_path }
-        # format.json { render json: @battle.errors, status: :unprocessable_entity }
-        return
-      end
-    end
+                         :attacker_id => attacker._id,
+                         :time => Time.now)
 
     if !@battle.save
       respond_to do |format|
         flash[:danger] = "战斗数据写入失败"
         format.html { redirect_back_or(root_path)}
         format.json { render json: @battle.errors, status: :unprocessable_entity }
+        return
+      end
+    end
+
+    if !@battle.battle
+      respond_to do |format|
+        flash[:danger] = "战斗程序运行失败"
+        format.html { redirect_back_or root_path }
+        @battle.destroy
+        # format.json { render json: @battle.errors, status: :unprocessable_entity }
         return
       end
     end
