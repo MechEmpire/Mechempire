@@ -16,6 +16,10 @@ class BattlesController < ApplicationController
     attacker = Mech.find(params['attacker_id'])
     store_location
 
+    @battle = Battle.new(:defender_id => defender._id,
+                           :attacker_id => attacker._id,
+                           :time => Time.now)
+
     if defender.nil? || attacker.nil?
       respond_to do |format|
         flash[:danger] = "机甲参数错误"
@@ -34,9 +38,9 @@ class BattlesController < ApplicationController
       end
     end
 
-    @battle = Battle.new(:defender_id => defender._id,
-                           :attacker_id => attacker._id,
-                           :time => Time.now)
+    # @battle = Battle.new(:defender_id => defender._id,
+    #                        :attacker_id => attacker._id,
+    #                        :time => Time.now)
 
     if !@battle.battle
       respond_to do |format|
