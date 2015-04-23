@@ -4,8 +4,42 @@
       <h1 class="page-header">
         <%= @mech.name.nil? ? "无名英雄" : @mech.name %>
         <small><i class="fa fa-user"></i>&nbsp;<%= @mech.user.name %></small>
-<!--         <button type="button" class="btn btn-default btn-sm pull-right"><i class="fa fa-heart"></i> 点赞</button>
- -->      </h1>
+        <% if !current_user?(@mech.user) %>
+          <% if @mech.state == "SUCCESS" %>
+            <% unless signed_in? %>
+              <%= link_to "与之战斗", signin_path ,:class => "btn btn-sm custom-btn"%>
+            <% else %>
+              <a href="#" class="btn btn-sm custom-btn" data-toggle="modal" data-target="#myMech-<%=@mech._id %>">与之战斗</a>
+              <div class="modal fade" id="myMech-<%=mech._id %>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="ModalLabel">选择一个自己的机甲</h4>
+                    </div>
+                    <div class="modal-body row">
+                      <div class="container-fluid row col-md-12">
+                        <% if my_meches = current_user.meches.where(:state => "SUCCESS").all %>
+                          <% my_meches.each do |m| %>
+                            <center class="col-md-4 choise-my-mech">
+                              <a href="/battle/<%= @mech._id%>/<%= m._id %>" data-method="post"><%= m.name %></a>
+                            </center>
+                          <% end %>
+                        <% else %>
+                          <center>暂无可战斗机甲，快去添加吧</center>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to "更新机甲", edit_mech_path(@mech),
+                          :class => "btn btn-sm custom-btn" %>
+        <% end %>
+      </h1>
     </div>
   </div>
   <div class="row">
