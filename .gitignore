@@ -33,6 +33,7 @@ public/passenger.3000.log
 public/passenger.3000.pid.lock
 compile/passenger.80.
 compile/passenger.80.pid.lock
+compile/compile_user_ai.sh
 
 ## Environment normalisation:
 /.bundle

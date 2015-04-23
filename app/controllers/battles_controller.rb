@@ -14,30 +14,57 @@ class BattlesController < ApplicationController
   def create
     defender = Mech.find(params['defender_id'])
     attacker = Mech.find(params['attacker_id'])
-    # store_location
-    
-    if defender.state == "SUCCESS" && attacker.state == "SUCCESS"
-      @battle = Battle.new(:defender_id => defender._id,
+    store_location
+
+    if defender.nil? || attacker.nil?
+      respond_to do |format|
+        flash[:danger] = "机甲参数错误"
+        format.html { redirect_back_or root_path}
+        format.json { render json: @battle.errors, status: :unprocessable_entity }
+        return
+      end
+    end
+
+    if defender.state != "SUCCESS" && attacker.state != "SUCCESS"
+      respond_to do |format|
+        flash[:danger] = "机甲状态不可战"
+        format.html { redirect_back_or root_path}
+        format.json { render json: @battle.errors, status: :unprocessable_entity }
+        return
+      end
+    end
+
+    @battle = Battle.new(:defender_id => defender._id,
                            :attacker_id => attacker._id,
                            :time => Time.now)
+
+    if !@battle.battle
+      respond_to do |format|
+        flash[:danger] = "战斗程序运行失败"
+        format.html { redirect_back_or root_path, status: :success}
+        format.json { render json: @battle.errors, status: :unprocessable_entity }
+        return
+      end
     end
-    
-    respond_to do |format|
-      if @battle && !defender.nil? && !attacker.nil? && @battle.battle && @battle.save
-        defender.battles << @battle
-        attacker.battles << @battle
 
-        defender.user.battles << @battle
-        attacker.user.battles << @battle
-
-        
-        format.html { redirect_to @battle, notice: '战斗成功，观看战斗结果！' }
-        format.json { render :show, status: :created, location: @battle }
-      else
-        flash[:danger] = "战斗失败"
+    if !@battle.save
+      respond_to do |format|
+        flash[:danger] = "战斗数据写入失败"
         format.html { redirect_back_or(root_path)}
         format.json { render json: @battle.errors, status: :unprocessable_entity }
+        return
       end
+    end
+
+    defender.battles << @battle
+    attacker.battles << @battle
+
+    defender.user.battles << @battle
+    attacker.user.battles << @battle
+
+    respond_to do |format|
+      format.html { redirect_to @battle, notice: '战斗成功，观看战斗结果！' }
+      format.json { render :show, status: :created, location: @battle }
     end
   end
 

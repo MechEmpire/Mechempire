@@ -18,6 +18,8 @@ class MechesController < ApplicationController
     @mech = Mech.new( mech_params )
     @mech.create_at = Time.now
     @mech.user_id = current_user.id
+    @mech.protect_begin_time = Time.now
+    @mech.protect_time = 86400
 
     respond_to do |format|
       if @mech.save

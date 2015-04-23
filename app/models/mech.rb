@@ -14,8 +14,10 @@ class Mech
   field :weapon, type: String
   field :engine, type: String
   field :state, type: String
-  # field :versions, type: Array
-  # field :current_version, type: String
+
+  field :protect_begin_time, type: DateTime
+  field :protect_time, type: Integer
+
   field :score, type: Integer, default: -> { 0 }
   field :win_times,type: Integer, default: -> { 0 }
   field :fail_times,type: Integer, default: -> { 0 }
