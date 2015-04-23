@@ -12,7 +12,7 @@ class Battle
 
   has_and_belongs_to_many :meches
   has_and_belongs_to_many :users, class_name: 'User', inverse_of: :battles
-  counter_cache :users
+  # counter_cache :users
 
   belongs_to :match
 
@@ -20,17 +20,19 @@ class Battle
 
   def battle
     # system "battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}"
-    # pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
-    # ignored, status = Process::waitpid2 pid
-    # logger.error(stderr.read)
+    pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+    ignored, status = Process::waitpid2 pid
+
+    logger.error(stderr.read)
+
     pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
 
     logger.error(stderr.read)
 
-    if status.exitstatus
-      return false
-    end
+    # if status.exitstatus
+    #   return false
+    # end
 
     if FileTest::exist?("battle/result/#{self._id}.xml")
       x = File.read("battle/result/#{self._id}.xml")
@@ -39,8 +41,7 @@ class Battle
     end
 
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
-    logger.info("sssss")
-    logger.info(winnerID)
+
     sa = 0.0
     sb = 0.0
 
