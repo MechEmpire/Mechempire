@@ -25,7 +25,12 @@ class Battle
     # logger.error(stderr.read)
     pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
+
     logger.error(stderr.read)
+
+    if status.exitstatus
+      return false
+    end
 
     if FileTest::exist?("battle/result/#{self._id}.xml")
       x = File.read("battle/result/#{self._id}.xml")
@@ -33,9 +38,6 @@ class Battle
       return false
     end
 
-    if status.exitstatus
-      return false
-    end
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
 
     sa = 0.0
@@ -78,6 +80,7 @@ class Battle
                                            :battle_count => self.defender.user.battle_count + 1)
 
     end
+
     ra = self.attacker.user.score
     rb = self.defender.user.score
     ea = 1.0 / (1.0 + 10 **( (rb-ra)/400.0 ) )
@@ -92,8 +95,8 @@ class Battle
       rb = 0
     end
 
-    self.attacker.user.update_attributes(:score => ra)
-    self.defender.user.update_attributes(:score => rb)
+    self.attacker.user.update_attribute("score", ra)
+    self.defender.user.update_attribute("score", rb)
 
   end
 
