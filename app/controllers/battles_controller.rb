@@ -35,6 +35,19 @@ class BattlesController < ApplicationController
       end
     end
 
+    if defender.protect_begin_time + defender.protect_time >= Time.now.to_i
+      respond_to do |format|
+        flash[:danger] = "攻击机甲处于护盾保护状态，无法战斗"
+        format.html { redirect_back_or root_path}
+        # format.json { render json: @battle.errors, status: :unprocessable_entity }
+        return
+      end
+    end
+
+    if attacker.protect_begin_time + defender.protect_time >= Time.now.to_i
+      defender.update_attribute("protect_time",0)
+    end
+
     @battle = Battle.new(:defender_id => defender._id,
                          :attacker_id => attacker._id,
                          :time => Time.now)

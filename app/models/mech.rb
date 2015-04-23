@@ -15,7 +15,7 @@ class Mech
   field :engine, type: String
   field :state, type: String
 
-  field :protect_begin_time, type: DateTime
+  field :protect_begin_time, type: Integer
   field :protect_time, type: Integer
 
   field :score, type: Integer, default: -> { 0 }
