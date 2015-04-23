@@ -59,7 +59,7 @@ class UsersController < ApplicationController
         UserMailer.signup_confirm_email(@user).deliver
         sign_in @user
 
-        format.html { redirect_back_or @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
+        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
       else
         format.html { render :new }
       end
