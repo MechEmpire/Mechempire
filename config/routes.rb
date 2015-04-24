@@ -46,5 +46,5 @@ Rails.application.routes.draw do
 
   match '/vedio/:id', to: 'home#vedio', via: 'get'
   match '/wondervedio/:id', to: 'home#wondervedio', via: 'get', as: :wonder_vedio
-  match '/wonderfulist', to: 'home#wonderful',via: 'get'
+  match '/highlights', to: 'home#wonderful',via: 'get'
 end
