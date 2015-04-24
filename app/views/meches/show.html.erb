@@ -57,7 +57,7 @@
         <p><strong><i class="fa fa-rocket"></i> 机甲状态：</strong>
         <% if @mech.state == "SUCCESS" %>
           <% if @mech.protect_begin_time + @mech.protect_time >= Time.now.to_i %>
-            <span id="mech-state-iden" style="color:green;">护盾保护中</span>
+            <span id="mech-state-iden" style="color:green;">护盾保护中，剩余时间：<%= time_ago_in_words(Time.at(@mech.protect_begin_time + @mech.protect_time)) %></span>
           <% else %>
             <span id="mech-state-iden" style="color:red;">备战中</span>
           <% end %>
