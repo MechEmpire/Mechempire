@@ -71,9 +71,7 @@ class Battle
                                       :battle_count => self.attacker.user.battle_count + 1)
 
       self.defender.update_attributes(:score => self.defender.score - 1,
-                                      :fail_times => self.defender.fail_times + 1,
-                                      :protect_begin_time => Time.now.to_i,
-                                      :protect_time => 300)
+                                      :fail_times => self.defender.fail_times + 1)
       
       self.defender.user.update_attributes(:fail_times => self.defender.user.fail_times + 1,
                                       :battle_count => self.defender.user.battle_count + 1)
