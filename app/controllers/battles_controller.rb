@@ -1,7 +1,7 @@
 class BattlesController < ApplicationController
   before_action :set_battle, only: [:show, :download, :star, :destroy]
   before_action :actived_user, only: [:create, :destroy]
-  before_action :admin_user, except: [:create, :download, :index, :show]
+  before_action :admin_user, except: [:create, :download, :index, :show, :star]
   before_action :signed_in_user, only: [:star, :create, :destroy]
 
   def index
