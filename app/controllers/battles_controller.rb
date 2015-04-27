@@ -45,7 +45,7 @@ class BattlesController < ApplicationController
     end
 
     if attacker.protect_begin_time + defender.protect_time >= Time.now.to_i
-      attacker.update_attributes("protect_time", "0")
+      attacker.update_attribute("protect_time", 0)
     end
 
     @battle = Battle.new(:defender_id => defender._id,
