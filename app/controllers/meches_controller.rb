@@ -91,6 +91,7 @@ class MechesController < ApplicationController
 
   def update
     respond_to do |format|
+      FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}/code"
       if @mech.update_attributes(mech_params)
         status, stderr = @mech.compile
         if status == 0 && @mech.get_mech_info
