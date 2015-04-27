@@ -44,7 +44,7 @@ class BattlesController < ApplicationController
       end
     end
 
-    if attacker.protect_begin_time + defender.protect_time >= Time.now.to_i
+    if attacker.protect_begin_time + attacker.protect_time >= Time.now.to_i
       attacker.update_attribute("protect_time", 0)
     end
 
