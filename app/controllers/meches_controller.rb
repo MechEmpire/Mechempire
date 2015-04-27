@@ -93,7 +93,7 @@ class MechesController < ApplicationController
     respond_to do |format|
       if @mech.update_attributes(mech_params)
         status, stderr = @mech.compile
-        if @mech.get_mech_info && status == 0
+        if status == 0 && @mech.get_mech_info
           format.html { redirect_to @mech, notice: '机甲更新成功，快去战斗吧！' }
           format.json { render :show, status: :created, location: @mech }
         else
