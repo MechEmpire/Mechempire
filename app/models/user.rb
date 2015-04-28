@@ -7,6 +7,7 @@ class User
   field :name, type: String
   field :email, type: String
   field :motto, type: String
+  field :status, type: String
   field :remember_token, type: String
   field :active_code, type: String
   field :is_actived, type: Boolean
