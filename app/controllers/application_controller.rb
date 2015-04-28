@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def locked_user
-    if signed_in? && current_user.status == "LOCKED"
+    if signed_in? && current_user.status && current_user.status == "LOCKED"
       respond_to do |format|
         format.html do
           flash[:danger] = "您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn" 
