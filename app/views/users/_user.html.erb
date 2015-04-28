@@ -1,5 +1,5 @@
 <li>
-  <span class="col-md-2 battle-info">
+  <span class="col-md-3 battle-info">
     <%= gravatar_for user, size: 52 %>
     <%= link_to user.name.truncate(10), user %>
     <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
@@ -10,17 +10,21 @@
       <% end %>
     <% end %>
   </span>
-  <span class="col-md-2 user-list-info">
+  <span class="col-md-1 user-list-info">
     <br> 机甲 <br>
     <%= user.meches.count %> <br>
   </span>
-  <span class="col-md-2 user-list-info">
+  <span class="col-md-1 user-list-info">
     <br> 战斗 <br>
     <%= user.battle_count %> <br>
   </span>
-  <span class="col-md-2 user-list-info">
+  <span class="col-md-1 user-list-info">
     <br> 胜利 <br>
     <%= user.win_times %> <br>
+  </span>
+  <span class="col-md-2 user-list-info">
+    <br> 积分 <br>
+    <%= user.score %>
   </span>
   <span class="col-md-2 user-list-info">
     <br> 积分 <br>
