@@ -22,7 +22,7 @@
           <td><%= m.weapon %></td>
           <td><%= m.engine %></td>
           <td><%= m.create_at.to_formatted_s(:db) %></td>
-          <td><%= m.battle_count %></td>
+          <td><%= m.battles.count %></td>
           <td>
           <%= link_to "查看", m %>
           <%= link_to "删除", m, method: :delete,
