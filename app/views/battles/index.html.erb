@@ -2,7 +2,7 @@
   <h1>战斗列表</h1>
   <ul class="users">
     <% @battles.each do |battle| %>
-      <% if battle.defender.user && battle.attacker.user && battle.defender && battle.attacker%>
+      <% if battle.defender && battle.attacker && battle.defender.user && battle.attacker.user%>
         <li>
           <span class="col-md-2">
             <div class="battle-star">
