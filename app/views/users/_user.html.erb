@@ -2,6 +2,9 @@
   <span class="col-md-3 battle-info">
     <%= gravatar_for user, size: 52 %>
     <%= link_to user.name.truncate(10), user %>
+    <% unless @user.motto.nil? %>
+      <%= @user.motto %>
+    <% end %>
     <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
     <%= link_to "删除用户", user, method: :delete,
                                   data: { confirm: "确认删除用户吗？" } %>
