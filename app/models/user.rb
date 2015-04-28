@@ -62,31 +62,6 @@ class User
     self.meches.order("create_at DESC").page(page).per(2)
   end
 
-  # def battle_info
-  #   battle_count = 0
-  #   win_times = 0
-  #   fail_times = 0
-  #   draw_times = 0
-  #   score = 0
-  #   self.meches.each do |mech|
-  #     battle_count = battle_count + mech.battles.count
-  #     win_times = win_times + mech.win_times
-  #     fail_times = fail_times + mech.fail_times
-  #     draw_times = draw_times = mech.draw_times
-  #     score = score + mech.score
-  #   end
-  #   return [battle_count, win_times, fail_times, draw_times, score]
-  # end
-  # def battles
-  #   battles = []
-  #   self.meches.each do |meches|
-  #     meches.battles.each do |battle|
-  #       battles.push(battle)
-  #     end
-  #   end
-  #   return battles
-  # end
-
   private
 
     def create_remember_token

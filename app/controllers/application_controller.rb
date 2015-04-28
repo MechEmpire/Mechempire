@@ -32,6 +32,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def locked_user
+    if signed_in? && current_user.status == "LOCKED"
+      respond_to do |format|
+        format.html do
+          flash[:danger] = "您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn" 
+          redirect_to current_user
+        end
+        format.js do
+          render js: "alert('您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn');"
+        end
+      end
+    end
+  end
+
   def mech_user
     unless current_user.meches.include?(@mech)
       respond_to do |format|

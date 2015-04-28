@@ -1,6 +1,8 @@
 class WeaponsController < ApplicationController
   before_action :set_weapon, only: [:show, :edit, :update, :destroy]
   before_action :admin_user, only: [:new, :destroy, :edit, :create, :edit, :update]
+  before_action :locked_user, :all
+  
   def index
     @weapons = Weapon.all
   end

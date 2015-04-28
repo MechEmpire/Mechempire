@@ -3,6 +3,7 @@ class BattlesController < ApplicationController
   before_action :actived_user, only: [:create, :destroy]
   before_action :admin_user, except: [:create, :download, :index, :show, :star]
   before_action :signed_in_user, only: [:star, :create, :destroy]
+  before_action :locked_user, :all
 
   def index
     # @battles = Battle.order("time DESC").page(params[:page]).per(10)

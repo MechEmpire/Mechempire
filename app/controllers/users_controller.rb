@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :admin]
   before_action :actived_user, only: [:update,:following,:unfollowing]
+  before_action :locked_user, :all
 
   # GET /users
   # GET /users.json
