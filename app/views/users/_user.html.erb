@@ -26,13 +26,13 @@
     <br> 积分 <br>
     <%= user.score %>
   </span>
-  <span class="col-md-2 user-list-info">
+  <span class="col-md-3 user-list-info">
     <% unless user.motto.nil? %>
       <br>
       <%= user.motto %>
     <% end %>
   </span>
-  <span class="col-md-2 user-list-info">
+  <span class="col-md-1 user-list-info">
     <% unless current_user?(user) %>
       <div class="col-md-3">
         <br>
