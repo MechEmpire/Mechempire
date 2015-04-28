@@ -1,7 +1,7 @@
 <li>
   <span class="col-md-3 battle-info">
     <%= gravatar_for user, size: 52 %>
-    <%= link_to user.name.truncate(10), user %>
+    <%= link_to user.name.truncate(10), user %> <br>
     <% unless user.motto.nil? %>
       <%= user.motto %>
     <% end %>
