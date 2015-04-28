@@ -176,11 +176,11 @@
             <br>
             <div class="my-mech-body">
               <div class="my-mech-info">
-                <p>
-                <strong><i class="fa fa-space-shuttle"></i> </strong>战斗：<%= mech.battles.count %>/
-                <strong><i class="fa fa-smile-o"></i> 胜利：</strong><%= mech.win_times %>/
-                <strong><i class="fa fa-frown-o"></i> 失败：</strong><%= mech.fail_times %>
-                </p>
+                <ol class="breadcrumb">
+                <li><i class="fa fa-space-shuttle"></i> </li>战斗：<%= mech.battles.count %>/
+                <li><i class="fa fa-smile-o"></i> 胜利：</li><%= mech.win_times %>/
+                <li><i class="fa fa-frown-o"></i> 失败：</li><%= mech.fail_times %>
+                </ol>
                 <!-- <p><strong><i class="fa fa-smile-o"></i> 胜利：</strong><%#= mech.win_times %></p>
                 <p><strong><i class="fa fa-frown-o"></i> 失败：</strong><%#= mech.fail_times %></p> -->
                 <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(mech.engine_info.name, mech.engine_info) unless mech.engine_info.nil? %></p>
