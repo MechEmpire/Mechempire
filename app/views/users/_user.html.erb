@@ -2,9 +2,6 @@
   <span class="col-md-3 battle-info">
     <%= gravatar_for user, size: 52 %>
     <%= link_to user.name.truncate(10), user %> <br>
-    <% unless user.motto.nil? %>
-      <%= user.motto %>
-    <% end %>
     <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
     <%= link_to "删除用户", user, method: :delete,
                                   data: { confirm: "确认删除用户吗？" } %>
@@ -28,6 +25,11 @@
   <span class="col-md-2 user-list-info">
     <br> 积分 <br>
     <%= user.score %>
+  </span>
+  <span class="col-md-2 user-list-info">
+    <% unless user.motto.nil? %>
+      <%= user.motto %>
+    <% end %>
   </span>
   <span class="col-md-2 user-list-info">
     <% unless current_user?(user) %>
