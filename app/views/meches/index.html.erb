@@ -10,6 +10,7 @@
         <th>武器</th>
         <th>引擎</th>
         <th>创建时间</th>
+        <th>操作</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +21,8 @@
           <td><%= m.weapon %></td>
           <td><%= m.engine %></td>
           <td><%= m.create_at.to_formatted_s(:db) %></td>
+          <td><%= link_to "删除", m, method: :delete,
+                                  data: { confirm: "确认删除吗？" } %></td>
         </tr>
       <% end %>
     </tbody>
