@@ -10,6 +10,7 @@
         <th>武器</th>
         <th>引擎</th>
         <th>创建时间</th>
+        <th>战斗次数</th>
         <th>操作</th>
       </tr>
     </thead>
@@ -21,8 +22,12 @@
           <td><%= m.weapon %></td>
           <td><%= m.engine %></td>
           <td><%= m.create_at.to_formatted_s(:db) %></td>
-          <td><%= link_to "删除", m, method: :delete,
-                                  data: { confirm: "确认删除吗？" } %></td>
+          <td><%= m.battle_count %></td>
+          <td>
+          <%= link_to "查看", m %>
+          <%= link_to "删除", m, method: :delete,
+                                  data: { confirm: "确认删除吗？" } %>
+          </td>
         </tr>
       <% end %>
     </tbody>
