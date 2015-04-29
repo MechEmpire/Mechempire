@@ -1,4 +1,4 @@
-<header class="navbar navbar-inverse navbar-static-top mech-nav">
+<nav class="navbar navbar-inverse navbar-static-top mech-nav">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button">
@@ -9,7 +9,7 @@
       </button>
       <a href="/" class="navbar-brand"><%=image_tag("mech-logo-s.png",:class => "mech-nav-logo")%></a>
     </div>
-    <nav class="navbar-collapse collapse">
+    <div class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
           <a href="/">首页</a>
@@ -66,6 +66,6 @@
           <li><%= link_to "登录", signin_path %></li>
         <% end %>
       </ul>
-    </nav>
+    </div>
   </div>
-</header>
+</nav>
