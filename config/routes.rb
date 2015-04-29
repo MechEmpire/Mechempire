@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   match '/battles/star/:id', to: 'battles#star', via: 'post', as: :star_battle
   match '/battle/:defender_id/:attacker_id', to: 'battles#create', via: 'post'
 
-  match '/vedio/:id', to: 'home#vedio', via: 'get'
+  match '/video/:id', to: 'home#vedio', via: 'get'
   match '/wondervedio/:id', to: 'home#wondervedio', via: 'get', as: :wonder_vedio
   match '/highlights', to: 'home#wonderful',via: 'get'
 end
