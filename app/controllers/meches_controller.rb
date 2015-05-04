@@ -81,10 +81,10 @@ class MechesController < ApplicationController
     respond_to do |format|
       if @mech.destroy
         FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
-        format.html { redirect_to current_user, notice: '机甲删除成功!' }
+        format.html { redirect_to meches_path, notice: '机甲删除成功!' }
         format.json { head :no_content }
       else
-        format.html { redirect_to current_user, notice: '机甲删除失败!' }
+        format.html { redirect_to meches_path, notice: '机甲删除失败!' }
         format.json { head :no_content }
       end
     end
