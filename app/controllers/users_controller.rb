@@ -53,13 +53,14 @@ class UsersController < ApplicationController
     @user.is_actived = false
     @user.admin  = false
     @user.join_time = Time.now
+    @user.is_actived = true
 
     respond_to do |format|
       if @user.save
-        UserMailer.signup_confirm_email(@user).deliver
+        # UserMailer.signup_confirm_email(@user).deliver
         sign_in @user
 
-        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
+        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站!' }
       else
         format.html { render :new }
       end
