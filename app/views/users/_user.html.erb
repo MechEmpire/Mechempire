@@ -34,6 +34,7 @@
   </span>
   <span class="col-md-1 user-list-info">
     <% unless current_user?(user) %>
+      <br>
       <% unless current_user.nil? %>
         <% unless(current_user.following.include?(user)) %>
           <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
