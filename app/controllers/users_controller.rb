@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def re_active
     if !current_user.is_actived && UserMailer.signup_confirm_email(current_user).deliver
-      flash[:warning] = "邮件发送成功，请登录您的注册邮箱查看!"
+      flash[:warning] = "邮件发送成功，请登录您的注册邮箱查看!如未收到激活邮件，请使用注册邮箱发送任意信息到active@mechempire.cn激活"
       redirect_to current_user
     else
       flash[:warning] = "邮件发送失败, 请重试, 如多次未成功请联系管理员!"
