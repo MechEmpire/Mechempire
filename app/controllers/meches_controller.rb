@@ -7,7 +7,7 @@ class MechesController < ApplicationController
   before_action :locked_user, only: :all
 
   def index
-    @meches = Mech.page(params[:page]).per(10)
+    @meches = Mech.page(params[:page]).per(30)
   end
 
   def mech_list
