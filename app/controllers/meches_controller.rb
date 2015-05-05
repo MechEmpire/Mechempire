@@ -19,6 +19,7 @@ class MechesController < ApplicationController
     @mech = Mech.new( mech_params )
     @mech.create_at = Time.now
     @mech.user_id = current_user.id
+    # @mech.user.meches_count += 1 
     @mech.protect_begin_time = Time.now
     @mech.protect_time = 86400
 
@@ -26,6 +27,7 @@ class MechesController < ApplicationController
       if @mech.save
         status, stderr = @mech.compile
         if status == 0 && @mech.get_mech_info
+          current_user.update_attribute("meches_count",current_user.meches_count+1)
           format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
           format.json { render :show, status: :created, location: @mech }
         else
