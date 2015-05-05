@@ -210,7 +210,7 @@
       <div class="row custom-well">
         <h3>参与的战斗</h3>
         <ul class="users">
-          <% @user.battles.reverse_each do |battle| %>
+          <% @user.battles.last(20).reverse_each do |battle| %>
             <% if battle.defender.user && battle.attacker.user && battle.defender && battle.attacker%>
               <li>
                 <span class="col-md-2">
