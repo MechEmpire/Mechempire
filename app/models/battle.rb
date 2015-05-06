@@ -109,7 +109,7 @@ class Battle
 
   def rand_battle
     rand_num = rand()
-    File.open("test_log.txt","w")do |file|  
+    File.open("test_log.txt","a")do |file|  
        file.puts rand_num
     end 
     # logger.error(rand_num)
