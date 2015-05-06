@@ -109,7 +109,10 @@ class Battle
 
   def rand_battle
     rand_num = rand()
-    logger.error(rand_num)
+    File.open("test_log.txt","w")do |file|  
+       file.puts rand_num
+    end 
+    # logger.error(rand_num)
     if rand_num > 0.5
       self.battle(self.defender,self.attacker)
     else
