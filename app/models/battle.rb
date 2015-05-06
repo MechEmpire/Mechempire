@@ -122,11 +122,14 @@ class Battle
       self.battle(self.attacker,self.defender)
       logfile.puts "attacker,defender"
     end
-    if self.winner_id == self.attacker._id
+    logfile.puts self.winner_id
+    logfile.puts self.attacker_id
+    if self.winner_id == self.attacker_id
       logfile.puts "protect"
       self.defender.update_attributes(:protect_begin_time => Time.now.to_i,
                                       :protect_time => 300)
     end
+    logfile.puts "---"
     logfile.close
     return true
   end
