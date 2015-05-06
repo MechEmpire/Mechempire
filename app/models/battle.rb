@@ -108,20 +108,26 @@ class Battle
   # end
 
   def rand_battle
+    logfile = File.open("test_log.txt","a")
     rand_num = rand()
-    File.open("test_log.txt","a")do |file|  
-       file.puts rand_num
-    end 
+    # File.open("test_log.txt","a")do |file|  
+    #    file.puts rand_num
+    # end 
     # logger.error(rand_num)
+    logfile.puts rand_num
     if rand_num > 0.5
       self.battle(self.defender,self.attacker)
+      logfile.puts "defender,attacker"
     else
       self.battle(self.attacker,self.defender)
+      logfile.puts "attacker,defender"
     end
     if self.winner_id == self.attacker._id
+      logfile.puts "protect"
       self.defender.update_attributes(:protect_begin_time => Time.now.to_i,
                                       :protect_time => 300)
     end
+    logfile.close
     return true
   end
 
