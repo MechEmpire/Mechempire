@@ -108,7 +108,9 @@ class Battle
   # end
 
   def rand_battle
-    if rand() > 0.5
+    rand_num = rand()
+    logger.error(rand_num)
+    if rand_num > 0.5
       self.battle(self.defender,self.attacker)
     else
       self.battle(self.attacker,self.defender)
