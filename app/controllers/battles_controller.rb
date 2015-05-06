@@ -62,7 +62,7 @@ class BattlesController < ApplicationController
       end
     end
 
-    if !@battle.battle
+    if !@battle.rand_battle
       respond_to do |format|
         flash[:danger] = "战斗程序运行失败"
         format.html { redirect_to defender }
