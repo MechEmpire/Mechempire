@@ -138,6 +138,7 @@ class UsersController < ApplicationController
         if current_user.following.include?(unfollowed_user)
           current_user.following.delete(unfollowed_user)
           unfollowed_user.follower.delete(current_user)
+          @user = unfollowed_user
           @follower_count = current_user.following.count
           format.js
         else
