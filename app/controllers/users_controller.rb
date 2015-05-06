@@ -114,6 +114,7 @@ class UsersController < ApplicationController
         unless current_user.following.include?(followed_user)
           current_user.following.push(followed_user)
           followed_user.follower.push(current_user)
+          @user = followed_user
           @follower_count = current_user.following.count
           format.js
         else
