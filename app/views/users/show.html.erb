@@ -82,9 +82,9 @@
             <div class="col-md-3">
               <% unless current_user.nil? %>
                 <% unless(current_user.following.include?(@user)) %>
-                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
+                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{@user._id}" %>
                 <% else %>
-                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
+                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{@user._id}" %>
                 <% end %>
               <% else %>
                 <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
