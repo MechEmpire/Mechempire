@@ -3,11 +3,11 @@ class BattlesController < ApplicationController
   before_action :actived_user, only: [:create, :destroy]
   before_action :admin_user, except: [:create, :download, :index, :show, :star]
   before_action :signed_in_user, only: [:star, :create, :destroy]
-  before_action :locked_user, only: :all
+  before_action :locked_user
 
   def index
     # @battles = Battle.order("time DESC").page(params[:page]).per(10)
-    @battles = Battle.order("time DESC").page(params[:page]).per(10)
+    @battles = Battle.order("time DESC").page(params[:page]).per(20)
   end
 
   def new
@@ -62,7 +62,7 @@ class BattlesController < ApplicationController
       end
     end
 
-    if !@battle.battle
+    if !@battle.rand_battle
       respond_to do |format|
         flash[:danger] = "战斗程序运行失败"
         format.html { redirect_to defender }

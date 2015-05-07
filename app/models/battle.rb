@@ -19,29 +19,132 @@ class Battle
   has_and_belongs_to_many :starers, class_name: 'User', inverse_of: :stareds
   # counter_cache :starers
 
-  def battle
+  # def battle
 
+  #   #run battle in sandbox
+  #   pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+  #   ignored, status = Process::waitpid2 pid
+  #   logger.error(stderr.read)
+  #   #get battle result
+
+  #   pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+  #   ignored, status = Process::waitpid2 pid
+
+  #   logger.error(stderr.read)
+
+  #   # if status.exitstatus
+  #   #   return false
+  #   # end
+  #   x = File.read("battle/result/#{self._id}.xml")
+  #   # if FileTest::exist?("battle/result/#{self._id}.xml")
+  #   #   x = File.read("battle/result/#{self._id}.xml")
+  #   # else
+  #   #   return false
+  #   # end
+
+  #   winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
+
+  #   sa = 0.0
+  #   sb = 0.0
+
+  #   if winnerID == "0"
+  #     sb = 1.0
+  #     self.winner_id = self.defender_id
+  #     self.defender.update_attributes(:score => self.defender.score + 3,
+  #                                   :win_times => self.defender.win_times + 1)
+  #     self.defender.user.update_attributes(:win_times => self.defender.user.win_times + 1,
+  #                                     :battle_count => self.defender.user.battle_count + 1)
+
+  #     self.attacker.update_attributes(:score => self.attacker.score - 1,
+  #                                     :fail_times => self.attacker.fail_times + 1)
+
+  #     self.attacker.user.update_attributes(:fail_times => self.attacker.user.fail_times + 1,
+  #                                     :battle_count => self.attacker.user.battle_count + 1)
+  #   elsif winnerID == "1"
+  #     sa = 1.0
+  #     self.winner_id = self.attacker_id
+  #     self.attacker.update_attributes(:score => self.attacker.score + 3,
+  #                                     :win_times => self.attacker.win_times + 1)
+  #     self.attacker.user.update_attributes(:win_times => self.attacker.user.win_times + 1,
+  #                                     :battle_count => self.attacker.user.battle_count + 1)
+
+  #     self.defender.update_attributes(:score => self.defender.score - 1,
+  #                                     :fail_times => self.defender.fail_times + 1,
+  #                                     :protect_begin_time => Time.now.to_i,
+  #                                     :protect_time => 300)
+      
+  #     self.defender.user.update_attributes(:fail_times => self.defender.user.fail_times + 1,
+  #                                     :battle_count => self.defender.user.battle_count + 1)
+  #   elsif winnerID == "-1"
+  #     sa = sb = 0.5
+  #     self.winner_id = nil
+  #     self.attacker.update_attribute("draw_times", self.attacker.draw_times + 1)
+  #     self.attacker.user.update_attributes(:draw_times => self.attacker.user.draw_times + 1,
+  #                                          :battle_count => self.attacker.user.battle_count + 1)
+
+  #     self.defender.update_attribute("draw_times", self.defender.draw_times + 1)
+  #     self.defender.user.update_attributes(:draw_times => self.defender.user.draw_times + 1,
+  #                                          :battle_count => self.defender.user.battle_count + 1)
+
+  #   end
+
+  #   ra = self.attacker.user.score
+  #   rb = self.defender.user.score
+  #   ea = 1.0 / (1.0 + 10 **( (rb-ra)/400.0 ) )
+  #   eb = 1.0 / (1.0 + 10 **( (ra-rb)/400.0 ) )
+  #   k = 32 + 16 * (0.9 ** (self.defender.user.battle_count + self.attacker.user.battle_count ))
+  #   ra = ra + k * (sa - ea)
+  #   rb = rb + k * (sb - eb)
+  #   if ra < 0
+  #     ra = 0
+  #   end
+  #   if rb < 0
+  #     rb = 0
+  #   end
+
+  #   self.attacker.user.update_attribute("score", ra)
+  #   self.defender.user.update_attribute("score", rb)
+
+  # end
+
+  def rand_battle
+    # logfile = File.open("test_log.txt","a")
+    rand_num = rand()
+    # File.open("test_log.txt","a")do |file|  
+    #    file.puts rand_num
+    # end 
+    # logger.error(rand_num)
+    # logfile.puts rand_num
+    if rand_num > 0.5
+      self.battle(self.defender,self.attacker)
+      # logfile.puts "defender,attacker"
+    else
+      self.battle(self.attacker,self.defender)
+      # logfile.puts "attacker,defender"
+    end
+    # logfile.puts self.winner_id
+    # logfile.puts self.attacker_id
+    if self.winner_id == self.attacker_id
+      # logfile.puts "protect"
+      self.defender.update_attributes(:protect_begin_time => Time.now.to_i,
+                                      :protect_time => 300)
+    end
+    # logfile.puts "---"
+    # logfile.close
+    return true
+  end
+
+  def battle(first_mech,second_mech)
     #run battle in sandbox
-    pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+    pid, stdin, stdout, stderr = Open4.popen4("battle/battle.sh #{first_mech.code_dir}libmyAI.so #{second_mech.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
-    logger.error(stderr.read)
+    # logger.error(stderr.read)
     #get battle result
 
-    pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{self.defender.code_dir}libmyAI.so #{self.attacker.code_dir}libmyAI.so #{self._id}")
+    pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{first_mech.code_dir}libmyAI.so #{second_mech.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
 
-    logger.error(stderr.read)
-
-    # if status.exitstatus
-    #   return false
-    # end
     x = File.read("battle/result/#{self._id}.xml")
-    # if FileTest::exist?("battle/result/#{self._id}.xml")
-    #   x = File.read("battle/result/#{self._id}.xml")
-    # else
-    #   return false
-    # end
-
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
 
     sa = 0.0
@@ -49,50 +152,48 @@ class Battle
 
     if winnerID == "0"
       sb = 1.0
-      self.winner_id = self.defender_id
-      self.defender.update_attributes(:score => self.defender.score + 3,
-                                    :win_times => self.defender.win_times + 1)
-      self.defender.user.update_attributes(:win_times => self.defender.user.win_times + 1,
-                                      :battle_count => self.defender.user.battle_count + 1)
+      self.winner_id = first_mech._id #self.defender_id
+      first_mech.update_attributes(:score => first_mech.score + 3,
+                                    :win_times => first_mech.win_times + 1)
+      first_mech.user.update_attributes(:win_times => first_mech.user.win_times + 1,
+                                      :battle_count => first_mech.user.battle_count + 1)
 
-      self.attacker.update_attributes(:score => self.attacker.score - 1,
-                                      :fail_times => self.attacker.fail_times + 1)
+      second_mech.update_attributes(:score => second_mech.score - 1,
+                                      :fail_times => second_mech.fail_times + 1)
 
-      self.attacker.user.update_attributes(:fail_times => self.attacker.user.fail_times + 1,
-                                      :battle_count => self.attacker.user.battle_count + 1)
+      second_mech.user.update_attributes(:fail_times => second_mech.user.fail_times + 1,
+                                      :battle_count => second_mech.user.battle_count + 1)
     elsif winnerID == "1"
       sa = 1.0
-      self.winner_id = self.attacker_id
-      self.attacker.update_attributes(:score => self.attacker.score + 3,
-                                      :win_times => self.attacker.win_times + 1)
-      self.attacker.user.update_attributes(:win_times => self.attacker.user.win_times + 1,
-                                      :battle_count => self.attacker.user.battle_count + 1)
+      self.winner_id = second_mech._id
+      second_mech.update_attributes(:score => second_mech.score + 3,
+                                      :win_times => second_mech.win_times + 1)
+      second_mech.user.update_attributes(:win_times => second_mech.user.win_times + 1,
+                                      :battle_count => second_mech.user.battle_count + 1)
 
-      self.defender.update_attributes(:score => self.defender.score - 1,
-                                      :fail_times => self.defender.fail_times + 1,
-                                      :protect_begin_time => Time.now.to_i,
-                                      :protect_time => 300)
+      first_mech.update_attributes(:score => first_mech.score - 1,
+                                      :fail_times => first_mech.fail_times + 1)
       
-      self.defender.user.update_attributes(:fail_times => self.defender.user.fail_times + 1,
-                                      :battle_count => self.defender.user.battle_count + 1)
+      first_mech.user.update_attributes(:fail_times => first_mech.user.fail_times + 1,
+                                        :battle_count => first_mech.user.battle_count + 1)
     elsif winnerID == "-1"
       sa = sb = 0.5
       self.winner_id = nil
-      self.attacker.update_attribute("draw_times", self.attacker.draw_times + 1)
-      self.attacker.user.update_attributes(:draw_times => self.attacker.user.draw_times + 1,
-                                           :battle_count => self.attacker.user.battle_count + 1)
+      second_mech.update_attribute("draw_times", second_mech.draw_times + 1)
+      second_mech.user.update_attributes(:draw_times => second_mech.user.draw_times + 1,
+                                         :battle_count => second_mech.user.battle_count + 1)
 
-      self.defender.update_attribute("draw_times", self.defender.draw_times + 1)
-      self.defender.user.update_attributes(:draw_times => self.defender.user.draw_times + 1,
-                                           :battle_count => self.defender.user.battle_count + 1)
+      first_mech.update_attribute("draw_times", first_mech.draw_times + 1)
+      first_mech.user.update_attributes(:draw_times => first_mech.user.draw_times + 1,
+                                        :battle_count => first_mech.user.battle_count + 1)
 
     end
 
-    ra = self.attacker.user.score
-    rb = self.defender.user.score
+    ra = second_mech.user.score
+    rb = first_mech.user.score
     ea = 1.0 / (1.0 + 10 **( (rb-ra)/400.0 ) )
     eb = 1.0 / (1.0 + 10 **( (ra-rb)/400.0 ) )
-    k = 32 + 16 * (0.9 ** (self.defender.user.battle_count + self.attacker.user.battle_count ))
+    k = 32 + 16 * (0.9 ** (first_mech.user.battle_count + second_mech.user.battle_count ))
     ra = ra + k * (sa - ea)
     rb = rb + k * (sb - eb)
     if ra < 0
@@ -102,9 +203,10 @@ class Battle
       rb = 0
     end
 
-    self.attacker.user.update_attribute("score", ra)
-    self.defender.user.update_attribute("score", rb)
+    second_mech.user.update_attribute("score", ra)
+    first_mech.user.update_attribute("score", rb)
 
+    # logger.error(stderr.read)
   end
 
   def defender

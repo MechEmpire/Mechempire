@@ -13,6 +13,7 @@ class User
   field :is_actived, type: Boolean
   field :admin, type: Boolean
   field :join_time, type: DateTime
+  field :meches_count, type: Integer, default: -> { 0 }
   field :sex, type: String
   field :blog, type: String
   field :battle_count, type: Integer, default: -> { 0 }

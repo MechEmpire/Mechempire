@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html do
           flash[:danger] = "您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn" 
-          redirect_to current_user
+          redirect_to root_path
         end
         format.js do
           render js: "alert('您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn');"

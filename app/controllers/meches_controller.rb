@@ -4,10 +4,10 @@ class MechesController < ApplicationController
   before_action :actived_user, only: [:create, :destroy, :update]
   before_action :mech_user, only: [:update, :edit]
   before_action :admin_user, only: [:destroy,:index]
-  before_action :locked_user, only: :all
+  before_action :locked_user
 
   def index
-    @meches = Mech.page(params[:page]).per(10)
+    @meches = Mech.page(params[:page]).per(30)
   end
 
   def mech_list
@@ -19,6 +19,7 @@ class MechesController < ApplicationController
     @mech = Mech.new( mech_params )
     @mech.create_at = Time.now
     @mech.user_id = current_user.id
+    # @mech.user.meches_count += 1 
     @mech.protect_begin_time = Time.now
     @mech.protect_time = 86400
 
@@ -26,6 +27,7 @@ class MechesController < ApplicationController
       if @mech.save
         status, stderr = @mech.compile
         if status == 0 && @mech.get_mech_info
+          current_user.update_attribute("meches_count",1)
           format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
           format.json { render :show, status: :created, location: @mech }
         else
@@ -81,10 +83,10 @@ class MechesController < ApplicationController
     respond_to do |format|
       if @mech.destroy
         FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
-        format.html { redirect_to current_user, notice: '机甲删除成功!' }
+        format.html { redirect_to meches_path, notice: '机甲删除成功!' }
         format.json { head :no_content }
       else
-        format.html { redirect_to current_user, notice: '机甲删除失败!' }
+        format.html { redirect_to meches_path, notice: '机甲删除失败!' }
         format.json { head :no_content }
       end
     end

@@ -34,18 +34,16 @@
   </span>
   <span class="col-md-1 user-list-info">
     <% unless current_user?(user) %>
-      <div class="col-md-3">
-        <br>
-        <% unless current_user.nil? %>
-          <% unless(current_user.following.include?(user)) %>
-            <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
-          <% else %>
-            <%= link_to "取消关注", unfollow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following" %>
-          <% end %>
+      <br>
+      <% unless current_user.nil? %>
+        <% unless(current_user.following.include?(user)) %>
+          <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
         <% else %>
-          <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+          <%= link_to "取消关注", unfollow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
         <% end %>
-      </div>
+      <% else %>
+        <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+      <% end %>
     <% end %>
   </span>
 </li>

@@ -4,11 +4,12 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :admin]
   before_action :actived_user, only: [:update,:following,:unfollowing]
-  before_action :locked_user, only: :all
+  before_action :locked_user
   # GET /users
   # GET /users.json
   def index
-    @users = User.order_by(:score.desc, :_id.asc).page(params[:page]).per(10)
+    @users = User.order_by(:meches_count.desc, :score.desc).page(params[:page]).per(20)
+    # @user_has_mech = 
   end
 
   # GET /users/1
@@ -53,13 +54,14 @@ class UsersController < ApplicationController
     @user.is_actived = false
     @user.admin  = false
     @user.join_time = Time.now
+    @user.is_actived = true
 
     respond_to do |format|
       if @user.save
-        UserMailer.signup_confirm_email(@user).deliver
+        # UserMailer.signup_confirm_email(@user).deliver
         sign_in @user
 
-        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站，请登录注册邮箱激活您的账户!' }
+        format.html { redirect_to @user, notice: '注册成功，感谢您注册本站!' }
       else
         format.html { render :new }
       end
@@ -112,6 +114,7 @@ class UsersController < ApplicationController
         unless current_user.following.include?(followed_user)
           current_user.following.push(followed_user)
           followed_user.follower.push(current_user)
+          @user = followed_user
           @follower_count = current_user.following.count
           format.js
         else
@@ -135,6 +138,7 @@ class UsersController < ApplicationController
         if current_user.following.include?(unfollowed_user)
           current_user.following.delete(unfollowed_user)
           unfollowed_user.follower.delete(current_user)
+          @user = unfollowed_user
           @follower_count = current_user.following.count
           format.js
         else

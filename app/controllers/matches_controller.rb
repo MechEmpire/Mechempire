@@ -18,7 +18,7 @@ class MatchesController < ApplicationController
 
   before_action :actived_user, only: [:apply, 
                                       :addmech]
-  before_action :locked_user, only: :all
+  before_action :locked_user
 
   # GET /matches
   # GET /matches.json
