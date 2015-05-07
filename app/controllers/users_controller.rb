@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: [:destroy, :admin]
   before_action :actived_user, only: [:update,:following,:unfollowing]
-  before_action :locked_user, only: :all
+  before_action :locked_user
   # GET /users
   # GET /users.json
   def index
