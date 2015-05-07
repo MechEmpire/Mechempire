@@ -14,6 +14,9 @@
         <% if !@user.is_actived %>
           <small>未激活</small>
         <% end %>
+        <% if !@user.status == "LOCKED" %>
+          <small>用户被锁定</small>
+        <% end %>
       </h3>
       <hr>
       <ul class="user-info-detial">
