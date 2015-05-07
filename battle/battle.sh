@@ -14,6 +14,8 @@ cp /usr/bin/timeout $JAIL_PATH/bin
 cp /bin/rm $JAIL_PATH/bin
 cp /home/rails-deploy/Mechempire/battle/MechBattleConsoleForLinuxServer $JAIL_PATH/MechBattleConsoleForLinuxServer
 cp /home/rails-deploy/Mechempire/battle/BattleModeConfig.conf $JAIL_PATH/BattleModeConfig.conf
+sudo chown www-data:www-data $1
+sudo chown www-data:www-data $2
 cp $1 $JAIL_PATH/1.so
 cp $2 $JAIL_PATH/2.so
 
