@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html do
           flash[:danger] = "您的账号还未激活，请激活之后再使用，如需重新发送激活邮件，请前往设置页面发送!" 
-          redirect_to root_path
+          redirect_to current_user
         end
         format.js do
           render js: "alert('您的账号还未激活，请激活之后再使用!');"
@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
       respond_to do |format|
         format.html do
           flash[:danger] = "您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn" 
-          redirect_to current_user
+          redirect_to root_path
         end
         format.js do
           render js: "alert('您的账号已被锁定，可联系管理员解锁，邮箱：connect@mechempire.cn');"
