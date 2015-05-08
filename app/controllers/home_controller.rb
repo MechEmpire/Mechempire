@@ -1,4 +1,5 @@
 class HomeController < ApplicationController
+  before_action :admin_user, only: [:stat]
   def index
   end
 
@@ -27,6 +28,9 @@ class HomeController < ApplicationController
   end
 
   def wonderful
+  end
+
+  def stat
   end
 
   def vedio
