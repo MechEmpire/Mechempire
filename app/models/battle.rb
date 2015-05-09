@@ -144,7 +144,14 @@ class Battle
     pid, stdin, stdout, stderr = Open4.popen4("battle/result.sh #{first_mech.code_dir}libmyAI.so #{second_mech.code_dir}libmyAI.so #{self._id}")
     ignored, status = Process::waitpid2 pid
 
-    x = File.read("battle/result/#{self._id}.xml")
+
+    if FileTest::exists?("battle/result/#{self._id}.xml")
+      x = File.read("battle/result/#{self._id}.xml")
+    else
+      return false
+    end
+
+    # x = File.read("battle/result/#{self._id}.xml")
     winnerID = Hash.from_xml(x)['battleStatistics']['winnerID']
 
     sa = 0.0
