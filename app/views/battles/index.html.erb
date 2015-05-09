@@ -15,11 +15,18 @@
               <%= time_ago_in_words(battle.time) + "前" %><br>
             </div>
             <div class="battle-info-double">
-              <%= link_to battle.defender.user.name, battle.defender.user %> ::
-              <%= link_to battle.defender.name, battle.defender %>
-              VS 
               <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
               <%= link_to battle.attacker.name, battle.attacker %>
+              攻击
+              <%= link_to battle.defender.user.name, battle.defender.user %> ::
+              <%= link_to battle.defender.name, battle.defender %>
+              <% if battle.winner_id == battle.attacker_id %>
+                成功
+              <% elsif battle.winner_id.nil? %>
+                平局
+              <% else %>
+                失败
+              <% end %>
             </div>
           </span>
           <span class="col-md-3">
