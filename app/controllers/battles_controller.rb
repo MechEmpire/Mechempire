@@ -7,7 +7,7 @@ class BattlesController < ApplicationController
 
   def index
     # @battles = Battle.order("time DESC").page(params[:page]).per(10)
-    @battles = Battle.order("time DESC").page(params[:page]).per(30)
+    @battles = Battle.order("time DESC").where(:mech_ids.ne => nil).page(params[:page]).per(30)
   end
 
   def new
