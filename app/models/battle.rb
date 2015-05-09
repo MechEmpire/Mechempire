@@ -116,11 +116,15 @@ class Battle
     # logger.error(rand_num)
     # logfile.puts rand_num
     if rand_num > 0.5
-      self.battle(self.defender,self.attacker)
+      battle_result = self.battle(self.defender,self.attacker)
       # logfile.puts "defender,attacker"
     else
-      self.battle(self.attacker,self.defender)
+      battle_result = self.battle(self.attacker,self.defender)
       # logfile.puts "attacker,defender"
+    end
+
+    if !battle_result
+      return false
     end
     # logfile.puts self.winner_id
     # logfile.puts self.attacker_id
