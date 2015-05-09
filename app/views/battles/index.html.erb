@@ -21,11 +21,11 @@
               <%= link_to battle.defender.user.name, battle.defender.user %> ::
               <%= link_to battle.defender.name, battle.defender %>
               <% if battle.winner_id == battle.attacker_id %>
-                成功
+                <span style="color:red;">成功</span>
               <% elsif battle.winner_id.nil? %>
                 平局
               <% else %>
-                失败
+                <span style="color:green;">失败</span>
               <% end %>
             </div>
           </span>
