@@ -9,6 +9,7 @@ class Battle
   field :defender_id, type: String
   field :attacker_id, type: String
   field :winner_id, type: String
+  field :score, type: Integer
 
   has_and_belongs_to_many :meches
   has_and_belongs_to_many :users, class_name: 'User', inverse_of: :battles
@@ -213,6 +214,8 @@ class Battle
     if rb < 0
       rb = 0
     end
+
+    self.score = k * (sa - ea)
 
     second_mech.user.update_attribute("score", ra)
     first_mech.user.update_attribute("score", rb)
