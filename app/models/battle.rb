@@ -215,7 +215,7 @@ class Battle
       rb = 0
     end
 
-    self.score = k * (sa - ea)
+    self.score = (k * (sa - ea)).abs
 
     second_mech.user.update_attribute("score", ra)
     first_mech.user.update_attribute("score", rb)

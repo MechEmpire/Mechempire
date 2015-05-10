@@ -25,7 +25,7 @@
               <% elsif battle.winner_id.nil? %>
                 平局
               <% else %>
-                <span style="color:green;"><%= "失败, 积分" + battle.score unless battle.score.nil? %></span>
+                <span style="color:green;"><%= "失败, 积分 -" + battle.score unless battle.score.nil? %></span>
               <% end %>
             </div>
           </span>
