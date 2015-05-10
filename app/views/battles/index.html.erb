@@ -23,7 +23,7 @@
               <% if battle.winner_id == battle.attacker_id %>
                 <span style="color:red;">
                   <% unless battle.score.nil? %>
-                    "成功, 积分 +"
+                    成功, 积分+
                     <%= battle.score  %>
                   <% end %>
                 </span>
@@ -32,7 +32,7 @@
               <% else %>
                 <span style="color:green;">
                 <% unless battle.score.nil? %>
-                  "失败, 积分 -"
+                  失败, 积分-
                   <%= battle.score  %>
                 <% end %>
               <% end %>
