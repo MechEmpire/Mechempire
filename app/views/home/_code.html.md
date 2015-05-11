@@ -1,3 +1,7 @@
+### [蓝色空间](http://mechempire.cn/meches/554b67d76d656364ee0c0000) 代码
+
+> 方神说：你们随便看，没事！
+
     RobotAI_Order go(double x,double y,const RobotAI_BattlefieldInformation& info, int myID){
     RobotAI_Order order;
     auto me = info.robotInformation[myID];
