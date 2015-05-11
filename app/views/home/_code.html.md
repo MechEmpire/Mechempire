@@ -1,4 +1,3 @@
-```
     RobotAI_Order go(double x,double y,const RobotAI_BattlefieldInformation& info, int myID){
     RobotAI_Order order;
     auto me = info.robotInformation[myID];
@@ -139,4 +138,3 @@
 
 
     }
-```
