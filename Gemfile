@@ -44,6 +44,7 @@ gem 'mongoid-grid_fs', github: 'ahoward/mongoid-grid_fs'
 gem 'rails-i18n', '~> 4.0.0'
 gem 'redcarpet'
 gem 'open4'
+gem 'markdown-rails'
 
 # gem 'capistrano', '~> 3.3.0'
 
