@@ -33,6 +33,9 @@ class HomeController < ApplicationController
   def stat
   end
 
+  def opensource
+  end
+
   def vedio
     @id = params[:id]
   end

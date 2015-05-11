@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   match '/newer',to: 'home#newer', via: 'get'
   match '/download',to: 'home#download', via: 'get'
   match '/stat', to: 'home#stat',via: 'get'
+  match '/opensource', to: 'home#opensource', via: 'get'
 
   match '/users/followed/:id', to: 'users#followed', via: 'get', as: :followed
   match '/users/follower/:id', to: 'users#follower', via: 'get', as: :follower
