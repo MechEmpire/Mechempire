@@ -31,7 +31,8 @@ class MechesController < ApplicationController
           format.html { redirect_to @mech, notice: '机甲创建成功，快去战斗吧！' }
           format.json { render :show, status: :created, location: @mech }
         else
-          flash[:danger] = "代码编译失败，错误信息:" + stderr
+          #flash[:danger] = "代码编译失败，错误信息:" + stderr
+          @compile_error = "代码编译失败，错误信息:" + stderr
           FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}"
           @mech.destroy
           format.html { render :new }
@@ -101,9 +102,10 @@ class MechesController < ApplicationController
           format.html { redirect_to @mech, notice: '机甲更新成功，快去战斗吧！' }
           format.json { render :show, status: :created, location: @mech }
         else
-          flash[:danger] = "代码编译失败，错误信息:" + stderr
+          #flash[:danger] = "代码编译失败，错误信息:" + stderr
           #FileUtils.rm_r "public/uploads/#{@mech.class.to_s.underscore}/code/#{@mech.id}/code"
-          format.html { render :new }
+          @compile_error = "代码编译失败，错误信息:" + stderr
+          format.html { render :edit }
           format.json { render json: @mech.errors, status: :unprocessable_entity }
         end
       else

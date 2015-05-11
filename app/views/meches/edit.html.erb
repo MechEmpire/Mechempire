@@ -3,6 +3,11 @@
   <center class="row">
     <h1>更新机甲</h1>
   </center>
+  <% unless @compile_error.nil? %>
+    <div class="alert alert-warning" role="alert">
+      <%= @compile_error %>
+    </div>
+  <% end %>
   <div class="row">
     <hr>
     <%= render 'create_mech_form'%>
