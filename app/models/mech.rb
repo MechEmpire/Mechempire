@@ -84,6 +84,10 @@ class Mech
       f.write(status.exitstatus)
     end
 
+    if compile_error
+      compile_error = compile_error.gsub('home/rails-deploy/Mechempire/public/uploads/mech/code/',' ')
+    end
+
     return status.exitstatus, compile_error
   end
 
