@@ -1,0 +1,248 @@
+<div class="custom-container main-body">
+  <div class="row">
+    <div class="col-md-3 custom-well">
+      <%=link_to gravatar_for(@user, size: 240), @user , :class => "thumbnail" %>
+      <h3 class="user-info-name">
+        <%= @user.name %> 
+        <small>
+          <% if @user.sex == "boy" %>
+            <i class="fa fa-mars"></i>
+          <% elsif @user.sex == "girl" %>
+            <i class="fa fa-venus"></i>
+          <% end %>
+        </small>
+        <% if !@user.is_actived %>
+          <small>未激活</small>
+        <% end %>
+        <% if @user.status == "LOCKED" %>
+          <small>用户被锁定</small>
+        <% end %>
+      </h3>
+      <hr>
+      <ul class="user-info-detial">
+        <% unless @user.motto.nil? %>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-volume-up"></i>
+          </span>
+          <span>
+            <%= @user.motto %>
+          </span>
+        </li>
+        <% end %>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-envelope"></i>
+          </span> 
+          <span>
+            <%= @user.email %>
+          </span>
+        </li>
+        <% unless @user.blog.nil? %>
+          <li>
+            <span class="user-info-icon">
+              <i class="fa fa-link"></i>
+            </span> 
+            <span>
+              <%= link_to(@user.blog.truncate(27), @user.blog) %>
+            </span>
+          </li>
+        <% end %>
+        <li>
+          <span class="user-info-icon">
+            <i class="fa fa-clock-o"></i>
+          </span>
+          <span>
+            <%= @user.join_time.strftime("%Y年%m月%d") %>加入
+          </span>
+        </li>
+      </ul>
+      <hr>
+      <div class="row">
+        <div class="col-md-6 user-follow follower">
+          <a href="/users/follower/<%= @user.id %>" title="关注者">
+            <span>关注者</span><br>
+            <strong id="follower"><%= @user.follower.count%></strong>
+            <label> 人</label>
+          </a>
+        </div>
+        <div class="col-md-6 user-follow">
+          <a href="/users/followed/<%= @user.id %>" title="关注了">
+            <span>关注了</span><br>
+            <strong><%= @user.following.count%></strong>
+            <label> 人</label>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row custom-well my-achieve">
+        <div class="row">
+          <div class="col-md-9 zhanjiyilan">
+            <h3>战绩一览</h3>
+          </div>
+          <% unless current_user?(@user) %>
+            <div class="col-md-3">
+              <% unless current_user.nil? %>
+                <% unless(current_user.following.include?(@user)) %>
+                  <%= link_to "关注", follow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{@user._id}" %>
+                <% else %>
+                  <%= link_to "取消关注", unfollow_user_path(@user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{@user._id}" %>
+                <% end %>
+              <% else %>
+                <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <hr>
+        <div class="col-md-12 row">
+          <div class="col-md-3">
+            <i class="fa fa-space-shuttle"></i>
+            <span>战斗 <%= @user.battle_count %> </span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-smile-o"></i>
+            <span>胜利 <%= @user.win_times %> </span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-frown-o"></i>
+            <span>平局 <%= @user.draw_times %> </span>
+          </div>
+        </div>
+        <div class="col-md-12 row">
+          <!-- <div class="col-md-3">
+            <i class="fa fa-arrow-circle-up"></i>
+            <span>排名 25 </span>
+          </div> -->
+          <div class="col-md-3">
+            <i class="fa fa-rocket"></i>
+            <span>机甲 <%= @user.meches.count %> </span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-frown-o"></i>
+            <span>失败 <%= @user.fail_times %> </span>
+          </div>
+          <div class="col-md-3">
+            <i class="fa fa-plus-circle"></i>
+            积分 <span id="my-score"><%= @user.score %> </span>
+          </div>
+        </div>
+      </div>
+      <div class="custom-well">
+      <h3>拥有的机甲</h3>
+      <hr>
+      <% @user.meches_per_page(params[:page]).each do |mech| %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="my-mech-head">
+              <span class="my-mech-name">
+                <%= link_to(mech.name.nil? ? "无名英雄" : mech.name, mech) %> &nbsp;
+                <% if !current_user?(mech.user) %>
+                  <% if mech.state == "SUCCESS" %>
+                    <% unless signed_in? %>
+                      <%= link_to "与之战斗", signin_path ,:class => "btn btn-sm custom-btn"%>
+                    <% else %>
+                      <a href="#" class="btn btn-sm custom-btn" data-toggle="modal" data-target="#myMech-<%=mech._id %>">与之战斗</a>
+                      <div class="modal fade" id="myMech-<%=mech._id %>" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <h4 class="modal-title" id="ModalLabel">选择一个自己的机甲</h4>
+                            </div>
+                            <div class="modal-body row">
+                              <div class="container-fluid row col-md-12">
+                                <% if my_meches = current_user.meches.where(:state => "SUCCESS").all %>
+                                  <% my_meches.each do |m| %>
+                                    <center class="col-md-4 choise-my-mech">
+                                      <a href="/battle/<%= mech._id%>/<%= m._id %>" data-method="post"><%= m.name %></a>
+                                    </center>
+                                  <% end %>
+                                <% else %>
+                                  <center>暂无可战斗机甲，快去添加吧</center>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% else %>
+                  <%= link_to "更新机甲", edit_mech_path(mech),
+                                  :class => "btn btn-sm custom-btn" %>
+                <% end %>
+              </span>
+              <span class="pull-right my-mech-create-at"><%= time_ago_in_words(mech.create_at) + "前创建" %></span>
+            </div>
+            <br>
+            <div class="my-mech-body">
+              <div class="my-mech-info">
+                <p>
+                <strong><i class="fa fa-space-shuttle"></i> </strong>战斗：<%= mech.battles.count %> / 
+                <strong><i class="fa fa-smile-o"></i> 胜利：</strong><%= mech.win_times %> / 
+                <strong><i class="fa fa-frown-o"></i> 失败：</strong><%= mech.fail_times %>
+                </p>
+                <!-- <p><strong><i class="fa fa-smile-o"></i> 胜利：</strong><%#= mech.win_times %></p>
+                <p><strong><i class="fa fa-frown-o"></i> 失败：</strong><%#= mech.fail_times %></p> -->
+                <p><strong><i class="fa fa-rocket"></i> 机甲引擎：</strong><%= link_to(mech.engine_info.name, mech.engine_info) unless mech.engine_info.nil? %></p>
+                <p><strong><i class="fa fa-bomb"></i> 机甲武器：</strong><%= link_to(mech.weapon_info.name, mech.weapon_info) unless mech.weapon_info.nil? %></p>
+                <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong><%= mech.manifesto%></p>
+                <p><strong><i class="fa fa-bar-chart"></i> 机甲状态：</strong>
+                  <% if mech.state == "SUCCESS" %>
+                    <% if mech.protect_time + mech.protect_begin_time >= Time.now.to_i %>
+                      <span id="mech-state-iden" style="color:green;">护盾保护中，剩余时间：<%= time_ago_in_words(Time.at(mech.protect_begin_time + mech.protect_time)) %></span>
+                    <% else %>
+                      <span id="mech-state-iden" style="color:red;">备战中</span>
+                    <% end %>
+                  <% else %>
+                    <span style="color:green;">编译失败</span>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <% end %>
+        <center>
+          <%= paginate @user.meches_per_page(params[:page]), :outer_window => 2 %>
+        </center>
+      </div>
+      <div class="row custom-well">
+        <h3>参与的战斗</h3>
+        <ul class="users">
+          <% @user.battles.pop(10).reverse_each do |battle| %>
+            <% if battle.defender.user && battle.attacker.user && battle.defender && battle.attacker%>
+              <li>
+                <span class="col-md-2">
+                  <center class="battle-star">
+                    <%= battle.starers.count %><br>
+                    赞
+                  </center>
+                </span>
+                <span class="col-md-7 battle-info">
+                  <div class="battle-info-time">
+                    <%= time_ago_in_words(battle.time) + "前" %><br>
+                  </div>
+                  <div class="battle-info-double">
+                    <%= link_to battle.defender.user.name, battle.defender.user %> ::
+                    <%= link_to battle.defender.name, battle.defender %>
+                    VS 
+                    <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
+                    <%= link_to battle.attacker.name, battle.attacker %>
+                  </div>
+                </span>
+                <span class="col-md-3">
+                  <br>
+                  <%= link_to "去观战", battle %>
+                </span>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

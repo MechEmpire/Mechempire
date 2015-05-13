@@ -1,0 +1,75 @@
+<nav class="navbar navbar-inverse navbar-static-top mech-nav">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/"><%=image_tag("mech-logo-s.png",:class => "mech-nav-logo")%></a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse" aria-expanded="false">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/">首页</a>
+        </li>
+        <li>
+          <a href="/mechlist">装备介绍</a>
+        </li>
+        <li>
+          <a href="/users">英雄榜</a>
+        </li>
+        <li>
+          <a href="/battles">实时战况</a>
+        </li>
+        <li>
+          <a href="/highlights">精彩战斗</a>
+        </li>
+        <li>
+          <a href="/opensource">代码分享</a>
+        </li>
+        <li>
+          <a href="/download">资源下载</a>
+        </li>
+         <li>
+          <a href="https://www.digitalocean.com/?refcode=aace178c73f1">服务器</a>
+        </li>
+        <li>
+          <a href="/about">关于</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <% if signed_in? %>
+          <li role="presentation" class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">
+              <i class="fa fa-user"></i> 
+              <%= current_user.name %> 
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><%= link_to "个人主页", current_user %></li>
+              <li><%= link_to "设置", edit_user_path(current_user) %></li>
+              <li><%= link_to "创建机甲", new_mech_path %></li>
+              <li class="divider"></li>
+              <% if current_user.admin? %>
+                <li><%= link_to "添加载具", new_carrier_path %></li>
+                <li><%= link_to "添加武器", new_weapon_path %></li>
+                <li><%= link_to "创建比赛", new_match_path %></li>
+                <li><%= link_to "管理机甲", meches_path %></li>
+                <li><a href="/stat" title="数据中心">数据中心</a></li>
+                <li class="divider"></li>
+              <% end %>
+              <li>
+                <%= link_to "登出", signout_path, method: "delete" %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "注册", signup_path %></li>
+          <li><%= link_to "登录", signin_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

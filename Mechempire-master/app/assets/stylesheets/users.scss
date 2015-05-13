@@ -1,0 +1,88 @@
+// Place all the styles related to the Users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.new_user{
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+.edit_user{
+  margin-top: 30px;
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  padding-left: 0px;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid #444;
+    &:last-child {
+      border-bottom: 1px solid #444;
+    }
+  }
+}
+
+
+// custom user
+.user-info-detial{
+  padding-left: 0px;
+  li{
+    line-height: 1.8em;
+  }
+}
+.user-info-icon{
+  color: #ccc;
+  margin-right: 0.2em;
+}
+.follower{
+  // border-right: 1px solid #ccc;
+}
+.user-follow{
+  a{
+    line-height: 200%;
+    span{
+      color: #999;
+      font-size: 15px;
+    }
+    strong, label{
+      font-size: 18px;
+    }
+  }
+}
+
+.my-mech-body{
+  margin-top: 5px;
+}
+.my-mech-name{
+  font-size: 20px;
+}
+.my-mech-create-at{
+  font-size: 13px;
+  color: #999;
+}
+.my-mech-info{
+  margin-left: 20px;
+}
+.my-battle-show{
+  padding: 20px 0;
+  // font-size: 20px;
+  // height: 40px;
+}
+.my-battle-icon{
+  font-size: 200px;
+  color: red;
+}
+.my-battle-user-info{
+  margin-top: 5%;
+}
+.my-battle-mech-info{
+  text-align: left;
+}
+.my-achieve{
+  line-height: 2.0em;
+}
+.zhanjiyilan{
+  padding-left: 0px !important;
+}

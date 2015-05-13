@@ -1,0 +1,198 @@
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.mech-nav{
+	margin-bottom: 0;
+	background-color: #fff;
+}
+.navbar{
+	margin-bottom: 0px !important;
+	// padding-bottom: 0;
+}
+.mech-nav-logo{
+  height: 40px;
+  margin-top: 5px;
+}
+
+.navbar-inverse {
+  background-color: #000 !important;
+}
+
+div.carousel{
+    height: 450px;
+}
+div.about-main{
+	height: 300px;
+  width: 100%;
+  margin: 0;
+	background-image: url("http://ww2.sinaimg.cn/mw1024/933baedejw1er9r2e4nv8j21hc0u00zv.jpg");
+  background-size: cover;
+  background-position: center left;
+}
+
+div.aboutus-main{
+  height: 300px;
+  width: 100%;
+  margin: 0;
+  background-image: url("http://ww3.sinaimg.cn/mw1024/9631b1bbjw1er37cx0cjkj21hc0u010v.jpg");
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: bottom left;
+}
+
+div.achieve-main{
+  height: 300px;
+  width: 100%;
+  margin: 0;
+  background-image: url('http://ww4.sinaimg.cn/mw1024/933baedejw1er9q252zpdj21kw0w0n1a.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+div.join-main{
+  height: 300px;
+  width: 100%;
+  margin: 0;
+  background-image: url('http://ww1.sinaimg.cn/mw1024/933baedejw1er9qj0wytjj21kw0sgdkx.jpg');
+  background-repeat:no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+div.carousel .item,
+div.carousel .item.active,
+div.carousel .carousel-inner {
+    height: 100%;
+}
+
+div.carousel .fill {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+.about-menu {
+  width: 100%;
+  margin-bottom: 40px;
+  margin-top:20px;
+}
+
+.selected {
+  font-weight: bold;
+  color: #f7f7f7 !important;
+  border-bottom: 3px solid #33c8f3 !important;
+}
+
+.about-menu-link {
+  float: left;
+  width: 25%;
+  padding: 20px 0;
+  font-size: 18px;
+  color: #777;
+  text-align: center;
+  border-bottom: 3px solid #444;
+}
+.about-menu-link:hover{
+    border-bottom-color: #33c8f3;
+}
+.img-center {
+  margin: 0 auto;
+}
+.helper-row{
+  // margin: 80px 0;
+}
+.helper-item{
+  margin-top: 20px;
+  text-align: center;
+  a{
+    font-size: 24px;
+    color: #fff;
+    span{
+      position: absolute;
+      top: 50%;
+      left: 35%;
+      color: #fff;
+      font-size: 30px;
+    }
+  }
+}
+.helper-image{
+  max-width: 360px;
+  overflow: hidden;
+}
+.join-us{
+  p{
+    font-size: 18px;
+  }
+}
+
+.home-page-newer-title{
+  margin: 80px 0 40px 0;
+  h1{
+    // color: #999;
+  }
+}
+.home-page-newer-item{
+  padding-bottom: 60px;
+  h2 {
+    margin-top: 40px;
+  }
+  p{
+    // color: #999;
+    line-height: 2em;
+    font-size: 18px;
+  }
+  a{
+    color: #ccc !important;
+  }
+}
+.home-page-gray{
+  background-image: url('http://ww2.sinaimg.cn/mw1024/9631b1bbgw1er9od04agmj20rs0ixgry.jpg');
+  background-repeat: no-repeat;
+  padding-bottom: 60px;
+  background-size: cover;
+  color: #fff;
+}
+.home-page-black{
+  background-color: #000;
+  color: #fff;
+}
+.home-page-top{
+  // padding-bottom: 80px;
+  padding-bottom: 20px;
+}
+.home-page-content-gray{
+  margin-top: 100px;
+  text-align: left;
+  background-color: rgba(0,0,0,0.4);
+  padding: 20px;
+}
+.reactive{
+  color: #fff !important;
+}
+.choise-my-mech{
+  margin: 40px 0;
+}
+
+.user-list-info{
+  font-size: 14px;
+}
+hr.main-page-hr{
+  border-top: 1px solid #fff;
+}
+.my-temp{
+  padding: 0px 40px 40px;
+}
+.img-aboutus{
+  width: 100px;
+  height: 100px;
+}
+.newer{
+  p{
+    line-height: 25px;
+    font-size: 18px;
+    color: #fff;
+  }
+}

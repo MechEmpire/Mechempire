@@ -1,0 +1,23 @@
+<%= form_for(@match) do |f| %>
+
+  <%= render "error_message" %>
+  <div class="form-group">
+    <%= f.label :name, :value => "比赛名称" %>
+    <%= f.text_field :name, :class => "form-control", :placeholder => " 请输入比赛名称"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :introduce, :value => "比赛介绍" %>
+    <%= f.text_area :introduce, :class => "form-control", :placeholder => " 请输入比赛介绍", :row => 10 %>
+  </div>
+  <div class="form-group">
+    <%= f.label :start_time, :value => "比赛开始时间" %>
+    <%= f.datetime_local_field :start_time, :class => "form-control", :placeholder => " 比赛开始时间"%>
+  </div>
+  <div class="form-group">
+    <%= f.label :end_time, :value => "比赛结束时间" %>
+    <%= f.datetime_local_field :end_time, :class => "form-control", :placeholder => " 比赛结束时间"%>
+  </div>
+  <div class="form-group">
+    <%= f.submit :class => "btn btn-success btn-block", :value => "提交" %>
+  </div>
+<% end %>

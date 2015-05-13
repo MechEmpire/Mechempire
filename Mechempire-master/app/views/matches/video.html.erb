@@ -1,0 +1,39 @@
+<div class="container">
+  <h1>
+  <%= @match.name %>
+  <small>
+    <%= I18n.l @match.start_time, :format => :long %> 至 <%= I18n.l @match.end_time, :format => :long %>
+  </small>
+  </h1>
+  <hr>
+</div>
+<center class="container main-body">
+  <ul class="users">
+    <% @battles.each do |battle| %>
+      <li>
+        <span class="col-md-2">
+          <div class="battle-star">
+            233<br>
+            赞
+          </div>
+        </span>
+        <span class="col-md-7 battle-info">
+          <div class="battle-info-time">
+            <%= time_ago_in_words(battle.time) + "前" %><br>
+          </div>
+          <div class="battle-info-double">
+            <%= link_to battle.defender.user.name, battle.defender.user %> ::
+            <%= link_to battle.defender.name, battle.defender %>
+            VS 
+            <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
+            <%= link_to battle.attacker.name, battle.attacker %>
+          </div>
+        </span>
+        <span class="col-md-3">
+          <%= link_to "去观战", battle %>
+        </span>
+      </li>
+    <% end %>
+  </ul>
+  <%= paginate @battles, :outer_window => 2 %>
+</center>

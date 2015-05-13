@@ -1,0 +1,14 @@
+<% if @carrier.errors.any? %>
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <%= @carrier.errors.count %> 个表单错误，请重新填写.
+    </div>
+    <div class="panel-body">
+      <ul>
+      <% @carrier.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

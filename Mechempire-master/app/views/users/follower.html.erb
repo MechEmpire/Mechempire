@@ -1,0 +1,9 @@
+<center class="container main-body custom-well">
+  <h1><%= @user.name%> 的关注者</h1>
+
+  <ul class="users">
+    <%= render @user.follower %>
+  </ul>
+
+  <%#= paginate @user.follower, :outer_window => 2 %>
+</center>
