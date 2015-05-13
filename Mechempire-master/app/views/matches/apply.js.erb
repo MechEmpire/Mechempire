@@ -1,5 +1,0 @@
-$("#apply").html("已报名");
-$("#apply").attr("href","javascript:void(0);");
-$("#apply").attr("disabled","disabled");
-$("#applyer_count").html(<%= @match.users.count %>);
-$("#match_user").append('<%= link_to gravatar_for(current_user, size: 24), current_user, :class => "match-avatar"%>');

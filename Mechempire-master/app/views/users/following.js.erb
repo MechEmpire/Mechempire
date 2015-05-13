@@ -1,5 +1,0 @@
-$("#following-<%= @user._id %>").on('ajax:success', function(event, xhr, data, status, error) {
-  $(this).html("取消关注");
-  $(this).attr("href", $(this).attr("href").replace("/following","/unfollowing"));
-  $("#follower").html("<%= @follower_count %>");
-});
