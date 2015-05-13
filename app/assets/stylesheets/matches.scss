@@ -1,0 +1,14 @@
+// Place all the styles related to the matches controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.match-avatar{
+  img{
+    margin: 5px 0;
+  }
+}
+.match-status{
+  background-color: rgba(53, 95, 28, 0.4);
+  color: #fff;
+  padding: 10px 5px;
+  width: 30%;
+}

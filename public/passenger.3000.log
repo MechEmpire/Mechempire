@@ -1,0 +1,21 @@
+[ 2015-04-09 13:05:23.7399 964/7fb46da377c0 age/Wat/Main.cpp:1257 ]: Starting PassengerAgent watchdog...
+[ 2015-04-09 13:05:23.7538 967/7f2b419097c0 age/Hel/Main.cpp:883 ]: Starting PassengerAgent server...
+[ 2015-04-09 13:05:23.7542 967/7f2b419097c0 age/Hel/Main.cpp:232 ]: PassengerAgent server running in multi-application mode.
+[ 2015-04-09 13:05:23.7579 967/7f2b419097c0 age/Hel/Main.cpp:637 ]: PassengerAgent server online, PID 967
+[ 2015-04-09 13:05:23.7728 972/7fea906c17c0 age/Log/Main.cpp:431 ]: Starting PassengerAgent logger...
+[ 2015-04-09 13:05:23.7748 972/7fea906c17c0 age/Log/Main.cpp:312 ]: PassengerAgent logger online, PID 972
+2015/04/09 13:05:25 [error] 983#0: *4 "/home/rails-deploy/Mechempire/public/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+2015/04/09 13:05:40 [error] 983#0: *5 open() "/home/rails-deploy/Mechempire/public/public/users/55100ae06d65636585000000" failed (2: No such file or directory), client: 106.37.236.170, server: _, request: "GET /users/55100ae06d65636585000000 HTTP/1.1", host: "mechempire.cn:3000", referrer: "http://mechempire.cn:3000/users/5510c9af6d65636db0000000"
+2015/04/09 13:05:47 [error] 983#0: *5 "/home/rails-deploy/Mechempire/public/public/index.html" is not found (2: No such file or directory), client: 106.37.236.170, server: _, request: "GET / HTTP/1.1", host: "mechempire.cn:3000"
+2015/04/09 13:05:52 [error] 983#0: *5 "/home/rails-deploy/Mechempire/public/public/index.html" is not found (2: No such file or directory), client: 106.37.236.170, server: _, request: "GET / HTTP/1.1", host: "mechempire.cn:3000"
+
+[ 2015-04-09 13:06:04.8178 967/7f2b3af2c700 age/Hel/Main.cpp:447 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2015-04-09 13:06:04.8179 967/7f2b419097c0 age/Hel/Main.cpp:806 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2015-04-09 13:06:04.8180 967/7f2b3a72b700 Ser/Server.h:453 ]: [AdminServer] Shutdown finished
+[ 2015-04-09 13:06:04.8181 967/7f2b3af2c700 Ser/Server.h:453 ]: [ServerThr.1] Shutdown finished
+
+[ 2015-04-09 13:06:04.8218 972/7fea89ca9700 age/Log/Main.cpp:338 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2015-04-09 13:06:04.8219 972/7fea906c17c0 age/Log/Main.cpp:400 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2015-04-09 13:06:04.8219 972/7fea89ca9700 Ser/Server.h:453 ]: [LoggerAdminServer] Shutdown finished
+[ 2015-04-09 13:06:04.8221 972/7fea906c17c0 age/Log/Main.cpp:425 ]: PassengerAgent logger shutdown finished
+[ 2015-04-09 13:06:04.8321 967/7f2b419097c0 age/Hel/Main.cpp:868 ]: PassengerAgent server shutdown finished

@@ -1,0 +1,70 @@
+<div class="container">
+  <h1>
+  <%= @match.name %>
+  <small>
+    <%= I18n.l @match.start_time, :format => :long %> 至 <%= I18n.l @match.end_time, :format => :long %>
+  </small>
+  </h1>
+  <hr>
+</div>
+<div class="container main-body">
+  <div class="col-md-9">
+    <p><%= markdown(@match.introduce) %></p>
+  </div>
+  <div class="col-md-3">
+    <% unless @match.has_end? %>
+      <% if current_user.nil? %>
+        <%= link_to "立即报名", sign_in_path %>
+      <% elsif @match.users.include?(current_user) %>
+        <h3>我的状态</h3>
+        <hr>
+        <% if current_mech = @match.meches.find_by(:user => current_user) %>
+          <p>参赛机甲：<%= link_to current_mech.name, current_mech %></p>
+        <% else %>
+          <p>尚未提交参赛机甲</p>
+        <% end %>
+        <button class="btn btn-default" data-toggle="modal" data-target="#myMech">更新机甲</button>
+        <div class="modal fade" id="myMech" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="ModalLabel">选择一个自己的机甲</h4>
+              </div>
+              <div class="modal-body row">
+                <div class="container-fluid row col-md-12">
+                  <% current_user.meches.each do |m| %>
+                    <center class="col-md-4 choise-my-mech">
+                      <a href="/matches/addmech/<%= @match._id%>/<%= m._id%>" data-remote="true" data-method="post"><%= m.name %></a>
+                    </center>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <a id="apply" href="/matches/apply/<%= @match._id %>" class="btn btn-default btn-block" data-remote="true" data-method="post"> 立即报名 </a>
+      <% end %>
+    <% else %>
+      <!-- <a href="#" title="查看比赛结果" class="btn btn-default btn-block custom-btn">查看比赛结果</a> -->
+      <%= link_to "查看比赛视频", match_racecard(@match), :class => "btn btn-default btn-block custom-btn"%>
+    <% end %>
+    <h3><span id="applyer_count"><%= @match.users.count %></span> 人报名</h3>
+    <hr>
+    <div id="match_user">
+      <% @match.users.each do |user|%>
+        <%= link_to gravatar_for(user, size: 24), user, :class => "match-avatar"%>
+      <% end %>
+    </div>
+    <% if signed_in? && current_user.admin? %>
+      <h3>管理比赛</h3>
+      <hr>
+        <%= link_to '编辑比赛', edit_match_path(@match), :class => "btn btn-default btn-block"%>
+        <%= link_to '删除比赛', @match, method: :delete,
+                                data: { confirm: "确认删除吗？" }, :class => "btn btn-danger btn-block" %>
+        <%= link_to '生成赛程表', gen_match_racecard_path(@match), :class => "btn btn-success btn-block", :method => "post" %>
+      </ul>
+    <% end %>
+  </div>
+</div>

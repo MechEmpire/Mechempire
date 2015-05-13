@@ -1,0 +1,26 @@
+2015/04/18 11:35:00 [emerg] 1824#0: bind() to 0.0.0.0:80 failed (13: Permission denied)
+[ 2015-04-18 11:36:10.9098 1849/7f47596857c0 age/Wat/Main.cpp:1257 ]: Starting PassengerAgent watchdog...
+[ 2015-04-18 11:36:10.9208 1852/7ff37f9fb7c0 age/Hel/Main.cpp:883 ]: Starting PassengerAgent server...
+[ 2015-04-18 11:36:10.9210 1852/7ff37f9fb7c0 age/Hel/Main.cpp:232 ]: PassengerAgent server running in multi-application mode.
+[ 2015-04-18 11:36:10.9230 1852/7ff37f9fb7c0 age/Hel/Main.cpp:637 ]: PassengerAgent server online, PID 1852
+[ 2015-04-18 11:36:10.9346 1857/7f95a85727c0 age/Log/Main.cpp:431 ]: Starting PassengerAgent logger...
+[ 2015-04-18 11:36:10.9364 1857/7f95a85727c0 age/Log/Main.cpp:312 ]: PassengerAgent logger online, PID 1857
+2015/04/18 11:36:13 [error] 1865#0: *4 "/home/rails-deploy/Mechempire/compile/public/index.html" is not found (2: No such file or directory), client: 127.0.0.1, server: _, request: "HEAD / HTTP/1.1", host: "0.0.0.0"
+2015/04/18 11:36:19 [error] 1865#0: *5 "/home/rails-deploy/Mechempire/compile/public/index.html" is not found (2: No such file or directory), client: 121.225.242.169, server: _, request: "GET / HTTP/1.1", host: "www.mechempire.cn"
+2015/04/18 11:36:19 [error] 1865#0: *5 open() "/home/rails-deploy/Mechempire/compile/public/favicon.ico" failed (2: No such file or directory), client: 121.225.242.169, server: _, request: "GET /favicon.ico HTTP/1.1", host: "www.mechempire.cn"
+2015/04/18 11:36:19 [error] 1865#0: *5 open() "/home/rails-deploy/Mechempire/compile/public/favicon.ico" failed (2: No such file or directory), client: 121.225.242.169, server: _, request: "GET /favicon.ico HTTP/1.1", host: "www.mechempire.cn"
+2015/04/18 11:39:29 [error] 1865#0: *7 "/home/rails-deploy/Mechempire/compile/public/index.html" is not found (2: No such file or directory), client: 106.37.236.169, server: _, request: "GET / HTTP/1.1", host: "mechempire.cn"
+2015/04/18 11:39:29 [error] 1865#0: *7 open() "/home/rails-deploy/Mechempire/compile/public/favicon.ico" failed (2: No such file or directory), client: 106.37.236.169, server: _, request: "GET /favicon.ico HTTP/1.1", host: "mechempire.cn", referrer: "http://mechempire.cn/"
+2015/04/18 11:40:47 [error] 1865#0: *12 "/home/rails-deploy/Mechempire/compile/public/index.html" is not found (2: No such file or directory), client: 106.37.236.169, server: _, request: "GET / HTTP/1.1", host: "mechempire.cn"
+
+[ 2015-04-18 11:41:17.7525 1852/7ff37901e700 age/Hel/Main.cpp:447 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2015-04-18 11:41:17.7526 1852/7ff37f9fb7c0 age/Hel/Main.cpp:806 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2015-04-18 11:41:17.7527 1852/7ff37881d700 Ser/Server.h:453 ]: [AdminServer] Shutdown finished
+[ 2015-04-18 11:41:17.7527 1852/7ff37901e700 Ser/Server.h:453 ]: [ServerThr.1] Shutdown finished
+
+[ 2015-04-18 11:41:17.7531 1857/7f95a1b5a700 age/Log/Main.cpp:338 ]: Signal received. Gracefully shutting down... (send signal 2 more time(s) to force shutdown)
+[ 2015-04-18 11:41:17.7531 1857/7f95a85727c0 age/Log/Main.cpp:400 ]: Received command to shutdown gracefully. Waiting until all clients have disconnected...
+[ 2015-04-18 11:41:17.7532 1857/7f95a1b5a700 Ser/Server.h:453 ]: [LoggerAdminServer] Shutdown finished
+[ 2015-04-18 11:41:17.7533 1857/7f95a85727c0 age/Log/Main.cpp:425 ]: PassengerAgent logger shutdown finished
+[ 2015-04-18 11:41:17.7634 1852/7ff37f9fb7c0 age/Hel/Main.cpp:868 ]: PassengerAgent server shutdown finished
+[ 2015-04-18 11:41:17.7806 2010/7f47596857c0 age/Wat/Main.cpp:348 ]: Cannot open cleanup PID file /tmp/passenger-standalone.18jygyi/temp_dir_toucher.pid

@@ -1,0 +1,34 @@
+development:
+  sessions:
+    default:
+      database: mech_website_development
+      hosts:
+        - localhost:27017
+      options:
+  options:
+    raise_not_found_error: false
+test:
+  sessions:
+    default:
+      database: mech_website_test
+      hosts:
+        - localhost:27017
+      options:
+        read: primary
+        max_retries: 1
+        retry_interval: 0
+production:
+  sessions:
+    default:
+      hosts:
+        - localhost:27017
+      database: mechempire
+      username: user
+      password: password
+  options:
+    include_root_in_json: true
+    include_type_for_serialization: true
+    scope_overwrite_exception: true
+    raise_not_found_error: false
+    use_activesupport_time_zone: false
+    use_utc: true

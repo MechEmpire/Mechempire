@@ -1,0 +1,50 @@
+<center class="container main-body custom-well">
+  <h1>实时战况</h1>
+  <ul class="users">
+    <% @battles.each do |battle| %>
+      <% if battle.defender && battle.attacker && battle.defender.user && battle.attacker.user%>
+        <li>
+          <span class="col-md-2">
+            <div class="battle-star">
+              <%= battle.starers.count %><br>
+              赞
+            </div>
+          </span>
+          <span class="col-md-8 battle-info">
+            <div class="battle-info-time">
+              <%= time_ago_in_words(battle.time) + "前" %><br>
+            </div>
+            <div class="battle-info-double">
+              <%= link_to battle.attacker.user.name, battle.attacker.user %> ::
+              <%= link_to battle.attacker.name, battle.attacker %>
+              攻击
+              <%= link_to battle.defender.user.name, battle.defender.user %> ::
+              <%= link_to battle.defender.name, battle.defender %>
+              <% if battle.winner_id == battle.attacker_id %>
+                <span style="color:red;">
+                  <% unless battle.score.nil? %>
+                    成功, 积分 +
+                    <%= battle.score %>
+                  <% end %>
+                </span>
+              <% elsif battle.winner_id.nil? %>
+                平局
+              <% else %>
+                <span style="color:green;">
+                <% unless battle.score.nil? %>
+                  失败, 积分 -
+                  <%= battle.score %>
+                <% end %>
+              <% end %>
+            </div>
+          </span>
+          <span class="col-md-2">
+            <br>
+            <%= link_to "去观战", battle , :class => "btn btn-sm custom-btn pull-right" %>
+          </span>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+  <%= paginate @battles, :outer_window => 2 %>
+</center>
