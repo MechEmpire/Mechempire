@@ -46,15 +46,18 @@ class Mech
   end
 
   def mech_info_json
-    mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
+    pid, stdin, stdout, stderr = Open4.popen4("compile/get_info.sh -p #{self.code_dir}")
+    # mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
+    return stdout
   end
 
   def get_mech_info
 
     if FileTest::exist?("#{self.code_dir}libmyAI.so")
       self.update_attribute("state","SUCCESS")
-      mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
-      json_info = JSON::parse(mech_info)
+      # mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
+      pid, stdin, stdout, stderr = Open4.popen4("compile/get_info.sh -p #{self.code_dir}")
+      json_info = JSON::parse(stdout)
       self.update_attributes(:name => json_info['name'], 
                             :author => json_info['author'],
                             :weapon => json_info['weapon'],
