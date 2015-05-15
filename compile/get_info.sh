@@ -6,7 +6,7 @@ while getopts "p:" arg
   do
     case $arg in
          p)
-          ./RobotAppearanceReader $OPTARG/libmyAI.so stdout
+            /home/rails-deploy/Mechempire/complie/RobotAppearanceReader $OPTARG/libmyAI.so stdout
             ;;
          ?)
         echo "unkonw argument"
