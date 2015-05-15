@@ -48,7 +48,7 @@ class Mech
   def mech_info_json
     pid, stdin, stdout, stderr = Open4.popen4("compile/get_info.sh -p #{self.code_dir}")
     # mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
-    return stdout
+    return stdout.read.strip
   end
 
   def get_mech_info
@@ -57,7 +57,7 @@ class Mech
       self.update_attribute("state","SUCCESS")
       # mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
       pid, stdin, stdout, stderr = Open4.popen4("compile/get_info.sh -p #{self.code_dir}")
-      json_info = JSON::parse(stdout)
+      json_info = JSON::parse(stdout.read.strip)
       self.update_attributes(:name => json_info['name'], 
                             :author => json_info['author'],
                             :weapon => json_info['weapon'],
