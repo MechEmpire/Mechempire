@@ -1,37 +1,39 @@
 <li>
-  <span class="col-md-3 battle-info">
-    <%= gravatar_for user, size: 52 %>
-    <%= link_to user.name.truncate(10), user %> <br>
-    <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
-    <%= link_to "删除用户", user, method: :delete,
-                                  data: { confirm: "确认删除用户吗？" } %>
-      <% if !user.is_actived %>
-        <small>未激活</small>
+  <div class="col-md-4 battle-info">
+      <%= gravatar_for user, size: 52 %>
+      &nbsp;
+      <%= link_to user.name.truncate(10), user %> <br>
+      <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
+      <%= link_to "删除用户", user, method: :delete,
+                                    data: { confirm: "确认删除用户吗？" } %>
+        <% if !user.is_actived %>
+          <small>未激活</small>
+        <% end %>
       <% end %>
-    <% end %>
-  </span>
-  <span class="col-md-1 user-list-info">
+    </div>
+  </div>
+  <div class="col-md-1 user-list-info">
     机甲 <br>
     <%= user.meches.count %>
-  </span>
-  <span class="col-md-1 user-list-info">
+  </div>
+  <div class="col-md-1 user-list-info">
     战斗 <br>
     <%= user.battle_count %>
-  </span>
-  <span class="col-md-1 user-list-info">
+  </div>
+  <div class="col-md-1 user-list-info">
     胜利 <br>
     <%= user.win_times %>
-  </span>
-  <span class="col-md-2 user-list-info">
+  </div>
+  <div class="col-md-1 user-list-info">
     积分 <br>
     <%= user.score %>
-  </span>
-  <span class="col-md-3 user-list-info">
+  </div>
+  <div class="col-md-3 user-list-info">
     <% unless user.motto.nil? %>
       <%= user.motto %>
     <% end %>
-  </span>
-  <span class="col-md-1 user-list-info">
+  </div>
+  <div class="col-md-1 user-list-info">
     <% unless current_user?(user) %>
       <% unless current_user.nil? %>
         <% unless(current_user.following.include?(user)) %>
@@ -43,5 +45,5 @@
         <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
       <% end %>
     <% end %>
-  </span>
+  </div>
 </li>
