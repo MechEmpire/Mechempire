@@ -1,5 +1,11 @@
 <li>
   <div class="col-md-4 battle-info">
+    <!-- 帮忙写一下分支吧，分成第一、第二、第三、其他前八和非前八的用户 -->
+    <!-- 然后给个排名变量 -->
+    <div class="col-md-2 user-list-info">
+      <span class="glyphicon user-rank-other" aria-hidden="true"></span>
+    </div>
+    <div class="col-md-10">
       <%= gravatar_for user, size: 52 %>
       &nbsp;
       <%= link_to user.name.truncate(10), user %> <br>
