@@ -11,30 +11,28 @@
     <% end %>
   </span>
   <span class="col-md-1 user-list-info">
-    <br> 机甲 <br>
-    <%= user.meches.count %> <br>
+    机甲 <br>
+    <%= user.meches.count %>
   </span>
   <span class="col-md-1 user-list-info">
-    <br> 战斗 <br>
-    <%= user.battle_count %> <br>
+    战斗 <br>
+    <%= user.battle_count %>
   </span>
   <span class="col-md-1 user-list-info">
-    <br> 胜利 <br>
-    <%= user.win_times %> <br>
+    胜利 <br>
+    <%= user.win_times %>
   </span>
   <span class="col-md-2 user-list-info">
-    <br> 积分 <br>
+    积分 <br>
     <%= user.score %>
   </span>
   <span class="col-md-3 user-list-info">
     <% unless user.motto.nil? %>
-      <br>
       <%= user.motto %>
     <% end %>
   </span>
   <span class="col-md-1 user-list-info">
     <% unless current_user?(user) %>
-      <br>
       <% unless current_user.nil? %>
         <% unless(current_user.following.include?(user)) %>
           <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
