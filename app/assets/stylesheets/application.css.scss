@@ -77,13 +77,13 @@ hr{
   border-top: 1px solid #444;
 }
 a:link {  
-  color: #33c8f3 !important;  
+  color: #35bce5 !important;  
   text-decoration: none; 
   transition: 0.3s ease; 
 }  
 a:visited {  
   text-decoration: none;  
-  color: #33c8f3 !important;  
+  color: #35bce5 !important;  
 }  
 a:hover {  
   text-decoration: none;  
@@ -91,7 +91,7 @@ a:hover {
 }  
 a:active {  
   text-decoration: none;  
-  color: #33c8f3 !important;  
+  color: #35bce5 !important;  
 }
 footer{
   color: #999;
@@ -135,8 +135,8 @@ footer{
       width: 100%;
     }
     a:hover, a.current{
-      border: 1px solid #33c8f3;
-      background-color: #33c8f3;
+      border: 1px solid #35bce5;
+      background-color: #35bce5;
     }
   }
 }
@@ -146,7 +146,7 @@ footer{
 }
 a.custom-btn:hover{
   border-color: transparent;
-  background-color: #33c8f3;
+  background-color: #35bce5;
 }
 a.custom-btn{
   color:#fff !important;
