@@ -56,10 +56,10 @@ body {
   font-family: "微软雅黑","Microsoft YaHei", verdana, arial, helvetica, sans-serif;
   font-size: 14px;
   line-height: 150%;
-  color: #F7F7F7;
+  color: #fff;
 }
 h1 h2 h3 h4 h5 h6{
-  color: #F7F7F7;
+  color: #fff;
 }
 p{
   color: #aaa;
@@ -146,11 +146,24 @@ footer{
 }
 a.custom-btn:hover{
   border-color: transparent;
-  background-color: #35bce5;
+  background-color: #33c8f3;
 }
 a.custom-btn{
   color:#fff !important;
 }
+
+.custom-btn2{
+  border-color: transparent;
+  background-color: #2ea4d1;
+}
+a.custom-btn2:hover{
+  border-color: transparent;
+  background-color: #33c8f3;
+}
+a.custom-btn2{
+  color:#fff !important;
+}
+
 .list-group > a, .dropdown-menu, .modal-content{
   background-image: url('http://ww3.sinaimg.cn/bmiddle/9631b1bbjw1eraoavtl3kj203k03k0si.jpg');
   border: 1px #444 solid;
@@ -207,3 +220,8 @@ h6 {
 //     width: 100%;
 //   }
 // }
+
+
+.strong {
+  font-weight: bold;
+}

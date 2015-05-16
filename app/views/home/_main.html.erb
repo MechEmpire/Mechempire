@@ -11,10 +11,10 @@
         <div class="item active">
             <div class="fill" style="background-image:url('http://ww4.sinaimg.cn/mw1024/9de7f98djw1er9osyawfej218g0rsjz3.jpg')"></div>
             <div class="carousel-caption">
-                <h1>别样的游戏玩法</h1>
-                <h3>告别鼠标，用代码操纵你的机甲！</h3>
+                <h1 class="strong">别样的游戏玩法</h1>
+                <h3 class="strong">告别鼠标，用代码操纵你的机甲！</h3>
                 <% unless signed_in? %>
-                    <%= link_to "立即注册", signin_path, :class => "btn custom-btn btn-lg"%>
+                    <%= link_to "立即注册", signin_path, :class => "btn custom-btn2 btn-lg strong"%>
                     <br><br>
                 <% end %>
             </div>
@@ -22,18 +22,18 @@
         <div class="item">
             <div class="fill" style="background-image:url('http://ww1.sinaimg.cn/mw1024/9de7f98djw1er9osvcxn5j218g0p010p.jpg')"></div>
             <div class="carousel-caption">
-                <h1>人工智能并不遥远</h1>
-                <h3>制作你专属的智能体，去征战！</h3>
-                <a href="/download" title="下载开发包" class="btn custom-btn btn-lg">下载开发包</a>
+                <h1 class="strong">人工智能并不遥远</h1>
+                <h3 class="strong">制作你专属的智能体，去征战！</h3>
+                <a href="/download" title="下载开发包" class="btn custom-btn2 btn-lg strong">下载开发包</a>
                 <br><br>
             </div>
         </div>
         <div class="item">
             <div class="fill" style="background-image:url('http://ww1.sinaimg.cn/mw1024/9631b1bbgw1er9nsphirsj218g0xcgsd.jpg')"></div>
             <div class="carousel-caption">
-                <h1>酷炫的战斗画面</h1>
-                <h3>让编程不再枯燥，充满乐趣！</h3>
-                <!-- <a href="#" title="下载游戏播放器" class="btn custom-btn btn-lg">下载游戏播放器</a> -->
+                <h1 class="strong">酷炫的战斗画面</h1>
+                <h3 class="strong">让编程不再枯燥，充满乐趣！</h3>
+                <!-- <a href="#" title="下载游戏播放器" class="btn custom-btn2 btn-lg">下载游戏播放器</a> -->
                 <br><br>
             </div>
         </div>
@@ -52,17 +52,17 @@
     <div class="container">
         <div class="row">
             <center class="home-page-newer-title">
-                <h1>也许，你还是迷茫的新手</h1>
+                <h2 class="strong">也许，你还是迷茫的新手</h2>
             </center>
             <center class="col-md-4 col-sm-12 home-page-newer-item">
                 <img class="img-circle" src="http://ww3.sinaimg.cn/mw1024/9631b1bbgw1erd0g2tjysj205k05k0t0.jpg" alt="新手指南">
-                <h2>新手指南</h2>
+                <h3>新手指南</h3>
                 <p>新手入门，闪电上手</p>
                 <a href="/newer" title="新手指南" class="home-link">新手指南 &gt;&gt;</a>
             </center>
             <center class="col-md-4 col-sm-12 home-page-newer-item">
                 <img class="img-circle" src="http://ww1.sinaimg.cn/mw1024/9631b1bbgw1erd0g2u3hij205k05kmxh.jpg" alt="开发文档">
-                <h2>开发文档</h2>
+                <h3>开发文档</h3>
                 <p>详细开发和游戏手册</p>
                 <%= link_to "开发文档 >>", image_path('document.pdf'), :class=>"home-link"%>
                 <!-- <a href="http://pan.baidu.com/s/1gdgYleN" title="开发文档" class="btn custom-btn btn-lg">开发文档</a> -->
@@ -70,7 +70,7 @@
             </center>
             <center class="col-md-4 col-sm-12 home-page-newer-item">
                 <img class="img-circle" src="http://ww4.sinaimg.cn/mw1024/9631b1bbgw1erd0g2wvvaj205k05kdg4.jpg" alt="游戏背景">
-                <h2>游戏背景</h2>
+                <h3>游戏背景</h3>
                 <p>机甲帝国的世界观和周边</p>
                 <a href="/gamebg" title="战斗规则" class="home-link">游戏背景 &gt;&gt;</a>
             </center>
@@ -80,26 +80,29 @@
 <div class="row home-page-gray">
     <div class="container">
         <center class="home-page-newer-title">
-            <h1>或者，你已是轻车熟路的高手</h1>
+            <h2 class="strong">或者，你已是轻车熟路的高手</h2>
         </center>
-        <center class="col-md-6 col-sm-12">
-            <%= image_tag('x.png', :class=> "featurette-image img-circle img-responsive pull-left")%>
+        <center class="col-md-6 col-sm-12 col-xs-12">
+            <%= image_tag('x.png', :class=> "featurette-image img-responsive pull-left")%>
         </center>
-        <center class="col-md-6 col-sm-12 home-page-content-gray">
-            <h1>狄学长大战白骨精</h1>
+        <div class="clear visible-sm visible-xs"></div>
+        <center class="col-md-6 col-sm-12 col-xs-12 home-page-content-gray">
+            <h3 class="text-center">狄学长大战白骨精</h3>
             <hr class="main-page-hr">
-            <h3 class="lead">狄学长与白骨精酣战 8 个多小时，终于体力不支，倒下了。</h3>
-            <a href="/highlights" title="点击观看更多精彩战斗">点击观看更多精彩战斗 &gt;&gt;</a>
+            <h4 class="text-center">狄学长与白骨精酣战 8 个多小时，终于体力不支，倒下了。</h4>
+            <center>
+                <a href="/highlights" class="btn custom-btn2 btn-lg strong home-page-btn-highlights" title="观看更多精彩战斗">观看更多精彩战斗</a>
+            </center>
         </center>
     </div>
 </div>
 
-<div class="row home-page-black">
+<div class="row home-page-blue">
     <div class="container">
         <center class="home-page-newer-title">
-            <h1>战斗的号角已经吹响</h1>
-            <p class="lead">赶快去创建机甲，征服世界吧，相信你一定会收获别样的精彩</p>
-            <p class="lead">欢迎加入机甲帝国官方QQ群讨论：207730813</p>
+            <h2 class="strong">战斗的号角已经吹响</h2>
+            <p class="home-fight-para-1">赶快去创建机甲，征服世界吧！相信你一定会收获别样的精彩！</p>
+            <p class="home-fight-para-2">欢迎加入机甲帝国官方QQ群讨论：207730813</p>
         </center>
     </div>
 </div>
