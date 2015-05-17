@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.order_by(:meches_count.desc, :score.desc).page(params[:page]).per(30)
-    # @user_has_mech = 
+    @page = params[:page].nil? ? 1 : params[:page]
   end
 
   # GET /users/1
