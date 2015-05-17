@@ -6,14 +6,34 @@
     <% @users.each.with_index do |user, index| %>
       <li>
         <div class="col-md-4 battle-info">
-          <!-- 帮忙写一下分支吧，分成第一、第二、第三、其他前八和非前八的用户 -->
-          <!-- 然后给个排名变量 -->
           <%#= @page %>
-          <div class="col-md-2 user-list-info">
-            <span class="glyphicon user-rank-other" aria-hidden="true">
+          <% if ( @page.to_i == 1 ) && ( index < 8 ) %>
+            <%# 前八，加图标并向左缩进1em %>
+            <div class="col-md-2 user-list-info top-users">
+              <% if index == 0 %>
+                <%# 金 %>
+                <span class="glyphicon glyphicon-glass user-rank-1" aria-hidden="true"></span>
+              <% elsif index == 1 %>
+                <%# 银 %>
+                <span class="glyphicon glyphicon-glass user-rank-2" aria-hidden="true"></span>
+              <% elsif index == 2 %>
+                <%# 铜 %>
+                <span class="glyphicon glyphicon-glass user-rank-3" aria-hidden="true"></span>
+              <% else %>
+                <%# 其他前八 %>
+                <span class="glyphicon glyphicon-star user-rank-other" aria-hidden="true"></span>
+              <% end %>
+              &nbsp;
               <%= (@page.to_i - 1) * 30 + (index + 1) %>
-            </span>
-          </div>
+            </div>
+          <% else %>
+            <%# 非前八，无图标 %>
+            <div class="col-md-2 user-list-info">
+              &nbsp;
+              <%= (@page.to_i - 1) * 30 + (index + 1) %>
+            </div>
+          <% end %>
+
           <div class="col-md-10">
             <%= gravatar_for user, size: 52 %>
             &nbsp;
