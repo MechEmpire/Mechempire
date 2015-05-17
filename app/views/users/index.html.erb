@@ -9,7 +9,7 @@
           <%#= @page %>
           <% if ( @page.to_i == 1 ) && ( index < 8 ) %>
             <%# 前八，加图标并向左缩进1em %>
-            <div class="col-md-2 user-list-info top-users">
+            <div class="col-md-3 user-list-info top-users">
               <% if index == 0 %>
                 <%# 金 %>
                 <span class="glyphicon glyphicon-glass user-rank-1" aria-hidden="true"></span>
@@ -23,18 +23,16 @@
                 <%# 其他前八 %>
                 <span class="glyphicon glyphicon-star user-rank-other" aria-hidden="true"></span>
               <% end %>
-              &nbsp;
               <%= (@page.to_i - 1) * 30 + (index + 1) %>
             </div>
           <% else %>
             <%# 非前八，无图标 %>
-            <div class="col-md-2 user-list-info">
-              &nbsp;
+            <div class="col-md-3 user-list-info">
               <%= (@page.to_i - 1) * 30 + (index + 1) %>
             </div>
           <% end %>
 
-          <div class="col-md-10">
+          <div class="col-md-9">
             <%= gravatar_for user, size: 52 %>
             &nbsp;
             <%= link_to user.name.truncate(10), user %> <br>
