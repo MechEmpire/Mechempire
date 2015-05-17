@@ -2,7 +2,64 @@
   <h1>英雄榜</h1>
   
   <ul class="users">
-    <%= render @users %>
+    <%#= render @users %>
+    <% @users.each.with_index do |user, index| %>
+      <li>
+        <div class="col-md-4 battle-info">
+          <!-- 帮忙写一下分支吧，分成第一、第二、第三、其他前八和非前八的用户 -->
+          <!-- 然后给个排名变量 -->
+          <div class="col-md-2 user-list-info">
+            <span class="glyphicon user-rank-other" aria-hidden="true"><%= index+1 %></span>
+          </div>
+          <div class="col-md-10">
+            <%= gravatar_for user, size: 52 %>
+            &nbsp;
+            <%= link_to user.name.truncate(10), user %> <br>
+            <% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
+            <%= link_to "删除用户", user, method: :delete,
+                                          data: { confirm: "确认删除用户吗？" } %>
+              <% if !user.is_actived %>
+                <small>未激活</small>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class="col-md-1 user-list-info">
+          机甲 <br>
+          <%= user.meches.count %>
+        </div>
+        <div class="col-md-1 user-list-info">
+          战斗 <br>
+          <%= user.battle_count %>
+        </div>
+        <div class="col-md-1 user-list-info">
+          胜利 <br>
+          <%= user.win_times %>
+        </div>
+        <div class="col-md-1 user-list-info">
+          积分 <br>
+          <%= user.score %>
+        </div>
+        <div class="col-md-3 user-list-info">
+          <% unless user.motto.nil? %>
+            <%= user.motto %>
+          <% end %>
+        </div>
+        <div class="col-md-1 user-list-info">
+          <% unless current_user?(user) %>
+            <% unless current_user.nil? %>
+              <% unless(current_user.following.include?(user)) %>
+                <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
+              <% else %>
+                <%= link_to "取消关注", unfollow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
+              <% end %>
+            <% else %>
+              <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+            <% end %>
+          <% end %>
+        </div>
+      </li>
+    <% end %>
   </ul>
 
   <%= paginate @users, :outer_window => 2 %>
