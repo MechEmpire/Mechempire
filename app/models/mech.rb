@@ -46,10 +46,10 @@ class Mech
   end
 
   def mech_info_json
-    # `compile/get_info.sh -p #{self.code_dir}`
-    pid, stdin, stdout, stderr = Open4.popen4("compile/get_info.sh -p #{self.code_dir}")
+    `compile/get_info.sh -p #{self.code_dir}`
+    #pid, stdin, stdout, stderr = Open4.popen4("compile/get_info.sh -p #{self.code_dir}")
     # mech_info = `compile/RobotAppearanceReader #{self.code_dir}libmyAI.so stdout`
-    return stdout.read.strip
+    #return stdout.read.strip
   end
 
   def get_mech_info
