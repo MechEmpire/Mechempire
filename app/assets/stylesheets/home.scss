@@ -12,6 +12,7 @@
 .mech-nav-logo{
   height: 40px;
   margin-top: 5px;
+  margin-right: 15px;
 }
 
 .navbar-inverse {
@@ -128,12 +129,23 @@ div.carousel .fill {
   }
 }
 
-a.carousel-control {
+a.carousel-control:link,  a.carousel-control:visited {
   color: white !important;
 }
 .carousel-control .icon-prev, .carousel-control .icon-next {
-  margin-top: -35px;
-  font-size: 70px;
+  margin-top: -30px !important;
+  font-size: 60px !important;
+}
+
+.carousel-indicators .active {
+  width: 11px;
+  height: 11px;
+}
+
+.carousel-indicators li {
+  width: 9px;
+  height: 9px;
+  border-radius: 9px;
 }
 
 .home-page-newer-title{
@@ -163,7 +175,7 @@ a.carousel-control {
   background-size: cover;
 }
 .home-page-black{
-  background-color: #000;
+  background-color: #1e1e23;
 }
 .home-page-top{
   // padding-bottom: 80px;
