@@ -176,6 +176,26 @@ a.carousel-control:link,  a.carousel-control:visited {
     color: #ccc !important;
   }
 }
+
+.newer-item-icon-back {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #2ea4d1;
+  transition: 0.25s ease;
+}
+.newer-item-icon-back:hover {
+    background-color: #33c8f3;
+    transition: 0.25s ease;
+}
+.newer-item-icon {
+  font-size: 50px;
+  margin-top: 50px;
+}
+a.link-unchanged {
+    color: white !important;
+}
+
 .home-page-gray{
   background-image: url('http://ww1.sinaimg.cn/mw1024/9631b1bbjw1es764gm29yj21hc11qtg6.jpg');
   background-repeat: no-repeat;
