@@ -5,11 +5,11 @@
     <%#= render @users %>
     <% @users.each.with_index do |user, index| %>
       <li>
-        <div class="col-md-4 battle-info">
+        <div class="col-md-4 col-sm-6 col-xs-12 battle-info">
           <%#= @page %>
           <% if ( @page.to_i == 1 ) && ( index < 8 ) %>
             <%# 前八，加图标并向左缩进1em %>
-            <div class="col-md-3 user-list-info top-users">
+            <div class="col-md-3 col-sm-3 col-xs-12 user-list-info top-users">
               <% if index == 0 %>
                 <%# 金 %>
                 <span class="glyphicon glyphicon-glass user-rank-1" aria-hidden="true"></span>
@@ -27,12 +27,12 @@
             </div>
           <% else %>
             <%# 非前八，无图标 %>
-            <div class="col-md-3 user-list-info">
+            <div class="col-md-3 col-sm-3 col-xs-12 user-list-info">
               &nbsp;<%= (@page.to_i - 1) * 30 + (index + 1) %>
             </div>
           <% end %>
 
-          <div class="col-md-9">
+          <div class="col-md-9 col-sm-9 col-xs-12">
             <%= gravatar_for user, size: 52 %>
             &nbsp;
             <%= link_to user.name.truncate(10), user %> <br>
@@ -45,39 +45,43 @@
             <% end %>
           </div>
         </div>
-        <div class="col-md-1 user-list-info">
-          机甲 <br>
-          <%= user.meches.count %>
+        <div class="col-md-4 col-sm-6 col-xs-12">
+          <div class="col-md-3 col-sm-3 col-xs-3 user-list-info">
+            机甲 <br>
+            <%= user.meches.count %>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3 user-list-info">
+            战斗 <br>
+            <%= user.battle_count %>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3 user-list-info">
+            胜利 <br>
+            <%= user.win_times %>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3 user-list-info">
+            积分 <br>
+            <%= user.score %>
+          </div>
         </div>
-        <div class="col-md-1 user-list-info">
-          战斗 <br>
-          <%= user.battle_count %>
-        </div>
-        <div class="col-md-1 user-list-info">
-          胜利 <br>
-          <%= user.win_times %>
-        </div>
-        <div class="col-md-1 user-list-info">
-          积分 <br>
-          <%= user.score %>
-        </div>
-        <div class="col-md-3 user-list-info">
-          <% unless user.motto.nil? %>
-            <%= user.motto.truncate(40) %>
-          <% end %>
-        </div>
-        <div class="col-md-1 user-list-info">
-          <% unless current_user?(user) %>
-            <% unless current_user.nil? %>
-              <% unless(current_user.following.include?(user)) %>
-                <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
-              <% else %>
-                <%= link_to "取消关注", unfollow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
-              <% end %>
-            <% else %>
-              <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+        <div class="col-md-4 col-sm-12 col-xs-12">
+          <div class="col-md-9 col-sm-9 col-xs-9 user-list-info">
+            <% unless user.motto.nil? %>
+              <%= user.motto.truncate(40) %>
             <% end %>
-          <% end %>
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3 user-list-info">
+            <% unless current_user?(user) %>
+              <% unless current_user.nil? %>
+                <% unless(current_user.following.include?(user)) %>
+                  <%= link_to "关注", follow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
+                <% else %>
+                  <%= link_to "取消关注", unfollow_user_path(user), remote: true, method: :post, :class => "btn btn-sm custom-btn pull-right", :id => "following-#{user._id}" %>
+                <% end %>
+              <% else %>
+                <%= link_to "关注", signin_path, :class => "btn btn-sm custom-btn pull-right" %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
       </li>
     <% end %>
