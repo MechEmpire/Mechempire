@@ -28,6 +28,8 @@
 div.carousel{
     height: 450px;
 }
+
+
 div.about-main{
 	height: 300px;
   width: 100%;
@@ -144,14 +146,14 @@ a.carousel-control:link,  a.carousel-control:visited {
 }
 
 .carousel-indicators .active {
-  width: 11px;
-  height: 11px;
+  width: 11px !important;
+  height: 11px !important;
 }
 
 .carousel-indicators li {
-  width: 9px;
-  height: 9px;
-  border-radius: 9px;
+  width: 9px !important;
+  height: 9px !important;
+  border-radius: 9px !important;
 }
 
 .home-page-newer-title{
