@@ -129,8 +129,8 @@ class Battle
 
     self.score = (k * (sa - ea)).abs
 
-    second_mech.user.update_attribute("score", ra)
-    first_mech.user.update_attribute("score", rb)
+    second_mech.user.update_attribute("score", ra.round)
+    first_mech.user.update_attribute("score", rb.round)
 
     # logger.error(stderr.read)
   end
