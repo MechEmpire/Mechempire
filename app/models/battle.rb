@@ -44,7 +44,7 @@ class Battle
     if self.winner_id == self.attacker_id
       # logfile.puts "protect"
       self.defender.update_attributes(:protect_begin_time => Time.now.to_i,
-                                      :protect_time => 60)
+                                      :protect_time => 300)
     end
     # logfile.puts "---"
     # logfile.close
