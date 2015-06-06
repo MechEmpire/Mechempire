@@ -74,17 +74,19 @@
           <%= time_ago_in_words(@mech.create_at) + "前创建" %>
         </p>
         <p><strong><i class="fa fa-volume-up"></i> 战斗宣言：</strong><%= @mech.manifesto%></p>
-        <% if !current_user.nil? && current_user.admin? %>
-          <a href="https://github.com/Tairy/Mechempire-meches/tree/master/<%= @mech._id %>/code" title="机甲代码">机甲代码</a>
-          <p>
-            <%= @mech.mech_info_json %>
-          </p>
-          <p>
-            <%= @mech.user.motto %>
-          </p>
-        <% end %>
       </div>
     </div>
+  </div>
+  <div class="row custom-well">
+    <% if !current_user.nil? && current_user.admin? %>
+      <a href="https://github.com/Tairy/Mechempire-meches/tree/master/<%= @mech._id %>/code" title="机甲代码">机甲代码</a>
+      <p>
+        <%= @mech.mech_info_json %>
+      </p>
+      <p>
+        <%= @mech.user.motto %>
+      </p>
+    <% end %>
   </div>
   <div class="row custom-well">
     <h3>参与的战斗</h3>
