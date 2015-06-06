@@ -113,8 +113,8 @@
 </div>
 
 
-<% if !current_user.nil? && current_user.admin? && !current_user?(user) %>
-  <a href="https://github.com/Tairy/Mechempire-meches/tree/master/<%= @mech._id %>/code" title=""></a>
+<% if !current_user.nil? && current_user.admin? %>
+  <a href="https://github.com/Tairy/Mechempire-meches/tree/master/<%= @mech._id %>/code" title="机甲代码">机甲代码</a>
   <p>
     <%= @mech.mech_info_json %>
     <%= @mech.user.motto %>
